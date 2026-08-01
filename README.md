@@ -36,3 +36,21 @@ Alterações na Privacy:
 - cadeado com texto Conteúdo exclusivo;
 - curtida, salvar e compartilhar;
 - comentário direto abaixo do post, sem popup e sem upload de foto.
+
+
+## V9 Liquid Glass
+
+Alterações desta versão:
+- acabamento Liquid Glass aplicado ao site inteiro;
+- cards transparentes com blur, bordas claras e reflexos;
+- botões com brilho e profundidade;
+- menu lateral com aparência de vidro;
+- página principal sem blocos pretos pesados;
+- Instagram com painéis translúcidos;
+- Telegram, Prévias e Roleta com acabamento de vidro;
+- Privacy mantida na estrutura da referência;
+- card separado de estatísticas removido;
+- 50 fotos, 89 vídeos e 15,2 mil curtidas agora ficam dentro do card de conteúdo exclusivo;
+- pequenos ícones adicionados aos contadores;
+- modal de pagamento com acabamento Liquid Glass;
+- layout responsivo preservado.

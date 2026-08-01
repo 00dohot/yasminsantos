@@ -13,3 +13,229 @@
 .previews-page{min-height:100vh;background:#080404}.preview-banner{position:relative;min-height:370px;overflow:hidden;border-radius:20px}.preview-banner>img{position:absolute;width:100%;height:100%;object-fit:cover;filter:blur(6px) brightness(.48);transform:scale(1.08)}.preview-banner>div{position:relative;z-index:1;min-height:370px;display:grid;place-content:center;justify-items:center;gap:20px}.preview-slider{display:flex;gap:14px;overflow-x:auto;padding:20px 0;scroll-snap-type:x mandatory}.preview-slider article{flex:0 0 260px;aspect-ratio:3/4;overflow:hidden;border-radius:16px;scroll-snap-align:start}.preview-slider img{width:100%;height:100%;object-fit:cover}.preview-slider .soft-blur img{filter:blur(7px) brightness(.65);transform:scale(1.08)}
 .roulette-page{min-height:100vh;background:#080404}.roulette-card{text-align:center}.roulette-card h1{font-size:2.4rem}.roulette-card p{color:var(--muted)}.roulette-embed{height:680px;margin:22px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden}.roulette-embed iframe{width:100%;height:100%;border:0}
 @media(max-width:760px){.hero-fixed{background-attachment:scroll;min-height:700px}.hero-content{padding:80px 24px}.exclusive-card{grid-template-columns:1fr}.roulette-cta{display:grid}.ig-profile{grid-template-columns:1fr;text-align:center}.ig-avatar{margin:auto}.ig-name-row,.ig-stats{justify-content:center}.post-dialog{width:100vw;height:100dvh;border-radius:0;grid-template-columns:1fr;grid-template-rows:55vh 45vh}.post-side form{grid-template-columns:1fr}.post-side form button{padding:12px}.telegram-list a{grid-template-columns:50px 1fr}.telegram-list em{grid-column:1/-1;text-align:center}.roulette-embed{height:72vh}}
+
+
+/* =====================================================
+   V9 LIQUID GLASS
+   ===================================================== */
+:root{
+  --glass-bg:rgba(255,255,255,.075);
+  --glass-bg-strong:rgba(255,255,255,.12);
+  --glass-border:rgba(255,255,255,.22);
+  --glass-highlight:rgba(255,255,255,.36);
+  --glass-shadow:0 22px 70px rgba(0,0,0,.28);
+  --glass-blur:22px;
+}
+
+body{
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255,142,82,.16), transparent 30%),
+    radial-gradient(circle at 80% 28%, rgba(136,80,255,.14), transparent 32%),
+    linear-gradient(145deg,#100807,#090505 48%,#110a0c);
+  background-attachment:fixed;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    linear-gradient(120deg,rgba(255,255,255,.035),transparent 26%,rgba(255,255,255,.025) 52%,transparent 74%),
+    radial-gradient(circle at center,transparent 40%,rgba(0,0,0,.24));
+}
+
+.glass-card,
+.exclusive-card,
+.instagram-card,
+.roulette-cta{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.035)),
+    rgba(20,10,12,.20) !important;
+  border:1px solid var(--glass-border) !important;
+  backdrop-filter:blur(var(--glass-blur)) saturate(145%);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(145%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.24),
+    inset 0 -1px 0 rgba(255,255,255,.05),
+    var(--glass-shadow) !important;
+  position:relative;
+  overflow:hidden;
+}
+
+.glass-card::before,
+.exclusive-card::before,
+.instagram-card::before,
+.roulette-cta::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(130deg,rgba(255,255,255,.18),transparent 24%,transparent 70%,rgba(255,255,255,.06));
+  opacity:.72;
+}
+
+.hero-fixed{
+  background-attachment:fixed !important;
+}
+
+.hero-content{
+  background:linear-gradient(135deg,rgba(0,0,0,.14),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+  margin:70px 0 40px 5vw;
+  padding:55px 48px !important;
+}
+
+.btn,
+.telegram-btn,
+.ghost-btn,
+.gold-btn{
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.35),
+    0 12px 35px rgba(0,0,0,.18);
+  transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;
+}
+
+.btn::after,
+.telegram-btn::after,
+.ghost-btn::after,
+.gold-btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,rgba(255,255,255,.34),transparent 34%,transparent 72%,rgba(255,255,255,.08));
+  pointer-events:none;
+}
+
+.btn:hover,
+.telegram-btn:hover,
+.ghost-btn:hover,
+.gold-btn:hover{
+  transform:translateY(-2px) scale(1.015);
+  filter:brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    0 18px 42px rgba(0,0,0,.25);
+}
+
+.ghost-btn{
+  background:rgba(255,255,255,.085) !important;
+  border-color:rgba(255,255,255,.28) !important;
+}
+
+.gold-btn{
+  background:linear-gradient(180deg,rgba(255,227,151,.95),rgba(206,157,62,.88)) !important;
+}
+
+.menu-tab{
+  background:rgba(255,255,255,.09) !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  backdrop-filter:blur(22px) saturate(150%) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(150%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.25),
+    0 12px 35px rgba(0,0,0,.28) !important;
+}
+
+.drawer{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.035)),
+    rgba(10,6,8,.58) !important;
+  border-right:1px solid rgba(255,255,255,.20) !important;
+  backdrop-filter:blur(28px) saturate(155%);
+  -webkit-backdrop-filter:blur(28px) saturate(155%);
+}
+
+.drawer-nav a{
+  background:transparent;
+  border:1px solid transparent;
+  transition:.2s ease;
+}
+
+.drawer-nav a:hover{
+  background:rgba(255,255,255,.10) !important;
+  border-color:rgba(255,255,255,.16);
+  transform:translateX(3px);
+}
+
+.drawer-pin{
+  background:rgba(255,255,255,.08) !important;
+  backdrop-filter:blur(15px);
+}
+
+.site-footer{
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(14px);
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.telegram-list a,
+.preview-banner,
+.roulette-card{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035)),
+    rgba(10,20,28,.26) !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  backdrop-filter:blur(22px) saturate(145%);
+  -webkit-backdrop-filter:blur(22px) saturate(145%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 20px 55px rgba(0,0,0,.22);
+}
+
+.instagram-page{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(255,180,215,.18),transparent 28%),
+    radial-gradient(circle at 85% 20%,rgba(120,170,255,.16),transparent 30%),
+    #f3f4f8 !important;
+}
+
+.ig-profile,
+.ig-highlights,
+.ig-tabs{
+  background:rgba(255,255,255,.56);
+  border:1px solid rgba(255,255,255,.70);
+  backdrop-filter:blur(24px) saturate(145%);
+  -webkit-backdrop-filter:blur(24px) saturate(145%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 18px 45px rgba(53,54,84,.10);
+}
+
+.ig-profile{
+  border-radius:24px;
+  padding:24px !important;
+}
+
+.ig-highlights{
+  border-radius:20px;
+  margin-top:12px;
+}
+
+.ig-tabs{
+  border-radius:16px 16px 0 0;
+}
+
+.post-dialog,
+.story-frame{
+  backdrop-filter:blur(28px) saturate(150%);
+  -webkit-backdrop-filter:blur(28px) saturate(150%);
+  box-shadow:0 35px 120px rgba(0,0,0,.35);
+}
+
+@media(max-width:760px){
+  .hero-content{
+    margin:60px 14px 28px;
+    padding:36px 24px !important;
+  }
+}
