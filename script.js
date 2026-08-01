@@ -114,3 +114,5 @@
     document.querySelectorAll("[data-close-story]").forEach(x=>x.addEventListener("click",()=>{clearTimeout(storyTimer);storyModal.classList.remove("open")}));
   }
 })();
+
+(() => {const modal=document.getElementById("instagramImageModal");const preview=document.getElementById("instagramImagePreview");if(!modal||!preview)return;const open=src=>{preview.src=src;modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden"};const close=()=>{modal.classList.remove("open");modal.setAttribute("aria-hidden","true");preview.src="";document.body.style.overflow=""};document.querySelectorAll("[data-open-instagram-image]").forEach(b=>b.addEventListener("click",()=>open(b.dataset.openInstagramImage)));modal.querySelectorAll("[data-close-instagram-image]").forEach(e=>e.addEventListener("click",close));})();

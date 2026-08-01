@@ -868,3 +868,5 @@ body{
     padding:10px 4px;
   }
 }
+
+.content-layout{grid-template-columns:minmax(0,1fr)!important;max-width:780px;margin-left:auto;margin-right:auto}.profile-copy .bio{max-width:680px}

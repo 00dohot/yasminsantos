@@ -1,69 +1,73 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
   <title>Instagram | Yasmin Santos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
 </head>
-<body class="instagram-page">
-  <main class="ig-shell">
-    <header class="ig-top"><a href="../">Voltar ao site</a><strong>@yasminsantos</strong><span></span></header>
-    <section class="ig-profile">
-      <img class="ig-avatar" src="../assets/images/modelo-piscina.png" alt="">
-      <div class="ig-profile-main">
-        <div class="ig-name-row"><h1>@yasminsantos</h1><span class="ig-verified">✓</span></div>
-        <div class="ig-stats"><div><strong>12</strong><span>publicações</span></div><div><strong>12,8 mil</strong><span>seguidores</span></div><div><strong>184</strong><span>seguindo</span></div></div>
-        <p><strong>Criadora de Conteúdo 18+</strong><br>Só para quem sabe o que quer.</p>
+<body class="instagram-page instagram-realistic">
+  <main class="instagram-app">
+    <header class="instagram-mobile-header">
+      <a href="../" class="instagram-back">Voltar ao site</a>
+      <div class="instagram-title"><strong>@yasminsantos</strong><span>⌄</span></div>
+      <button type="button" class="instagram-more">•••</button>
+    </header>
+    <section class="instagram-profile-header">
+      <div class="instagram-profile-row">
+        <button class="instagram-avatar-button" type="button" data-open-instagram-image="../assets/images/modelo-piscina.png">
+          <span class="instagram-avatar-ring"><img src="../assets/images/modelo-piscina.png" alt="Foto de perfil"></span>
+        </button>
+        <div class="instagram-counts">
+          <div><strong>12</strong><span>publicações</span></div>
+          <div><strong>12,8 mil</strong><span>seguidores</span></div>
+          <div><strong>184</strong><span>seguindo</span></div>
+        </div>
+      </div>
+      <div class="instagram-bio">
+        <div class="instagram-name-line"><strong>Yasmin Santos</strong><span class="instagram-verified" title="Selo visual">✓</span></div>
+        <p>Criadora de Conteúdo 18+</p>
+        <p>Só para quem sabe o que quer.</p>
+      </div>
+      <div class="instagram-profile-actions">
+        <button type="button">Seguindo</button><button type="button">Mensagem</button><button type="button">⌄</button>
       </div>
     </section>
-
-    <section class="ig-highlights">
-      <button data-story="Grupo VIP"><span><img src="../assets/images/modelo-piscina.png" alt=""></span><small>Grupo VIP</small></button>
-      <button data-story="Prévias"><span><img src="../assets/images/modelo-piscina.png" alt=""></span><small>Prévias</small></button>
-      <button data-story="Me"><span><img src="../assets/images/modelo-piscina.png" alt=""></span><small>Me</small></button>
+    <section class="instagram-highlights">
+      <button type="button" data-story="Grupo VIP"><span><img src="../assets/images/modelo-piscina.png" alt=""></span><small>Grupo VIP</small></button>
+      <button type="button" data-story="Prévias"><span><img src="../assets/images/modelo-piscina.png" alt=""></span><small>Prévias</small></button>
+      <button type="button" data-story="Me"><span><img src="../assets/images/modelo-piscina.png" alt=""></span><small>Me</small></button>
     </section>
-
-    <div class="ig-tabs"><span>▦ PUBLICAÇÕES</span><span>♡ MARCADOS</span></div>
-    <section class="ig-publications" id="igPublications"></section>
+    <nav class="instagram-content-tabs"><button class="active" type="button">▦</button><button type="button">▹</button><button type="button">♙</button></nav>
+    <section class="instagram-grid" id="igPublications"></section>
   </main>
-
+  <nav class="instagram-bottom-nav">
+    <a href="../">⌂</a><button>⌕</button><button>⊞</button><button>▹</button>
+    <button class="instagram-mini-avatar" type="button" data-open-instagram-image="../assets/images/modelo-piscina.png"><img src="../assets/images/modelo-piscina.png" alt=""></button>
+  </nav>
   <div class="story-modal" id="storyModal" aria-hidden="true">
-    <div class="modal-bg" data-close-story></div>
-    <article class="story-frame">
-      <div class="story-line"><span></span></div>
-      <button data-close-story>×</button>
-      <img src="../assets/images/modelo-piscina.png" alt="">
-      <strong id="storyTitle">Grupo VIP</strong>
-    </article>
+    <div class="modal-bg" data-close-story></div><article class="story-frame"><div class="story-line"><span></span></div><button data-close-story>×</button><img src="../assets/images/modelo-piscina.png" alt=""><strong id="storyTitle">Grupo VIP</strong></article>
   </div>
-
   <div class="post-modal" id="postModal" aria-hidden="true">
     <div class="modal-bg" data-close-post></div>
-    <article class="post-dialog">
+    <article class="post-dialog instagram-post-dialog">
       <button class="post-close" data-close-post>×</button>
       <div class="post-image"><button id="postPrev">‹</button><img id="postImage" src="" alt=""><button id="postNext">›</button></div>
       <aside class="post-side">
-        <header><img src="../assets/images/modelo-piscina.png" alt=""><strong>@yasminsantos</strong></header>
+        <header><img src="../assets/images/modelo-piscina.png" alt=""><div><strong>@yasminsantos</strong><span>Perfil de demonstração</span></div></header>
         <div class="post-comments" id="postComments"></div>
-        <div class="post-actions">
-          <button id="likePost" aria-pressed="false">♡</button>
-          <button id="focusComment">○</button>
-          <button id="sharePost">↗</button>
-          <button id="savePost" aria-pressed="false">◇</button>
-        </div>
+        <div class="post-actions"><button id="likePost">♡</button><button id="focusComment">○</button><button id="sharePost">↗</button><button id="savePost">◇</button></div>
         <strong class="like-count"><span id="likeCount">184</span> curtidas</strong>
-        <form id="postCommentForm">
-          <input id="commentHandle" placeholder="@seuarroba" required>
-          <input id="commentText" placeholder="Adicione um comentário..." required>
-          <button>Publicar</button>
-        </form>
+        <form id="postCommentForm"><input id="commentHandle" placeholder="@seuarroba" required><input id="commentText" placeholder="Adicione um comentário..." required><button>Publicar</button></form>
       </aside>
     </article>
   </div>
-
-  <script src="../config.js"></script>
-  <script src="../script.js"></script>
-</body>
-</html>
+  <div class="instagram-image-modal" id="instagramImageModal" aria-hidden="true">
+    <div class="modal-bg" data-close-instagram-image></div><section class="instagram-image-dialog"><button type="button" data-close-instagram-image>×</button><img id="instagramImagePreview" src="" alt=""></section>
+  </div>
+  <script src="../config.js"></script><script src="../script.js"></script>
+</body></html>

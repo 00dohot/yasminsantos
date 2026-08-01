@@ -69,3 +69,9 @@ Alterações desta versão:
 - contadores posicionados abaixo de Conteúdo exclusivo;
 - capa e foto de perfil da Privacy agora são clicáveis;
 - visualizador ampliado adicionado para as imagens do perfil.
+
+## V10
+- Instagram reconstruído em tema preto com layout mais próximo do aplicativo original.
+- Privacy sem os cards laterais.
+- Benefícios resumidos na bio.
+- Plano mensal removido; permanecem trimestral e vitalício.
