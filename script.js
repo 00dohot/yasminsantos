@@ -116,3 +116,157 @@
 })();
 
 (() => {const modal=document.getElementById("instagramImageModal");const preview=document.getElementById("instagramImagePreview");if(!modal||!preview)return;const open=src=>{preview.src=src;modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden"};const close=()=>{modal.classList.remove("open");modal.setAttribute("aria-hidden","true");preview.src="";document.body.style.overflow=""};document.querySelectorAll("[data-open-instagram-image]").forEach(b=>b.addEventListener("click",()=>open(b.dataset.openInstagramImage)));modal.querySelectorAll("[data-close-instagram-image]").forEach(e=>e.addEventListener("click",close));})();
+
+
+// Direct interno com ponto de integração para API de IA.
+(() => {
+  const panel = document.getElementById("directPanel");
+  const messages = document.getElementById("directMessages");
+  const form = document.getElementById("directForm");
+  const input = document.getElementById("directInput");
+  if (!panel || !messages || !form || !input) return;
+
+  const cfg = window.SITE_CONFIG?.aiChat || {};
+  const storageKey = "yasmin-instagram-direct-v11";
+
+  function readConversation() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+      if (saved.length) return saved;
+    } catch {}
+    return [{
+      role: "model",
+      text: cfg.welcomeMessage || "Oi, vi que você chegou por aqui 😊 Quer conhecer meu conteúdo exclusivo?"
+    }];
+  }
+
+  function saveConversation(items) {
+    localStorage.setItem(storageKey, JSON.stringify(items));
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+
+  let conversation = readConversation();
+
+  function renderConversation() {
+    messages.innerHTML = conversation.map(item =>
+      `<div class="ig-message ${item.role}">${escapeHtml(item.text)}</div>`
+    ).join("");
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function openDirect() {
+    panel.classList.add("open");
+    panel.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+    renderConversation();
+    setTimeout(() => input.focus(), 250);
+  }
+
+  function closeDirect() {
+    panel.classList.remove("open");
+    panel.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-open-direct]").forEach(button => {
+    button.addEventListener("click", openDirect);
+  });
+  panel.querySelectorAll("[data-close-direct]").forEach(element => {
+    element.addEventListener("click", closeDirect);
+  });
+
+  async function requestAI(userText) {
+    if (!cfg.enabled || !cfg.endpoint) {
+      return cfg.fallbackReply ||
+        "Adorei sua mensagem. Meu atendimento inteligente ainda está sendo configurado.";
+    }
+
+    const response = await fetch(cfg.endpoint, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({
+        message: userText,
+        history: conversation,
+        profile: "@yasminsantos"
+      })
+    });
+
+    if (!response.ok) throw new Error("Falha ao consultar a API.");
+    const data = await response.json();
+    return data.reply || data.message || cfg.fallbackReply;
+  }
+
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    conversation.push({role:"user",text});
+    saveConversation(conversation);
+    input.value = "";
+    renderConversation();
+
+    const typing = document.createElement("div");
+    typing.className = "ig-typing";
+    typing.textContent = "Yasmin está digitando...";
+    messages.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const reply = await requestAI(text);
+      typing.remove();
+      conversation.push({role:"model",text:reply});
+      saveConversation(conversation);
+      renderConversation();
+    } catch {
+      typing.remove();
+      conversation.push({
+        role:"model",
+        text: cfg.fallbackReply || "Não consegui responder agora. Tente novamente em instantes."
+      });
+      saveConversation(conversation);
+      renderConversation();
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && panel.classList.contains("open")) closeDirect();
+  });
+})();
+
+// Imagem ampliada do perfil do Instagram.
+(() => {
+  const modal = document.getElementById("instagramImageModal");
+  const preview = document.getElementById("instagramImagePreview");
+  if (!modal || !preview) return;
+
+  function open(src) {
+    preview.src = src;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden","true");
+    preview.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-open-instagram-image]").forEach(button => {
+    button.addEventListener("click", () => open(button.dataset.openInstagramImage));
+  });
+
+  modal.querySelectorAll("[data-close-instagram-image]").forEach(element => {
+    element.addEventListener("click", close);
+  });
+})();

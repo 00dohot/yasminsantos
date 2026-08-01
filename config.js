@@ -38,5 +38,12 @@ window.SITE_CONFIG = {
       quarterly: { name:"Plano trimestral", period:"90 dias", price:"R$ 49,90", checkoutUrl:"https://SEU-CHECKOUT-TRIMESTRAL.com" },
       lifetime: { name:"Acesso vitalício", period:"Sem expiração", price:"R$ 149,90", checkoutUrl:"https://SEU-CHECKOUT-VITALICIO.com" }
     }
+  },
+
+  aiChat: {
+    enabled: false,
+    endpoint: "",
+    welcomeMessage: "Oi, vi que você chegou por aqui 😊 Quer conhecer meu conteúdo exclusivo?",
+    fallbackReply: "Adorei sua mensagem. Meu atendimento inteligente ainda está sendo configurado, mas você já pode conhecer as opções exclusivas no perfil."
   }
 };

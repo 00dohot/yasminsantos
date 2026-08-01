@@ -75,3 +75,47 @@ Alterações desta versão:
 - Privacy sem os cards laterais.
 - Benefícios resumidos na bio.
 - Plano mensal removido; permanecem trimestral e vitalício.
+
+
+## V11 — Instagram desktop, mobile e Direct
+
+- versão desktop com barra lateral e perfil central;
+- versão mobile adaptada para parecer um aplicativo;
+- grade 4 colunas no desktop e 3 colunas no celular;
+- caixa flutuante Mensagens no desktop;
+- Direct interno com mensagem inicial da modelo;
+- histórico de conversa salvo no navegador;
+- integração preparada para API de IA no `config.js`;
+- nenhuma credencial ou login é solicitado;
+- o selo azul é apenas um elemento visual do perfil de demonstração.
+
+### Configurar a API de IA
+
+No `config.js`:
+
+```js
+aiChat: {
+  enabled: true,
+  endpoint: "https://SEU-ENDPOINT-DE-IA.com/chat",
+  welcomeMessage: "Mensagem inicial...",
+  fallbackReply: "Resposta usada caso a API falhe."
+}
+```
+
+O endpoint deve aceitar POST JSON:
+
+```json
+{
+  "message": "Mensagem do visitante",
+  "history": [],
+  "profile": "@yasminsantos"
+}
+```
+
+E responder:
+
+```json
+{
+  "reply": "Resposta gerada pela IA"
+}
+```
