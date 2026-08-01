@@ -18,3 +18,21 @@ Versão refeita sobre uma base limpa.
 
 ## Links e checkouts
 Edite apenas `config.js`.
+
+
+## V9
+
+A V9 mantém todas as páginas da V8 corrigida e reconstrói somente a página Privacy.
+
+Alterações na Privacy:
+- visual muito mais próximo da referência;
+- identidade branca e laranja;
+- perfil com capa, avatar, selo e status online;
+- oferta principal sempre visível;
+- outros planos em acordeão;
+- modal de compra com benefícios e botão Finalizar pagamento;
+- card com fundo borrado e 50 fotos, 89 vídeos e 15,2 mil curtidas;
+- apenas um card de conteúdo;
+- cadeado com texto Conteúdo exclusivo;
+- curtida, salvar e compartilhar;
+- comentário direto abaixo do post, sem popup e sem upload de foto.

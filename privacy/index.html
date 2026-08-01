@@ -1,44 +1,196 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>privacy. | Yasmin Santos</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../privacy.css"></head>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Área exclusiva de Yasmin Santos.">
+  <meta name="theme-color" content="#f36f21">
+  <title>privacy. | Yasmin Santos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../privacy.css">
+</head>
 <body>
-<header class="privacy-header"><div class="privacy-header-inner"><strong class="privacy-wordmark">privacy<span>.</span></strong><nav><a href="../">Voltar ao site</a><a data-link="support" target="_blank" rel="noopener">Suporte</a></nav></div></header>
-<main class="privacy-shell">
-<section class="privacy-profile-card"><div class="privacy-cover"><img src="../assets/images/modelo-piscina.png" alt=""></div><div class="privacy-profile-body"><img class="privacy-avatar" src="../assets/images/modelo-piscina.png" alt=""><div><h1>Yasmin Santos <span>✓</span></h1><p>@yasminsantos</p><p>Conteúdos exclusivos, ensaios e bastidores.<br>Novas publicações dentro da área exclusiva.</p></div></div></section>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <strong class="privacy-logo">privacy<span>.</span></strong>
 
-<div class="privacy-columns">
-<section class="privacy-main">
-  <article class="privacy-subscription">
-    <header><div><small>ACESSO EXCLUSIVO</small><h2>Assinaturas</h2></div><span>Pagamento seguro</span></header>
-    <button class="main-offer" id="mainOffer"><div><small>DE <s>R$ 25,00</s></small><strong>Assine agora por R$ 20,00</strong></div><b>20% OFF</b></button>
-    <button class="plans-toggle" id="plansToggle">Outras assinaturas <span id="plansArrow">⌃</span></button>
-    <div class="plans-list" id="plansList">
-      <button data-plan="monthly"><span><strong>Plano mensal</strong><small>30 dias</small></span><b>R$ 20,00</b></button>
-      <button data-plan="quarterly"><span><strong>Plano trimestral</strong><small>90 dias</small></span><b>R$ 49,90</b></button>
-      <button data-plan="lifetime"><span><strong>Acesso vitalício</strong><small>Sem expiração</small></span><b>R$ 149,90</b></button>
+      <nav>
+        <a href="../">Voltar ao site</a>
+        <a class="support-link" data-link="support" target="_blank" rel="noopener">Suporte</a>
+      </nav>
     </div>
-  </article>
+  </header>
 
-  <section class="privacy-stats-card">
-    <img src="../assets/images/modelo-piscina.png" alt="">
-    <div class="privacy-stats-overlay"><div><strong>50</strong><span>Fotos</span></div><div><strong>89</strong><span>Vídeos</span></div><div><strong>15,2 mil</strong><span>Curtidas</span></div></div>
-  </section>
+  <main class="page-shell">
+    <section class="profile-card">
+      <div class="cover">
+        <img src="../assets/images/modelo-piscina.png" alt="Capa de Yasmin Santos">
+        <div class="cover-shade"></div>
+      </div>
 
-  <article class="privacy-post" data-post-id="privacy-main">
-    <header><img src="../assets/images/modelo-piscina.png" alt=""><div><strong>Yasmin Santos</strong><span>Agora mesmo</span></div></header>
-    <div class="privacy-post-image"><img src="../assets/images/modelo-piscina.png" alt=""><span>🔒<small>Conteúdo exclusivo</small></span></div>
-    <div class="privacy-post-actions"><button data-like>♡</button><button id="privacyCommentFocus">○</button><button data-share>↗</button><button data-save>◇</button></div>
-    <strong><span data-like-count>15200</span> curtidas</strong>
-    <div class="privacy-comments" id="privacyComments"></div>
-    <form id="privacyCommentForm"><input id="privacyHandle" placeholder="@seuarroba" required><input id="privacyComment" placeholder="Escreva um comentário..." required><button>Publicar</button></form>
-  </article>
-</section>
+      <div class="profile-content">
+        <img class="avatar" src="../assets/images/modelo-piscina.png" alt="Yasmin Santos">
 
-<aside class="privacy-aside">
-  <article><h2>Benefícios exclusivos</h2><ul><li>✓ Acesso ao conteúdo exclusivo</li><li>✓ Live semanal</li><li>✓ Número do WhatsApp</li><li>✓ Novas fotos e vídeos</li></ul></article>
-  <article><h2>Como funciona?</h2><ol><li>Escolha uma assinatura.</li><li>Clique em assinar.</li><li>Efetue o pagamento.</li><li>Receba seu acesso.</li></ol></article>
-</aside>
-</div>
-</main>
+        <div class="profile-copy">
+          <div class="profile-name-row">
+            <h1>Yasmin Santos</h1>
+            <span class="verified">✓</span>
+            <span class="online">● Online</span>
+          </div>
 
-<div class="payment-modal" id="paymentModal" aria-hidden="true"><div class="payment-bg" data-close-payment></div><article class="payment-card"><button data-close-payment>×</button><img src="../assets/images/modelo-piscina.png" alt=""><h2>Yasmin Santos</h2><p>@yasminsantos</p><h3>Benefícios exclusivos</h3><ul><li>✓ Acesso ao conteúdo exclusivo</li><li>✓ Live semanal</li><li>✓ Número do WhatsApp</li></ul><a id="paymentLink" href="#" target="_blank" rel="noopener">Finalizar pagamento</a></article></div>
-<script src="../config.js"></script><script src="../privacy.js"></script></body></html>
+          <p class="handle">@yasminsantos</p>
+          <p class="bio">
+            Conteúdos exclusivos, ensaios e bastidores.<br>
+            Novas publicações dentro da área exclusiva.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="content-layout">
+      <section class="main-column">
+        <article class="subscription-card">
+          <header class="section-header">
+            <div>
+              <span class="eyebrow">ACESSO EXCLUSIVO</span>
+              <h2>Assinaturas</h2>
+            </div>
+            <span class="secure-pill">Pagamento seguro</span>
+          </header>
+
+          <button class="featured-offer" id="featuredOffer" type="button">
+            <div>
+              <small>DE <s>R$ 25,00</s></small>
+              <strong>Assine agora por R$ 20,00</strong>
+            </div>
+            <span>20% OFF</span>
+          </button>
+
+          <button class="plans-toggle" id="plansToggle" type="button" aria-expanded="true">
+            <span>Outras opções de assinatura</span>
+            <span class="arrow" id="plansArrow">⌃</span>
+          </button>
+
+          <div class="plans" id="plans">
+            <button type="button" data-plan="monthly">
+              <span><strong>Plano mensal</strong><small>30 dias de acesso</small></span>
+              <b>R$ 20,00</b>
+            </button>
+
+            <button type="button" data-plan="quarterly">
+              <span><strong>Plano trimestral</strong><small>90 dias de acesso</small></span>
+              <b>R$ 49,90</b>
+            </button>
+
+            <button type="button" data-plan="lifetime">
+              <span><strong>Acesso vitalício</strong><small>Pagamento único</small></span>
+              <b>R$ 149,90</b>
+            </button>
+          </div>
+        </article>
+
+        <section class="media-summary-card">
+          <img src="../assets/images/modelo-piscina.png" alt="">
+          <div class="media-summary-overlay">
+            <div><strong>50</strong><span>Fotos</span></div>
+            <div><strong>89</strong><span>Vídeos</span></div>
+            <div><strong>15,2 mil</strong><span>Curtidas</span></div>
+          </div>
+        </section>
+
+        <article class="post-card" data-post-id="privacy-main">
+          <header class="post-header">
+            <img src="../assets/images/modelo-piscina.png" alt="">
+            <div>
+              <strong>Yasmin Santos</strong>
+              <span>@yasminsantos • Agora</span>
+            </div>
+            <button type="button" aria-label="Mais opções">•••</button>
+          </header>
+
+          <div class="post-media">
+            <img src="../assets/images/modelo-piscina.png" alt="Conteúdo exclusivo">
+            <div class="locked">
+              <span>🔒</span>
+              <strong>Conteúdo exclusivo</strong>
+            </div>
+          </div>
+
+          <div class="post-actions">
+            <button type="button" data-like aria-pressed="false">♡</button>
+            <button type="button" id="focusComment">○</button>
+            <button type="button" data-share>↗</button>
+            <button type="button" data-save aria-pressed="false">◇</button>
+          </div>
+
+          <strong class="likes"><span data-like-count>15200</span> curtidas</strong>
+
+          <div class="comments" id="comments"></div>
+
+          <form class="comment-form" id="commentForm">
+            <input id="commentHandle" type="text" placeholder="@seuarroba" maxlength="40" required>
+            <input id="commentText" type="text" placeholder="Adicione um comentário..." maxlength="280" required>
+            <button type="submit">Publicar</button>
+          </form>
+        </article>
+      </section>
+
+      <aside class="side-column">
+        <article class="info-card">
+          <h2>Benefícios exclusivos</h2>
+          <ul>
+            <li><span>✓</span>Acesso ao conteúdo exclusivo</li>
+            <li><span>✓</span>Live semanal</li>
+            <li><span>✓</span>Número do WhatsApp</li>
+            <li><span>✓</span>Novas fotos e vídeos</li>
+          </ul>
+        </article>
+
+        <article class="info-card">
+          <h2>Como funciona?</h2>
+          <ol>
+            <li>Escolha uma assinatura.</li>
+            <li>Clique para continuar.</li>
+            <li>Efetue o pagamento.</li>
+            <li>Receba seu acesso.</li>
+          </ol>
+        </article>
+      </aside>
+    </div>
+  </main>
+
+  <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
+    <div class="modal-overlay" data-close-modal></div>
+
+    <section class="purchase-dialog" role="dialog" aria-modal="true" aria-label="Finalizar pagamento">
+      <button class="close-modal" type="button" data-close-modal aria-label="Fechar">×</button>
+
+      <img class="modal-avatar" src="../assets/images/modelo-piscina.png" alt="">
+      <h2>Yasmin Santos</h2>
+      <p>@yasminsantos</p>
+
+      <div class="selected-plan" id="selectedPlan">
+        Assinatura — R$ 20,00
+      </div>
+
+      <h3>Benefícios exclusivos</h3>
+      <ul>
+        <li>✓ Acesso ao conteúdo exclusivo</li>
+        <li>✓ Live semanal</li>
+        <li>✓ Número do WhatsApp</li>
+        <li>✓ Novas fotos e vídeos</li>
+      </ul>
+
+      <a id="checkoutLink" href="#" target="_blank" rel="noopener">
+        Finalizar pagamento
+      </a>
+    </section>
+  </div>
+
+  <script src="../config.js"></script>
+  <script src="../privacy.js"></script>
+</body>
+</html>
