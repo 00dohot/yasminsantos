@@ -281,3 +281,65 @@
 
   render();
 })();
+
+
+// Estatísticas e oferta principal.
+(() => {
+  const cfg = window.SITE_CONFIG || {};
+  document.querySelectorAll("[data-privacy-stat]").forEach(el => {
+    const v = cfg.privacyStats?.[el.dataset.privacyStat];
+    if (v) el.textContent = v;
+  });
+  document.querySelectorAll("[data-main-offer]").forEach(el => {
+    const v = cfg.subscription?.mainOffer?.[el.dataset.mainOffer];
+    if (v) el.textContent = v;
+  });
+
+  const options = document.getElementById("subscriptionOptions");
+  const toggle = document.getElementById("plansAccordionToggle");
+  const arrow = document.getElementById("plansArrow");
+  toggle?.addEventListener("click", () => {
+    const collapsed = options.classList.toggle("collapsed");
+    arrow.textContent = collapsed ? "⌄" : "⌃";
+  });
+
+  const mainBtn = document.getElementById("mainOfferButton");
+  mainBtn?.addEventListener("click", () => {
+    const url = cfg.subscription?.mainOffer?.checkoutUrl;
+    if (!url || url.includes("SEU-CHECKOUT")) {
+      alert("Configure o checkout principal no arquivo config.js.");
+      return;
+    }
+    document.getElementById("selectedPlanText").textContent = `Assinatura — ${cfg.subscription.mainOffer.price}`;
+    document.getElementById("confirmPayment").href = url;
+    document.getElementById("paymentModal").classList.add("open");
+  });
+})();
+
+// Comentário direto no card Privacy.
+(() => {
+  const form = document.getElementById("privacyInlineComment");
+  const out = document.getElementById("privacyInlineComments");
+  if (!form || !out) return;
+  const key = "yasmin-v8-privacy-comments";
+  const read = () => { try { return JSON.parse(localStorage.getItem(key)||"[]"); } catch { return []; } };
+  const save = d => localStorage.setItem(key, JSON.stringify(d));
+  const render = () => {
+    out.innerHTML = "";
+    read().forEach(c => {
+      const row = document.createElement("div");
+      row.className = "privacy-comment-row";
+      row.innerHTML = `<strong>${c.handle}</strong> ${c.text}`;
+      out.appendChild(row);
+    });
+  };
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    let h = document.getElementById("privacyInlineHandle").value.trim();
+    const t = document.getElementById("privacyInlineText").value.trim();
+    if (!h.startsWith("@")) h = "@"+h;
+    const d = read(); d.push({handle:h,text:t}); save(d);
+    render(); form.reset();
+  });
+  render();
+})();

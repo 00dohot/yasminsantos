@@ -125,3 +125,31 @@ Alterações:
 Importante: como o projeto é estático, curtidas e comentários ficam apenas no
 navegador de cada visitante. Para uma contagem global compartilhada entre todos,
 seria necessário conectar um banco de dados.
+
+
+## V8
+
+Principais alterações:
+
+- fundo principal fixo;
+- título principal menor e mais linear;
+- texto `CONTEÚDO • 18+`;
+- botão azul do Telegram;
+- botão `Grupo grátis`;
+- TikTok removido;
+- links menores: Instagram, Telegram, Privacy e Roleta;
+- card de conteúdos exclusivos com checkout configurável;
+- card do Instagram em grade 3x2;
+- menu lateral recolhível e expansível;
+- perfil do Instagram com 12 publicações e três destaques;
+- stories internos com animação;
+- comentários diretos, sem popup e sem upload de foto;
+- página Telegram em azul escuro;
+- página de prévias com botão único e carrossel;
+- Privacy em laranja, com oferta principal e acordeão;
+- modal de pagamento com botão `Finalizar pagamento`;
+- 50 fotos, 89 vídeos e 15,2 mil curtidas;
+- somente um card de conteúdo na Privacy;
+- Roleta Hot VIP integrada por iframe e com abertura externa como alternativa;
+- setas removidas dos botões de voltar;
+- texto de personagem virtual removido.

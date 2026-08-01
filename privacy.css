@@ -1,8 +1,8 @@
 
 :root{
-  --purple:#7b2cff;
-  --purple-dark:#5a16c8;
-  --purple-soft:#f3ebff;
+  --purple:#f47a1f;
+  --purple-dark:#cf5d0c;
+  --purple-soft:#fff0e5;
   --text:#17151c;
   --muted:#77727f;
   --line:#e8e4ec;
@@ -358,4 +358,28 @@ img{display:block;max-width:100%}
   width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
   background:linear-gradient(135deg,var(--purple),#b676ff);
   color:white;font-weight:800
+}
+
+
+/* V8 Privacy */
+.main-offer{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:18px;border:1px solid var(--purple);border-radius:12px;background:var(--purple-soft);margin-bottom:13px}
+.main-offer div{display:grid;gap:4px}
+.main-offer strong{font-size:1rem}
+.main-offer>span{padding:6px 9px;border-radius:999px;background:var(--purple);color:white;font-size:.68rem;font-weight:800}
+.main-offer button{padding:12px 16px;border:0;border-radius:9px;background:var(--purple);color:white;font-weight:800}
+.plans-accordion-toggle{width:100%;display:flex;justify-content:space-between;padding:13px 2px;border:0;background:transparent;font-weight:800}
+.subscription-options{overflow:hidden;max-height:600px;transition:max-height .3s ease,opacity .3s ease}
+.subscription-options.collapsed{max-height:0;opacity:0}
+.single-privacy-feed{display:block}
+.privacy-numbers{justify-content:space-around;background:
+linear-gradient(rgba(25,12,20,.72),rgba(25,12,20,.72)),
+url("assets/images/modelo-piscina.png") center/cover}
+.privacy-numbers strong,.privacy-numbers span{color:white}
+.privacy-inline-comment{display:grid;grid-template-columns:130px 1fr auto;gap:8px;margin-top:13px}
+.privacy-inline-comment input{padding:10px 11px;border:1px solid var(--line);border-radius:8px}
+.privacy-inline-comment button{border:0;border-radius:8px;background:var(--purple);color:white;padding:0 13px;font-weight:800}
+.privacy-comment-row{padding:9px 0;border-bottom:1px solid var(--line);font-size:.78rem}
+@media(max-width:620px){
+  .main-offer{grid-template-columns:1fr}
+  .privacy-inline-comment{grid-template-columns:1fr}
 }

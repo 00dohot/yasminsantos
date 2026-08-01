@@ -44,8 +44,8 @@
           </div>
           <p class="handle" data-brand="handle">@yasminsantos</p>
           <p class="creator-bio" id="creatorBio">
-            Modelo virtual, conteúdos exclusivos, ensaios, bastidores e novidades para assinantes.
-            <span class="bio-extra">Novas publicações são adicionadas regularmente dentro da área exclusiva.</span>
+            Conteúdos exclusivos, ensaios, bastidores e novidades para assinantes.
+            <span class="bio-extra">Novas publicações dentro da área exclusiva.</span>
           </p>
           <button class="read-more" id="readMore" type="button">Ler mais</button>
           <p class="location">⌖ Brasil</p>
@@ -61,10 +61,20 @@
               <p class="section-kicker">ACESSO EXCLUSIVO</p>
               <h2>Assinaturas</h2>
             </div>
-            <span class="secure-label">Checkout externo seguro</span>
+            <span class="secure-label">Pagamento seguro</span>
           </div>
 
-          <div class="subscription-options">
+          
+<div class="main-offer">
+  <div><small>DE <s data-main-offer="originalPrice">R$ 25,00</s></small><strong>Assine agora por <span data-main-offer="price">R$ 20,00</span></strong></div>
+  <span data-main-offer="discount">20% OFF</span>
+  <button id="mainOfferButton" type="button">Assinar agora</button>
+</div>
+
+<button class="plans-accordion-toggle" id="plansAccordionToggle" type="button">
+  Outras assinaturas <span id="plansArrow">⌃</span>
+</button>
+<div class="subscription-options" id="subscriptionOptions">
             <button class="subscription-row selected" type="button" data-plan-select="monthly">
               <span class="radio-dot"></span>
               <span class="plan-copy">
@@ -91,21 +101,23 @@
               </span>
               <span class="plan-value" data-plan-price="lifetime">R$ 149,90</span>
             </button>
-          </div>
+          </div></div>
 
           <button class="subscribe-button" id="subscribeButton" type="button">
             Assinar agora
           </button>
 
           <p class="checkout-disclaimer" data-subscription="notice">
-            Você será redirecionado para um checkout externo da SynkPay.
+            
           </p>
         </section>
 
-        <section class="stats-strip">
-          <div><strong data-profile="posts">24</strong><span>Postagens</span></div>
-          <div><strong data-profile="media">86</strong><span>Mídias</span></div>
-        </section>
+        
+<section class="stats-strip privacy-numbers">
+  <div><strong data-privacy-stat="photos">50</strong><span>Fotos</span></div>
+  <div><strong data-privacy-stat="videos">89</strong><span>Vídeos</span></div>
+  <div><strong data-privacy-stat="likes">15,2 mil</strong><span>Curtidas</span></div>
+</section>
 
         <section class="feed-card">
           <header class="feed-profile">
@@ -125,122 +137,35 @@
           </nav>
 
           
-          <div class="content-feed" id="contentGrid">
-            <article class="preview-post" data-type="photo" data-post-id="post-1">
-              <header class="post-header">
-                <img src="../assets/images/modelo-piscina.png" alt="">
-                <div><strong data-brand="name">Yasmin Santos</strong><span>Agora mesmo</span></div>
-                <button class="more-button" type="button" aria-label="Mais opções">•••</button>
-              </header>
-
-              <button class="post-media-button" type="button" data-open-post>
-                <img src="../assets/images/modelo-piscina.png" alt="Prévia da publicação">
-                <span class="locked-post-layer">🔒<small>Prévia exclusiva</small></span>
-              </button>
-
-              <div class="post-action-row">
-                <button class="post-action like-button" type="button" data-like aria-pressed="false">
-                  <span class="action-symbol">♡</span>
-                  <span class="action-label">Curtir</span>
-                </button>
-                <button class="post-action" type="button" data-comment>
-                  <span class="action-symbol">○</span>
-                  <span class="action-label">Comentar</span>
-                </button>
-                <button class="post-action" type="button" data-share>
-                  <span class="action-symbol">↗</span>
-                  <span class="action-label">Compartilhar</span>
-                </button>
-                <button class="post-action save-button" type="button" data-save aria-pressed="false">
-                  <span class="action-symbol">◇</span>
-                  <span class="action-label">Salvar</span>
-                </button>
-              </div>
-
-              <div class="post-meta">
-                <strong><span data-like-count>184</span> curtidas</strong>
-                <p><b data-brand="handle">@yasminsantos</b> Um pouco dos bastidores de hoje ✨</p>
-                <button class="view-comments" type="button" data-comment>Ver todos os comentários</button>
-              </div>
-            </article>
-
-            <article class="preview-post" data-type="video" data-post-id="post-2">
-              <header class="post-header">
-                <img src="../assets/images/modelo-piscina.png" alt="">
-                <div><strong data-brand="name">Yasmin Santos</strong><span>Hoje</span></div>
-                <button class="more-button" type="button" aria-label="Mais opções">•••</button>
-              </header>
-
-              <button class="post-media-button" type="button" data-open-post>
-                <img src="../assets/images/modelo-piscina.png" alt="Prévia de vídeo">
-                <span class="locked-post-layer">▶<small>Vídeo exclusivo</small></span>
-              </button>
-
-              <div class="post-action-row">
-                <button class="post-action like-button" type="button" data-like aria-pressed="false">
-                  <span class="action-symbol">♡</span>
-                  <span class="action-label">Curtir</span>
-                </button>
-                <button class="post-action" type="button" data-comment>
-                  <span class="action-symbol">○</span>
-                  <span class="action-label">Comentar</span>
-                </button>
-                <button class="post-action" type="button" data-share>
-                  <span class="action-symbol">↗</span>
-                  <span class="action-label">Compartilhar</span>
-                </button>
-                <button class="post-action save-button" type="button" data-save aria-pressed="false">
-                  <span class="action-symbol">◇</span>
-                  <span class="action-label">Salvar</span>
-                </button>
-              </div>
-
-              <div class="post-meta">
-                <strong><span data-like-count>236</span> curtidas</strong>
-                <p><b data-brand="handle">@yasminsantos</b> Nova prévia disponível.</p>
-                <button class="view-comments" type="button" data-comment>Ver todos os comentários</button>
-              </div>
-            </article>
-
-            <article class="preview-post" data-type="paid" data-post-id="post-3">
-              <header class="post-header">
-                <img src="../assets/images/modelo-piscina.png" alt="">
-                <div><strong data-brand="name">Yasmin Santos</strong><span>Ontem</span></div>
-                <button class="more-button" type="button" aria-label="Mais opções">•••</button>
-              </header>
-
-              <button class="post-media-button" type="button" data-open-post>
-                <img src="../assets/images/modelo-piscina.png" alt="Conteúdo pago">
-                <span class="locked-post-layer">R$<small>Conteúdo pago</small></span>
-              </button>
-
-              <div class="post-action-row">
-                <button class="post-action like-button" type="button" data-like aria-pressed="false">
-                  <span class="action-symbol">♡</span>
-                  <span class="action-label">Curtir</span>
-                </button>
-                <button class="post-action" type="button" data-comment>
-                  <span class="action-symbol">○</span>
-                  <span class="action-label">Comentar</span>
-                </button>
-                <button class="post-action" type="button" data-share>
-                  <span class="action-symbol">↗</span>
-                  <span class="action-label">Compartilhar</span>
-                </button>
-                <button class="post-action save-button" type="button" data-save aria-pressed="false">
-                  <span class="action-symbol">◇</span>
-                  <span class="action-label">Salvar</span>
-                </button>
-              </div>
-
-              <div class="post-meta">
-                <strong><span data-like-count>319</span> curtidas</strong>
-                <p><b data-brand="handle">@yasminsantos</b> Conteúdo especial para assinantes.</p>
-                <button class="view-comments" type="button" data-comment>Ver todos os comentários</button>
-              </div>
-            </article>
-          </div>
-        </section>
+          
+<div class="content-feed single-privacy-feed" id="contentGrid">
+  <article class="preview-post" data-type="photo" data-post-id="privacy-main">
+    <header class="post-header">
+      <img src="../assets/images/modelo-piscina.png" alt="">
+      <div><strong data-brand="name">Yasmin Santos</strong><span>Agora mesmo</span></div>
+    </header>
+    <button class="post-media-button" type="button">
+      <img src="../assets/images/modelo-piscina.png" alt="Conteúdo exclusivo">
+      <span class="locked-post-layer">🔒<small>Conteúdo exclusivo</small></span>
+    </button>
+    <div class="post-action-row">
+      <button class="post-action like-button" type="button" data-like aria-pressed="false"><span class="action-symbol">♡</span><span class="action-label">Curtir</span></button>
+      <button class="post-action" type="button" data-comment><span class="action-symbol">○</span><span class="action-label">Comentar</span></button>
+      <button class="post-action" type="button" data-share><span class="action-symbol">↗</span><span class="action-label">Compartilhar</span></button>
+      <button class="post-action save-button" type="button" data-save aria-pressed="false"><span class="action-symbol">◇</span><span class="action-label">Salvar</span></button>
+    </div>
+    <div class="post-meta">
+      <strong><span data-like-count>15200</span> curtidas</strong>
+      <form class="privacy-inline-comment" id="privacyInlineComment">
+        <input id="privacyInlineHandle" type="text" placeholder="@seuarroba" required>
+        <input id="privacyInlineText" type="text" placeholder="Escreva um comentário..." required>
+        <button type="submit">Publicar</button>
+      </form>
+      <div id="privacyInlineComments"></div>
+    </div>
+  </article>
+</div>
+</section>
 
       </section>
 
@@ -250,7 +175,7 @@
           <ul>
             <li><span>✓</span>Acesso ao conteúdo exclusivo</li>
             <li><span>✓</span>Novas fotos e vídeos</li>
-            <li><span>✓</span>Canal de suporte</li>
+            <li><span>✓</span>Live semanal</li><li><span>✓</span>Número do WhatsApp</li>
             <li><span>✓</span>Acesso conforme o plano escolhido</li>
           </ul>
         </section>
@@ -260,15 +185,12 @@
           <ol>
             <li>Escolha uma assinatura.</li>
             <li>Clique em “Assinar agora”.</li>
-            <li>Continue no checkout da SynkPay.</li>
+            <li>Efetue o pagamento.</li>
             <li>Receba o acesso conforme a oferta.</li>
           </ol>
         </section>
 
-        <a class="official-profile" data-link="privacyReal" target="_blank" rel="noopener">
-          Abrir perfil oficial
-          <span>↗</span>
-        </a>
+        
       </aside>
     </div>
   </main>
@@ -285,52 +207,12 @@
   </footer>
 
 
-  <div class="comments-modal" id="commentsModal" aria-hidden="true">
-    <div class="modal-backdrop" data-close-comments></div>
-    <section class="comments-dialog" role="dialog" aria-modal="true" aria-label="Comentários da publicação">
-      <button class="modal-close" type="button" data-close-comments aria-label="Fechar">×</button>
-
-      <header class="comments-header">
-        <h2>Comentários</h2>
-        <span>Prévia interna</span>
-      </header>
-
-      <div class="comments-list">
-        <article class="comment-item">
-          <img src="../assets/images/modelo-piscina.png" alt="">
-          <div><strong>perfil_exemplo</strong><p>Amei essa publicação ✨</p><small>2 min</small></div>
-        </article>
-
-        <article class="comment-item">
-          <img src="../assets/images/modelo-piscina.png" alt="">
-          <div><strong>visitante_01</strong><p>Linda demais!</p><small>8 min</small></div>
-        </article>
-
-        <article class="comment-item">
-          <img src="../assets/images/modelo-piscina.png" alt="">
-          <div><strong>seguidor_vip</strong><p>Conteúdo perfeito.</p><small>15 min</small></div>
-        </article>
-      </div>
-
-      <form class="comment-compose local-comment-compose" id="privacyCommentForm">
-        <input id="privacyCommentHandle" type="text" placeholder="@seuusuario" maxlength="40" required>
-        <input id="privacyCommentPhoto" type="file" accept="image/*" aria-label="Foto de perfil opcional">
-        <textarea id="privacyCommentInput" placeholder="Adicione um comentário..." maxlength="280" required></textarea>
-        <button type="submit">Publicar</button>
-      </form>
-
-      <p class="comment-security-note">
-        Seu comentário será salvo somente neste navegador.
-      </p>
-    </section>
-  </div>
-
   <div class="payment-modal" id="paymentModal" aria-hidden="true">
     <div class="modal-backdrop" data-close-payment></div>
-    <section class="payment-dialog" role="dialog" aria-modal="true" aria-label="Continuar para pagamento">
+    <section class="payment-dialog" role="dialog" aria-modal="true" aria-label="Finalizar pagamento para pagamento">
       <button class="modal-close" type="button" data-close-payment aria-label="Fechar">×</button>
       <span class="payment-icon">↗</span>
-      <h2>Continuar para o checkout?</h2>
+      <h2>Finalizar pagamento para o checkout?</h2>
       <p id="selectedPlanText"></p>
       <div class="payment-warning">
         Você será encaminhado para o checkout específico deste produto na SynkPay.
@@ -338,7 +220,7 @@
       <div class="modal-actions">
         <button class="cancel-button" type="button" data-close-payment>Cancelar</button>
         <a class="confirm-button" id="confirmPayment" href="#" target="_blank" rel="noopener">
-          Continuar
+          Finalizar pagamento
         </a>
       </div>
     </section>

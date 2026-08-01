@@ -215,3 +215,101 @@ const c=window.SITE_CONFIG||{};document.querySelectorAll("[data-link]").forEach(
     modal.setAttribute("aria-hidden", "true");
   });
 })();
+
+
+// Menu lateral recolhível.
+(() => {
+  const sidebar = document.getElementById("sidebar");
+  const handle = document.getElementById("menuHandle");
+  const pin = document.getElementById("pinMenu");
+  if (!sidebar || !handle || !pin) return;
+
+  let pinned = false;
+  let timer;
+
+  const open = () => {
+    clearTimeout(timer);
+    sidebar.classList.add("open");
+    if (!pinned) timer = setTimeout(close, 4500);
+  };
+  const close = () => {
+    if (!pinned) sidebar.classList.remove("open");
+  };
+
+  handle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    sidebar.classList.contains("open") ? close() : open();
+  });
+  pin.addEventListener("click", () => {
+    pinned = !pinned;
+    pin.textContent = pinned ? "Compactar" : "Manter expandido";
+    if (pinned) open(); else close();
+  });
+  document.addEventListener("click", (e) => {
+    if (!sidebar.contains(e.target) && !handle.contains(e.target)) close();
+  });
+  window.addEventListener("scroll", close, {passive:true});
+})();
+
+// Destaques estilo stories.
+(() => {
+  const viewer = document.getElementById("storyViewer");
+  if (!viewer) return;
+  const img = document.getElementById("storyImage");
+  const caption = document.getElementById("storyCaption");
+  const progress = document.getElementById("storyProgress");
+  const data = {
+    vip: ["Grupo VIP", "../assets/images/modelo-piscina.png"],
+    previews: ["Prévias", "../assets/images/modelo-piscina.png"],
+    me: ["Me", "../assets/images/modelo-piscina.png"]
+  };
+  let timer;
+  document.querySelectorAll("[data-story]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const [text, src] = data[btn.dataset.story];
+      caption.textContent = text;
+      img.src = src;
+      viewer.classList.add("open");
+      viewer.setAttribute("aria-hidden","false");
+      progress.style.animation = "none";
+      progress.offsetHeight;
+      progress.style.animation = "storyProgress 5s linear forwards";
+      clearTimeout(timer);
+      timer = setTimeout(() => viewer.classList.remove("open"), 5000);
+    });
+  });
+  viewer.querySelectorAll("[data-close-story]").forEach(el => el.addEventListener("click", () => {
+    clearTimeout(timer);
+    viewer.classList.remove("open");
+    viewer.setAttribute("aria-hidden","true");
+  }));
+})();
+
+// Comentário direto na galeria do Instagram.
+(() => {
+  const form = document.getElementById("commentForm");
+  const list = document.querySelector("#galleryModal .comment-scroll");
+  if (!form || !list) return;
+  const key = "yasmin-v8-instagram-comments";
+  const read = () => { try { return JSON.parse(localStorage.getItem(key) || "[]"); } catch { return []; } };
+  const save = d => localStorage.setItem(key, JSON.stringify(d));
+  const render = () => {
+    list.querySelectorAll("[data-v8-comment]").forEach(x=>x.remove());
+    read().forEach(c => {
+      const item = document.createElement("div");
+      item.className = "mock-comment";
+      item.dataset.v8Comment = "1";
+      item.innerHTML = `<strong>${c.handle}</strong><p>${c.text}</p>`;
+      list.appendChild(item);
+    });
+  };
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    let h = document.getElementById("commentHandle").value.trim();
+    const t = document.getElementById("commentInput").value.trim();
+    if (!h.startsWith("@")) h = "@"+h;
+    const d = read(); d.push({handle:h,text:t}); save(d);
+    render(); form.reset();
+  });
+  render();
+})();

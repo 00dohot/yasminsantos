@@ -1,31 +1,44 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Instagram — Yasmin Santos</title><link rel="stylesheet" href="../style.css"></head><body><div class="page-wrap"><header class="topbar"><a class="back" href="../">← Voltar</a><div class="logo"><strong>YASMIN</strong><small>SANTOS</small></div></header><section class="card profile-card"><div class="profile-top"><img class="avatar" src="../assets/images/modelo-piscina.png"><div><h1 data-brand="handle"></h1><div class="stats"><div><strong data-profile="posts"></strong><span>publicações</span></div><div><strong data-profile="followers"></strong><span>seguidores</span></div><div><strong data-profile="following"></strong><span>seguindo</span></div></div><p class="profile-bio">Modelo virtual • rotina e novidades.</p></div><div class="profile-actions"><a class="btn primary" data-link="instagramReal" target="_blank">Abrir Instagram real</a></div></div></section><div class="tabbar">▦ PUBLICAÇÕES</div>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Instagram — Yasmin Santos</title><link rel="stylesheet" href="../style.css"></head><body><div class="page-wrap">
+<header class="ig-page-topbar">
+  <a class="back plain-back" href="../">Voltar ao site</a>
+  <strong data-brand="handle">@yasminsantos</strong>
+</header><section class="card profile-card"><div class="profile-top"><img class="avatar" src="../assets/images/modelo-piscina.png"><div><h1 data-brand="handle"></h1><div class="stats"><div><strong data-profile="posts"></strong><span>publicações</span></div><div><strong data-profile="followers"></strong><span>seguidores</span></div><div><strong data-profile="following"></strong><span>seguindo</span></div></div><p class="profile-bio">Modelo virtual • rotina e novidades.</p></div></div></section><div class="tabbar">▦ PUBLICAÇÕES</div>
 <section class="social-grid instagram-gallery" aria-label="Publicações do Instagram">
-  <button class="gallery-item" type="button" data-gallery-index="0" data-caption="Dia de piscina ✨">
+<button class="gallery-item" type="button" data-gallery-index="0" data-caption="Noite perfeita ✨">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 1 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="1" data-caption="Um pouco dos bastidores de hoje.">
+<button class="gallery-item" type="button" data-gallery-index="1" data-caption="Bastidores">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 2 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="2" data-caption="Qual foto vocês mais gostaram?">
+<button class="gallery-item" type="button" data-gallery-index="2" data-caption="Só para quem sabe">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 3 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="3" data-caption="Fim de tarde perfeito.">
+<button class="gallery-item" type="button" data-gallery-index="3" data-caption="Hoje">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 4 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="4" data-caption="Nova prévia disponível.">
+<button class="gallery-item" type="button" data-gallery-index="4" data-caption="Nova prévia">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 5 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="5" data-caption="Mais conteúdos em breve.">
+<button class="gallery-item" type="button" data-gallery-index="5" data-caption="Exclusivo">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 6 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="6" data-caption="Meu look favorito da semana.">
+<button class="gallery-item" type="button" data-gallery-index="6" data-caption="Fim de tarde">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 7 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="7" data-caption="Respondendo vocês nos comentários.">
+<button class="gallery-item" type="button" data-gallery-index="7" data-caption="Olhar favorito">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 8 de Yasmin Santos">
   </button>
-  <button class="gallery-item" type="button" data-gallery-index="8" data-caption="Obrigada pelo carinho 💛">
+<button class="gallery-item" type="button" data-gallery-index="8" data-caption="Obrigada pelo carinho">
     <img src="../assets/images/modelo-piscina.png" alt="Publicação 9 de Yasmin Santos">
+  </button>
+<button class="gallery-item" type="button" data-gallery-index="9" data-caption="Mais uma">
+    <img src="../assets/images/modelo-piscina.png" alt="Publicação 10 de Yasmin Santos">
+  </button>
+<button class="gallery-item" type="button" data-gallery-index="10" data-caption="Segredo">
+    <img src="../assets/images/modelo-piscina.png" alt="Publicação 11 de Yasmin Santos">
+  </button>
+<button class="gallery-item" type="button" data-gallery-index="11" data-caption="Última do dia">
+    <img src="../assets/images/modelo-piscina.png" alt="Publicação 12 de Yasmin Santos">
   </button>
 </section>
 
@@ -77,38 +90,14 @@
         <small>Prévia interna da publicação</small>
       </div>
 
-      <form class="comment-form" id="commentForm">
-        <input id="commentInput" type="text" placeholder="Adicione um comentário..." autocomplete="off">
+      <form class="comment-form inline-ig-comment" id="commentForm">
+        <input id="commentHandle" type="text" placeholder="@seuarroba" maxlength="40" required>
+        <input id="commentInput" type="text" placeholder="Adicione um comentário..." maxlength="280" required>
         <button type="submit">Publicar</button>
       </form>
-      <p class="official-login-note">
-        Os comentários desta prévia ficam salvos somente neste navegador.
-      </p>
+      
     </aside>
   </section>
 </div>
 </div>
-<div class="local-comment-modal" id="localCommentModal" aria-hidden="true">
-  <div class="gallery-backdrop" data-close-local-comment></div>
-  <section class="local-comment-dialog" role="dialog" aria-modal="true" aria-label="Adicionar comentário">
-    <button class="gallery-close" type="button" data-close-local-comment aria-label="Fechar">×</button>
-    <div class="local-comment-header">
-      <h2>Adicionar comentário</h2>
-      <p>Preencha seu @, escolha uma foto opcional e escreva o comentário.</p>
-    </div>
-    <form id="localCommentForm" class="local-comment-form">
-      <label>Seu @
-        <input id="localCommentHandle" type="text" placeholder="@seuusuario" maxlength="40" required>
-      </label>
-      <label>Foto de perfil opcional
-        <input id="localCommentPhoto" type="file" accept="image/*">
-      </label>
-      <label>Comentário
-        <textarea id="localCommentText" placeholder="Escreva seu comentário..." maxlength="280" required></textarea>
-      </label>
-      <button class="btn primary" type="submit">Publicar comentário</button>
-    </form>
-  </section>
-</div>
-
 <script src="../config.js"></script><script src="../script.js"></script></body></html>
