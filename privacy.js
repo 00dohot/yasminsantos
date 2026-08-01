@@ -162,3 +162,41 @@
 
   renderPost();
 })();
+
+
+// Visualização ampliada da capa e da foto do perfil.
+(() => {
+  const modal = document.getElementById("profileImageModal");
+  const preview = document.getElementById("profileImagePreview");
+  if (!modal || !preview) return;
+
+  function openImage(src) {
+    preview.src = src;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeImage() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    preview.src = "";
+  }
+
+  document.querySelectorAll("[data-open-profile-image]").forEach((button) => {
+    button.addEventListener("click", () => {
+      openImage(button.dataset.openProfileImage);
+    });
+  });
+
+  modal.querySelectorAll("[data-close-profile-image]").forEach((element) => {
+    element.addEventListener("click", closeImage);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+      closeImage();
+    }
+  });
+})();

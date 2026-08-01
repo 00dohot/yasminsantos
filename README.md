@@ -54,3 +54,18 @@ Alterações desta versão:
 - pequenos ícones adicionados aos contadores;
 - modal de pagamento com acabamento Liquid Glass;
 - layout responsivo preservado.
+
+
+## Correções adicionais
+
+- fundo da página principal agora funciona no celular;
+- imagem de fundo aplicada por pseudo-elemento fixo;
+- área inicial deixou de ser um card;
+- texto inicial agora fica solto sobre a imagem;
+- degradê preto/amarronzado removido da página principal;
+- somente os cards inferiores mantêm Liquid Glass;
+- Instagram interno alterado para tema totalmente preto;
+- contadores da Privacy movidos para dentro da imagem;
+- contadores posicionados abaixo de Conteúdo exclusivo;
+- capa e foto de perfil da Privacy agora são clicáveis;
+- visualizador ampliado adicionado para as imagens do perfil.

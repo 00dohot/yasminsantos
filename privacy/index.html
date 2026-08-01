@@ -26,13 +26,15 @@
 
   <main class="page-shell">
     <section class="profile-card">
-      <div class="cover">
+      <button class="cover image-open-button" type="button" data-open-profile-image="../assets/images/modelo-piscina.png" aria-label="Abrir foto de capa">
         <img src="../assets/images/modelo-piscina.png" alt="Capa de Yasmin Santos">
         <div class="cover-shade"></div>
-      </div>
+      </button>
 
       <div class="profile-content">
-        <img class="avatar" src="../assets/images/modelo-piscina.png" alt="Yasmin Santos">
+        <button class="avatar-button image-open-button" type="button" data-open-profile-image="../assets/images/modelo-piscina.png" aria-label="Abrir foto de perfil">
+          <img class="avatar" src="../assets/images/modelo-piscina.png" alt="Yasmin Santos">
+        </button>
 
         <div class="profile-copy">
           <div class="profile-name-row">
@@ -104,15 +106,15 @@
           <div class="post-media">
             <img src="../assets/images/modelo-piscina.png" alt="Conteúdo exclusivo">
             <div class="locked">
-              <span>🔒</span>
+              <span class="lock-icon">🔒</span>
               <strong>Conteúdo exclusivo</strong>
-            </div>
-          </div>
 
-          <div class="post-inside-stats">
-            <div><span class="stat-icon">▧</span><strong>50</strong><small>Fotos</small></div>
-            <div><span class="stat-icon">▶</span><strong>89</strong><small>Vídeos</small></div>
-            <div><span class="stat-icon">♡</span><strong>15,2 mil</strong><small>Curtidas</small></div>
+              <div class="locked-stats">
+                <div><span class="stat-icon">▧</span><b>50</b><small>Fotos</small></div>
+                <div><span class="stat-icon">▶</span><b>89</b><small>Vídeos</small></div>
+                <div><span class="stat-icon">♡</span><b>15,2 mil</b><small>Curtidas</small></div>
+              </div>
+            </div>
           </div>
 
           <div class="post-actions">
@@ -157,6 +159,15 @@
       </aside>
     </div>
   </main>
+
+
+  <div class="profile-image-modal" id="profileImageModal" aria-hidden="true">
+    <div class="modal-overlay" data-close-profile-image></div>
+    <section class="profile-image-dialog" role="dialog" aria-modal="true" aria-label="Visualização da imagem">
+      <button type="button" class="profile-image-close" data-close-profile-image aria-label="Fechar">×</button>
+      <img id="profileImagePreview" src="" alt="">
+    </section>
+  </div>
 
   <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
     <div class="modal-overlay" data-close-modal></div>

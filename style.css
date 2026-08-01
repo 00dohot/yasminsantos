@@ -239,3 +239,174 @@ body::before{
     padding:36px 24px !important;
   }
 }
+
+
+/* =====================================================
+   CORREÇÕES MOBILE + TRANSPARÊNCIA TOTAL
+   ===================================================== */
+
+/* A imagem passa a ser o fundo real da página inteira.
+   Isso evita o problema de background-attachment: fixed no celular. */
+body.home-page{
+  position:relative;
+  min-height:100vh;
+  background:transparent !important;
+}
+
+body.home-page::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background-image:url("assets/images/modelo-piscina.png");
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  transform:translateZ(0);
+}
+
+body.home-page::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:rgba(0,0,0,.20);
+}
+
+/* Remove completamente o degradê preto/amarronzado da página principal. */
+body.home-page,
+body.home-page main,
+.home-stack,
+.hero-fixed{
+  background-color:transparent !important;
+  background-image:none !important;
+}
+
+.hero-fixed{
+  min-height:620px;
+  background:transparent !important;
+}
+
+.hero-shade{
+  display:none !important;
+}
+
+/* Primeira área: texto solto, sem card, sem borda e sem blur. */
+.hero-content{
+  margin:0 !important;
+  max-width:760px;
+  padding:110px 7vw 72px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:none !important;
+}
+
+.hero-content::before,
+.hero-content::after{
+  display:none !important;
+}
+
+/* Mantém somente os cards inferiores em Liquid Glass. */
+.home-stack{
+  background:transparent !important;
+}
+
+.exclusive-card,
+.instagram-card,
+.roulette-cta{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045)),
+    rgba(20,10,12,.16) !important;
+}
+
+/* Instagram interno com tema realmente preto. */
+body.instagram-page{
+  color:#f5f5f5 !important;
+  background:#000 !important;
+}
+
+.instagram-page .ig-shell{
+  background:#000 !important;
+}
+
+.instagram-page .ig-top,
+.instagram-page .ig-profile,
+.instagram-page .ig-highlights,
+.instagram-page .ig-tabs{
+  color:#f5f5f5 !important;
+  background:#000 !important;
+  border-color:#262626 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+.instagram-page .ig-profile,
+.instagram-page .ig-highlights{
+  border-radius:0 !important;
+}
+
+.instagram-page .ig-top a,
+.instagram-page .ig-top strong,
+.instagram-page .ig-profile p,
+.instagram-page .ig-highlights small{
+  color:#f5f5f5 !important;
+}
+
+.instagram-page .ig-tabs{
+  border-top:1px solid #262626 !important;
+  border-bottom:1px solid #262626 !important;
+  color:#a8a8a8 !important;
+}
+
+.instagram-page .ig-publications{
+  background:#000 !important;
+}
+
+.instagram-page .ig-publications button{
+  background:#000 !important;
+}
+
+.instagram-page .post-dialog{
+  color:#f5f5f5 !important;
+  background:#000 !important;
+  border:1px solid #262626;
+}
+
+.instagram-page .post-side,
+.instagram-page .post-side>header,
+.instagram-page .post-actions,
+.instagram-page .post-side form{
+  color:#f5f5f5 !important;
+  background:#000 !important;
+  border-color:#262626 !important;
+}
+
+.instagram-page .post-actions button,
+.instagram-page .post-side form button,
+.instagram-page .post-side input{
+  color:#f5f5f5 !important;
+  background:#000 !important;
+}
+
+.instagram-page .post-side input::placeholder{
+  color:#8e8e8e;
+}
+
+@media(max-width:760px){
+  body.home-page::before{
+    background-position:center top;
+  }
+
+  .hero-fixed{
+    min-height:680px;
+  }
+
+  .hero-content{
+    padding:82px 22px 56px !important;
+  }
+}
