@@ -45,5 +45,17 @@ window.SITE_CONFIG = {
     endpoint: "",
     welcomeMessage: "Oi, vi que você chegou por aqui 😊 Quer conhecer meu conteúdo exclusivo?",
     fallbackReply: "Adorei sua mensagem. Meu atendimento inteligente ainda está sendo configurado, mas você já pode conhecer as opções exclusivas no perfil."
-  }
+  },
+
+  instagramSuggestions: [
+    {name:"Luna Martins",handle:"@lunamartins",image:"../assets/images/modelo-piscina.png",url:"https://SEU-SITE-LUNA.com"},
+    {name:"Maya Costa",handle:"@mayacosta",image:"../assets/images/modelo-piscina.png",url:"https://SEU-SITE-MAYA.com"},
+    {name:"Clara Alves",handle:"@claraalves",image:"../assets/images/modelo-piscina.png",url:"https://SEU-SITE-CLARA.com"}
+  ],
+
+  instagramReels: [
+    {title:"Reel 1",thumbnail:"../assets/images/modelo-piscina.png",videoUrl:""},
+    {title:"Reel 2",thumbnail:"../assets/images/modelo-piscina.png",videoUrl:""},
+    {title:"Reel 3",thumbnail:"../assets/images/modelo-piscina.png",videoUrl:""}
+  ]
 };

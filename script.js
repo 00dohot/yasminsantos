@@ -270,3 +270,21 @@
     element.addEventListener("click", close);
   });
 })();
+
+(() => {
+  const normal=document.getElementById("homeDefaultContent"),panel=document.getElementById("homeTelegramPanel");
+  if(!normal||!panel)return;
+  document.querySelectorAll("[data-open-home-telegram]").forEach(b=>b.addEventListener("click",()=>{normal.hidden=true;panel.hidden=false;panel.scrollIntoView({behavior:"smooth",block:"start"})}));
+  document.querySelectorAll("[data-close-home-telegram]").forEach(b=>b.addEventListener("click",()=>{panel.hidden=true;normal.hidden=false;normal.scrollIntoView({behavior:"smooth",block:"start"})}));
+})();
+(() => {
+  const posts=document.getElementById("igPublications"),reels=document.getElementById("igReelsView"),search=document.getElementById("igSearchView");
+  if(!posts||!reels||!search)return;
+  const cfg=window.SITE_CONFIG||{},reelsGrid=document.getElementById("igReelsGrid"),suggestions=document.getElementById("igSuggestions"),input=document.getElementById("igSearchInput");
+  const profiles=cfg.instagramSuggestions||[],reelItems=(cfg.instagramReels||[]).slice(0,3);
+  reelsGrid.innerHTML=reelItems.map(x=>`<button class="ig-reel-card" type="button"><img src="${x.thumbnail}" alt="${x.title}"><span>${x.title}</span></button>`).join("");
+  const render=(q="")=>{const t=q.toLowerCase();suggestions.innerHTML=profiles.filter(p=>(p.name+" "+p.handle).toLowerCase().includes(t)).map(p=>`<article class="ig-suggestion-card"><img src="${p.image}" alt=""><div><strong>${p.handle}</strong><small>${p.name}</small></div><a href="${p.url}" target="_blank" rel="noopener">Ver perfil</a></article>`).join("")};
+  const show=v=>{posts.hidden=v!=="posts";reels.hidden=v!=="reels";search.hidden=v!=="search";document.querySelectorAll("[data-instagram-view]").forEach(b=>b.classList.toggle("active",b.dataset.instagramView===v));if(v==="search")setTimeout(()=>input.focus(),100)};
+  document.querySelectorAll("[data-instagram-view]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.instagramView)));
+  input.addEventListener("input",()=>render(input.value));render();
+})();

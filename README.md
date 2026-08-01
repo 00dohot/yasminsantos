@@ -119,3 +119,10 @@ E responder:
   "reply": "Resposta gerada pela IA"
 }
 ```
+
+## V12
+- Privacy: textos dos planos em preto.
+- Instagram: mobile-first, botão Voltar, busca configurável, 3 Reels e animação da foto.
+- Roleta: tela inteira com título e botão sobrepostos.
+- Telegram: abre dentro da página principal em Liquid Glass.
+- Página principal: botões grandes removidos e primeiro card aproximado dos links.

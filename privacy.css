@@ -870,3 +870,6 @@ body{
 }
 
 .content-layout{grid-template-columns:minmax(0,1fr)!important;max-width:780px;margin-left:auto;margin-right:auto}.profile-copy .bio{max-width:680px}
+
+.featured-offer,.featured-offer *,.plans button,.plans button *{color:var(--text)!important;text-decoration:none!important}
+.featured-offer>span{color:white!important}
