@@ -84,7 +84,7 @@
 
             <button type="button" data-plan="lifetime">
               <span><strong>Acesso vitalício</strong><small>Pagamento único</small></span>
-              <b>R$ 149,90</b>
+              <b>R$ 99,90</b>
             </button>
           </div>
         </article>
@@ -145,32 +145,80 @@
   <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
     <div class="modal-overlay" data-close-modal></div>
 
-    <section class="purchase-dialog" role="dialog" aria-modal="true" aria-label="Finalizar pagamento">
+    <section class="purchase-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
       <button class="close-modal" type="button" data-close-modal aria-label="Fechar">×</button>
 
       <img class="modal-avatar" src="../assets/images/modelo-piscina.png" alt="">
-      <h2>Yasmin Santos</h2>
+      <h2 id="paymentTitle">Yasmin Santos</h2>
       <p>@yasminsantos</p>
 
       <div class="selected-plan" id="selectedPlan">
-        Assinatura — R$ 20,00
+        Assinatura mensal — R$ 20,00
       </div>
 
-      <h3>Benefícios exclusivos</h3>
-      <ul>
-        <li>✓ Acesso ao conteúdo exclusivo</li>
-        <li>✓ Live semanal</li>
-        <li>✓ Número do WhatsApp</li>
-        <li>✓ Novas fotos e vídeos</li>
-      </ul>
+      <div id="paymentFormStep">
+        <p class="payment-intro">Preencha os dados do comprador para gerar o Pix.</p>
 
-      <a id="checkoutLink" href="#" target="_blank" rel="noopener">
-        Finalizar pagamento
-      </a>
+        <form class="payment-form" id="paymentForm">
+          <input id="paymentPlan" name="plano" type="hidden" value="mensal">
+
+          <label>
+            <span>Nome completo</span>
+            <input id="paymentName" name="nome" type="text" autocomplete="name" maxlength="120" required>
+          </label>
+
+          <label>
+            <span>E-mail</span>
+            <input id="paymentEmail" name="email" type="email" autocomplete="email" maxlength="160" required>
+          </label>
+
+          <div class="payment-form-row">
+            <label>
+              <span>CPF</span>
+              <input id="paymentCpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000.000.000-00" required>
+            </label>
+
+            <label>
+              <span>Celular com DDD</span>
+              <input id="paymentPhone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="(11) 99999-9999" required>
+            </label>
+          </div>
+
+          <p class="payment-privacy-note">Os dados são enviados com segurança ao processador de pagamento para gerar a cobrança Pix.</p>
+
+          <div class="payment-error" id="paymentError" role="alert" hidden></div>
+
+          <button class="payment-primary-button" id="paymentSubmit" type="submit">
+            Gerar Pix
+          </button>
+        </form>
+      </div>
+
+      <div class="payment-pix-step" id="paymentPixStep" hidden>
+        <div class="payment-success-icon" aria-hidden="true">✓</div>
+        <h3>Pix gerado com sucesso</h3>
+        <p>Copie o código abaixo e pague no aplicativo do seu banco.</p>
+
+        <code class="pix-code" id="pixCode"></code>
+
+        <button class="payment-primary-button" id="copyPix" type="button">
+          Copiar código Pix
+        </button>
+
+        <small class="payment-transaction" id="paymentTransaction"></small>
+        <p class="payment-pending-note">Após o pagamento, a confirmação será processada pela SyncPay. A liberação automática do acesso será configurada na próxima etapa.</p>
+
+        <button class="payment-secondary-button" id="newPayment" type="button">
+          Gerar outro Pix
+        </button>
+      </div>
+
+      <a id="checkoutLink" href="#" hidden aria-hidden="true" tabindex="-1"></a>
     </section>
   </div>
 
   <script src="../config.js"></script>
   <script src="../privacy.js"></script>
+  <script src="../payment.js"></script>
 </body>
 </html>

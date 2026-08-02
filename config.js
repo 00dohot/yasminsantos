@@ -36,8 +36,13 @@ window.SITE_CONFIG = {
     plans: {
       monthly: { name:"Plano mensal", period:"30 dias", price:"R$ 20,00", checkoutUrl:"https://SEU-CHECKOUT-MENSAL.com" },
       quarterly: { name:"Plano trimestral", period:"90 dias", price:"R$ 49,90", checkoutUrl:"https://SEU-CHECKOUT-TRIMESTRAL.com" },
-      lifetime: { name:"Acesso vitalício", period:"Sem expiração", price:"R$ 149,90", checkoutUrl:"https://SEU-CHECKOUT-VITALICIO.com" }
+      lifetime: { name:"Acesso vitalício", period:"Sem expiração", price:"R$ 99,90", checkoutUrl:"https://SEU-CHECKOUT-VITALICIO.com" }
     }
+  },
+
+  payment: {
+    endpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/criar-pagamento",
+    timeoutMs: 25000
   },
 
   aiChat: {
