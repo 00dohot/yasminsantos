@@ -17,6 +17,8 @@
   const submitButton = document.getElementById("paymentSubmit");
   const errorBox = document.getElementById("paymentError");
   const pixCode = document.getElementById("pixCode");
+  const pixQrCode = document.getElementById("pixQrCode");
+  const pixQrCard = document.getElementById("pixQrCard");
   const transactionId = document.getElementById("paymentTransaction");
   const copyButton = document.getElementById("copyPix");
   const newPaymentButton = document.getElementById("newPayment");
@@ -24,7 +26,8 @@
   if (
     !modal || !formStep || !pixStep || !form || !selectedPlan ||
     !planInput || !submitButton || !errorBox || !pixCode ||
-    !transactionId || !copyButton || !newPaymentButton
+    !pixQrCode || !pixQrCard || !transactionId || !copyButton ||
+    !newPaymentButton
   ) {
     return;
   }
@@ -59,18 +62,45 @@
     errorBox.hidden = !text;
   }
 
+  function clearQrCode() {
+    pixQrCode.innerHTML = "";
+    pixQrCard.hidden = false;
+  }
+
+  function renderQrCode(value) {
+    clearQrCode();
+
+    if (!value || typeof window.QRCode !== "function") {
+      pixQrCard.hidden = true;
+      return;
+    }
+
+    new window.QRCode(pixQrCode, {
+      text: value,
+      width: 196,
+      height: 196,
+      colorDark: "#17131a",
+      colorLight: "#ffffff",
+      correctLevel: window.QRCode.CorrectLevel.M
+    });
+  }
+
   function showFormStep() {
     formStep.hidden = false;
     pixStep.hidden = true;
+    clearQrCode();
     setError("");
   }
 
   function showPixStep(payment) {
-    pixCode.textContent = payment.pixCopiaECola || "";
+    const code = String(payment.pixCopiaECola || "").trim();
+
+    pixCode.textContent = code;
     transactionId.textContent = payment.id
-      ? `Identificação da transação: ${payment.id}`
+      ? `ID da cobrança: ${payment.id}`
       : "";
 
+    renderQrCode(code);
     formStep.hidden = true;
     pixStep.hidden = false;
     setError("");
@@ -111,6 +141,7 @@
     submitButton.disabled = false;
     submitButton.textContent = "Gerar Pix";
     setError("");
+    clearQrCode();
   }
 
   function onlyDigits(value) {
@@ -226,7 +257,7 @@
 
     try {
       await navigator.clipboard.writeText(value);
-      copyButton.textContent = "Código copiado";
+      copyButton.textContent = "Código copiado ✓";
     } catch {
       const range = document.createRange();
       range.selectNodeContents(pixCode);

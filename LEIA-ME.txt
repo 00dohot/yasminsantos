@@ -1,0 +1,8 @@
+ARQUIVOS PARA O GITHUB
+
+1. Substitua privacy/index.html pelo arquivo da pasta privacy.
+2. Substitua payment.js na raiz do repositório.
+3. Adicione payment.css na raiz do repositório.
+4. Aguarde o GitHub Pages atualizar e faça Ctrl+F5 no site.
+
+O Worker, o banco D1 e o config.js não precisam ser alterados.
