@@ -90,6 +90,13 @@
       .replaceAll("'", "&#039;");
   }
 
+  function formatCompactLikes(value) {
+    const amount = Number(value) || 0;
+    if (amount < 1000) return String(amount);
+
+    return `${(amount / 1000).toFixed(1).replace(".", ",")}k`;
+  }
+
   function renderPost() {
     const state = readState();
     likeButton.classList.toggle("active", state.liked);
@@ -97,7 +104,7 @@
     saveButton.classList.toggle("active", state.saved);
     saveButton.setAttribute("aria-pressed", String(state.saved));
 
-    likeCount.textContent = 15200 + state.likes;
+    likeCount.textContent = formatCompactLikes(15200 + state.likes);
 
     comments.innerHTML = state.comments.map((comment) => `
       <div class="comment">

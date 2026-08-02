@@ -401,3 +401,336 @@
     height:188px !important;
   }
 }
+
+/* =====================================================
+   CHECKOUT DOS PLANOS DO SITE — TEMA ESCURO / DOURADO
+   Estas regras são exclusivas da página inicial.
+   O checkout do Privacy continua usando o layout original acima.
+   ===================================================== */
+
+body.home-page{
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+body.home-page::-webkit-scrollbar{
+  width:0;
+  height:0;
+  display:none;
+}
+
+.site-checkout-modal{
+  padding:12px !important;
+}
+
+.site-checkout-modal .modal-overlay{
+  background:rgba(3,2,2,.82) !important;
+  backdrop-filter:blur(15px) saturate(125%) !important;
+  -webkit-backdrop-filter:blur(15px) saturate(125%) !important;
+}
+
+.site-checkout-modal .payment-dialog{
+  width:min(520px,calc(100vw - 24px)) !important;
+  max-height:min(92dvh,860px) !important;
+  padding:0 !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  overscroll-behavior:contain;
+  scrollbar-width:none !important;
+  -ms-overflow-style:none;
+  border:1px solid rgba(228,184,95,.28) !important;
+  border-radius:24px !important;
+  color:#fff8f0 !important;
+  background:
+    radial-gradient(circle at 88% 2%,rgba(228,184,95,.15),transparent 30%),
+    linear-gradient(155deg,#1a100d 0%,#0d0807 58%,#080505 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 34px 110px rgba(0,0,0,.62) !important;
+}
+
+.site-checkout-modal .payment-dialog::-webkit-scrollbar,
+.site-checkout-modal .pix-code::-webkit-scrollbar{
+  width:0;
+  height:0;
+  display:none;
+}
+
+.site-checkout-modal .payment-dialog::before{
+  display:none !important;
+}
+
+.site-checkout-modal .payment-dialog-topbar{
+  position:sticky;
+  top:0;
+  z-index:30;
+  min-height:55px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:9px 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(10,6,5,.88);
+  backdrop-filter:blur(22px) saturate(145%);
+  -webkit-backdrop-filter:blur(22px) saturate(145%);
+}
+
+.site-checkout-modal .payment-close{
+  position:static !important;
+  inset:auto !important;
+  flex:0 0 auto;
+  width:36px !important;
+  height:36px !important;
+  margin:0 !important;
+  display:grid !important;
+  place-items:center;
+  padding:0 !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  border-radius:12px !important;
+  color:#fff8f0 !important;
+  background:rgba(255,255,255,.07) !important;
+  font-size:1.35rem !important;
+  line-height:1 !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.site-checkout-modal .payment-close:hover{
+  color:#1a0c04 !important;
+  background:linear-gradient(180deg,#ffe7a6,#d8aa4f) !important;
+  transform:none !important;
+}
+
+.site-checkout-modal .payment-dialog-status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#d9cba8;
+  font-size:.66rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.site-checkout-modal .payment-dialog-status i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#72d49b;
+  box-shadow:0 0 12px rgba(114,212,155,.7);
+}
+
+.site-checkout-modal .payment-header{
+  grid-template-columns:50px 1fr !important;
+  gap:15px !important;
+  padding:25px 25px 20px !important;
+  border-bottom:1px solid rgba(255,255,255,.08) !important;
+  background:transparent !important;
+}
+
+.site-checkout-modal .payment-security-icon{
+  width:50px !important;
+  height:50px !important;
+  border:1px solid rgba(228,184,95,.28);
+  border-radius:16px !important;
+  color:#f2d383 !important;
+  background:rgba(228,184,95,.10) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+.site-checkout-modal .payment-kicker{
+  color:#e4b85f !important;
+}
+
+.site-checkout-modal .payment-header h2{
+  color:#fff8f0 !important;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.38rem !important;
+}
+
+.site-checkout-modal .payment-header p{
+  color:#b9aaa0 !important;
+  font-size:.78rem !important;
+}
+
+.site-checkout-modal .payment-plan-summary{
+  margin:18px 25px 0 !important;
+  padding:14px 15px !important;
+  border:1px solid rgba(228,184,95,.28) !important;
+  border-radius:14px !important;
+  color:#f7df9f !important;
+  background:linear-gradient(145deg,rgba(228,184,95,.13),rgba(255,255,255,.035)) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.site-checkout-modal #paymentFormStep,
+.site-checkout-modal #paymentPixStep{
+  min-width:0;
+  padding:20px 25px 26px !important;
+}
+
+.site-checkout-modal .payment-field>span,
+.site-checkout-modal .pix-copy-area>span{
+  color:#e7dbd1 !important;
+}
+
+.site-checkout-modal .payment-form input{
+  height:48px !important;
+  border:1px solid rgba(255,255,255,.13) !important;
+  color:#fff8f0 !important;
+  background:rgba(255,255,255,.055) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035) !important;
+}
+
+.site-checkout-modal .payment-form input::placeholder{
+  color:#857871 !important;
+}
+
+.site-checkout-modal .payment-form input:focus{
+  border-color:#e4b85f !important;
+  box-shadow:0 0 0 3px rgba(228,184,95,.13) !important;
+}
+
+.site-checkout-modal .payment-trust-row span{
+  border-color:rgba(255,255,255,.10) !important;
+  color:#c7b9af !important;
+  background:rgba(255,255,255,.045) !important;
+}
+
+.site-checkout-modal .payment-privacy-note{
+  color:#93867e !important;
+}
+
+.site-checkout-modal .payment-error{
+  border-color:rgba(255,116,116,.25) !important;
+  color:#ffb4b4 !important;
+  background:rgba(129,30,30,.22) !important;
+}
+
+.site-checkout-modal .payment-primary-button{
+  border:1px solid rgba(255,242,198,.35) !important;
+  color:#1b0c04 !important;
+  background:linear-gradient(180deg,#ffe8a8,#cf9d3c) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.65),
+    0 14px 30px rgba(207,157,60,.20) !important;
+}
+
+.site-checkout-modal .payment-primary-button:hover:not(:disabled){
+  transform:translateY(-1px) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    0 18px 38px rgba(207,157,60,.28) !important;
+}
+
+.site-checkout-modal .payment-secondary-button{
+  border-color:rgba(255,255,255,.13) !important;
+  color:#d8cbc1 !important;
+  background:rgba(255,255,255,.045) !important;
+}
+
+.site-checkout-modal .payment-secondary-button:hover{
+  background:rgba(255,255,255,.085) !important;
+}
+
+.site-checkout-modal .payment-pix-step{
+  width:100%;
+  gap:14px !important;
+  align-content:start;
+  justify-items:center;
+}
+
+.site-checkout-modal .payment-success-icon{
+  color:#91e0b0 !important;
+  background:rgba(73,175,113,.15) !important;
+  border:1px solid rgba(117,220,157,.20);
+}
+
+.site-checkout-modal .payment-pix-heading h3{
+  color:#fff8f0 !important;
+  font-family:"Playfair Display",Georgia,serif;
+}
+
+.site-checkout-modal .payment-pix-heading p{
+  color:#b9aaa0 !important;
+}
+
+.site-checkout-modal .pix-qr-card{
+  width:min(224px,100%) !important;
+  min-height:224px !important;
+  padding:14px !important;
+  border:1px solid rgba(228,184,95,.26) !important;
+  border-radius:18px !important;
+  background:#fff !important;
+  box-shadow:0 16px 44px rgba(0,0,0,.34) !important;
+}
+
+.site-checkout-modal .pix-copy-area{
+  min-width:0;
+}
+
+.site-checkout-modal .pix-code{
+  max-height:104px !important;
+  overflow:auto !important;
+  scrollbar-width:none !important;
+  border-color:rgba(255,255,255,.12) !important;
+  color:#efe6df !important;
+  background:rgba(255,255,255,.05) !important;
+}
+
+.site-checkout-modal .payment-transaction{
+  color:#887b74 !important;
+}
+
+@media(max-width:620px){
+  .site-checkout-modal{
+    place-items:center !important;
+    padding:8px !important;
+  }
+
+  .site-checkout-modal .payment-dialog{
+    width:calc(100vw - 16px) !important;
+    max-height:calc(100dvh - 16px) !important;
+    border-radius:20px !important;
+  }
+
+  .site-checkout-modal .payment-dialog-topbar{
+    min-height:52px;
+    padding:8px 12px;
+  }
+
+  .site-checkout-modal .payment-header{
+    grid-template-columns:44px 1fr !important;
+    gap:12px !important;
+    padding:21px 18px 17px !important;
+  }
+
+  .site-checkout-modal .payment-security-icon{
+    width:44px !important;
+    height:44px !important;
+    border-radius:14px !important;
+  }
+
+  .site-checkout-modal .payment-plan-summary{
+    margin:15px 18px 0 !important;
+  }
+
+  .site-checkout-modal #paymentFormStep,
+  .site-checkout-modal #paymentPixStep{
+    padding:17px 18px 21px !important;
+  }
+
+  .site-checkout-modal .pix-qr-card{
+    width:204px !important;
+    min-height:204px !important;
+    padding:10px !important;
+  }
+
+  .site-checkout-modal .pix-qr,
+  .site-checkout-modal .pix-qr img,
+  .site-checkout-modal .pix-qr canvas{
+    width:184px !important;
+    height:184px !important;
+  }
+}
+

@@ -59,7 +59,7 @@
 
   const pubs = document.getElementById("igPublications");
   if (pubs) {
-    const captions = ["Noite perfeita ✨","Bastidores","Só para quem sabe","Hoje","Nova prévia","Exclusivo","Fim de tarde","Meu olhar favorito","Obrigada pelo carinho","Mais uma","Segredo","Última do dia"];
+    const captions = ["Noite perfeita ✨","Bastidores","Só para quem sabe","Hoje","Nova prévia","Exclusivo","Fim de tarde","Meu olhar favorito","Obrigada pelo carinho"];
     pubs.innerHTML = captions.map((c,i)=>`<button data-post-index="${i}" data-caption="${c}"><img src="../assets/images/modelo-piscina.png" alt="Publicação ${i+1}"></button>`).join("");
 
     const postModal = document.getElementById("postModal");
@@ -93,8 +93,8 @@
     const closePost = () => { postModal.classList.remove("open"); postModal.setAttribute("aria-hidden","true"); document.body.style.overflow=""; };
     pubs.querySelectorAll("[data-post-index]").forEach(b=>b.addEventListener("click",()=>openPost(Number(b.dataset.postIndex))));
     document.querySelectorAll("[data-close-post]").forEach(x=>x.addEventListener("click",closePost));
-    document.getElementById("postPrev").addEventListener("click",()=>{current=(current+11)%12;renderPost()});
-    document.getElementById("postNext").addEventListener("click",()=>{current=(current+1)%12;renderPost()});
+    document.getElementById("postPrev").addEventListener("click",()=>{current=(current+captions.length-1)%captions.length;renderPost()});
+    document.getElementById("postNext").addEventListener("click",()=>{current=(current+1)%captions.length;renderPost()});
     likeBtn.addEventListener("click",()=>{const d=readPost(current);d.liked=!d.liked;d.likes+=d.liked?1:-1;savePost(current,d);renderPost()});
     saveBtn.addEventListener("click",()=>{const d=readPost(current);d.saved=!d.saved;savePost(current,d);renderPost()});
     document.getElementById("focusComment").addEventListener("click",()=>document.getElementById("commentHandle").focus());
