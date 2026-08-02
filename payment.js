@@ -49,7 +49,6 @@
   }
 
   const PLAN_CODES = Object.freeze({
-    daily: "diario",
     monthly: "mensal",
     quarterly: "trimestral",
     lifetime: "vitalicio"
@@ -82,7 +81,7 @@
       const monthly = cfg.subscription?.plans?.monthly || {};
       return {
         code: String(monthly.code || "mensal"),
-        label: `${monthly.name || "Acesso mensal"} — ${monthly.price || "R$ 24,90"}`
+        label: `${monthly.name || "Plano mensal"} — ${monthly.price || "R$ 20,00"}`
       };
     }
 

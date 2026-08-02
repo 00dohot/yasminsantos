@@ -1188,3 +1188,99 @@ body{
     grid-template-columns:1fr;
   }
 }
+
+
+/* =====================================================
+   PLANOS PRIVACY — preços e descontos separados do site
+   ===================================================== */
+.featured-offer .privacy-featured-copy{
+  display:grid;
+  gap:5px;
+}
+.featured-offer .privacy-plan-name{
+  font-size:1rem;
+  font-weight:800;
+}
+.featured-offer .privacy-featured-price{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+}
+.featured-offer .privacy-featured-price s{
+  color:var(--muted)!important;
+  font-size:.82rem;
+  font-weight:600;
+}
+.featured-offer .privacy-featured-price b{
+  color:var(--text)!important;
+  font-size:1.35rem;
+  line-height:1;
+}
+.featured-offer .privacy-featured-note{
+  color:var(--muted)!important;
+  font-size:.74rem;
+}
+.featured-offer .privacy-featured-discount{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  min-width:74px;
+  color:#fff!important;
+  background:var(--orange)!important;
+  box-shadow:0 8px 22px rgba(243,111,33,.22);
+}
+
+.plans .privacy-plan-option{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:16px;
+}
+.plans .privacy-plan-copy{
+  display:grid!important;
+  gap:4px;
+}
+.plans .privacy-plan-price{
+  display:grid!important;
+  justify-items:end;
+  gap:2px;
+  min-width:112px;
+}
+.plans .privacy-plan-old{
+  color:var(--muted)!important;
+  font-size:.68rem;
+}
+.plans .privacy-plan-current{
+  font-size:1rem;
+  font-weight:800;
+  white-space:nowrap;
+}
+.plans .privacy-plan-discount{
+  display:inline-flex!important;
+  padding:4px 7px;
+  border-radius:999px;
+  color:#fff!important;
+  background:var(--orange)!important;
+  font-size:.62rem;
+  font-style:normal;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+
+@media(max-width:520px){
+  .featured-offer{
+    grid-template-columns:minmax(0,1fr) auto;
+    padding:15px;
+  }
+  .featured-offer .privacy-featured-price{
+    gap:7px;
+    flex-wrap:wrap;
+  }
+  .plans .privacy-plan-option{
+    grid-template-columns:minmax(0,1fr) auto;
+    padding:14px 12px;
+  }
+  .plans .privacy-plan-price{
+    min-width:96px;
+  }
+}
