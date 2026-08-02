@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../privacy.css">
-  <link rel="stylesheet" href="../payment.css">
 </head>
 <body>
   <header class="topbar">
@@ -58,34 +57,48 @@
         <article class="subscription-card">
           <header class="section-header">
             <div>
-              <span class="eyebrow">ACESSO EXCLUSIVO</span>
-              <h2>Assinaturas</h2>
+              <span class="eyebrow">ACESSO DIRETO NO SITE</span>
+              <h2>Escolha seu plano</h2>
             </div>
             <span class="secure-pill">Pagamento seguro</span>
           </header>
 
-          <button class="featured-offer" id="featuredOffer" type="button">
+          <button
+            class="featured-offer"
+            id="featuredOffer"
+            type="button"
+            data-payment-plan
+            data-plan-code="mensal"
+            data-plan-label="Acesso mensal — R$ 24,90">
             <div>
-              <small>DE <s>R$ 25,00</s></small>
-              <strong>Assine agora por R$ 20,00</strong>
+              <small>30 DIAS DE ACESSO</small>
+              <strong>Acesso mensal por R$ 24,90</strong>
             </div>
-            <span>20% OFF</span>
+            <span>RECOMENDADO</span>
           </button>
 
           <button class="plans-toggle" id="plansToggle" type="button" aria-expanded="true">
-            <span>Outras opções de assinatura</span>
+            <span>Outras opções de acesso</span>
             <span class="arrow" id="plansArrow">⌃</span>
           </button>
 
           <div class="plans" id="plans">
-<button type="button" data-plan="quarterly">
-              <span><strong>Plano trimestral</strong><small>90 dias de acesso</small></span>
-              <b>R$ 49,90</b>
+            <button
+              type="button"
+              data-payment-plan
+              data-plan-code="diario"
+              data-plan-label="Acesso diário — R$ 9,90">
+              <span><strong>Acesso diário</strong><small>24 horas de acesso</small></span>
+              <b>R$ 9,90</b>
             </button>
 
-            <button type="button" data-plan="lifetime">
-              <span><strong>Acesso vitalício</strong><small>Pagamento único</small></span>
-              <b>R$ 99,90</b>
+            <button
+              type="button"
+              data-payment-plan
+              data-plan-code="vitalicio"
+              data-plan-label="Vitalício VIP — R$ 199,00">
+              <span><strong>Vitalício VIP</strong><small>Site + WhatsApp + grupo de lives</small></span>
+              <b>R$ 199,00</b>
             </button>
           </div>
         </article>
@@ -146,66 +159,46 @@
   <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
     <div class="modal-overlay" data-close-modal></div>
 
-    <section class="purchase-dialog payment-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
-      <button class="close-modal payment-close" type="button" data-close-modal aria-label="Fechar pagamento">×</button>
+    <section class="purchase-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
+      <button class="close-modal" type="button" data-close-modal aria-label="Fechar">×</button>
 
-      <header class="payment-header">
-        <div class="payment-security-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M7 10V7a5 5 0 0 1 10 0v3"/>
-            <rect x="5" y="10" width="14" height="10" rx="3"/>
-            <path d="M12 14v2"/>
-          </svg>
-        </div>
-        <div>
-          <span class="payment-kicker">PAGAMENTO SEGURO</span>
-          <h2 id="paymentTitle">Finalize sua assinatura</h2>
-          <p>Gere seu Pix em poucos segundos.</p>
-        </div>
-      </header>
+      <img class="modal-avatar" src="../assets/images/modelo-piscina.png" alt="">
+      <h2 id="paymentTitle">Yasmin Santos</h2>
+      <p>@yasminsantos</p>
 
-      <div class="selected-plan payment-plan-summary" id="selectedPlan">
-        Assinatura mensal — R$ 20,00
+      <div class="selected-plan" id="selectedPlan">
+        Acesso mensal — R$ 24,90
       </div>
 
       <div id="paymentFormStep">
+        <p class="payment-intro">Preencha os dados do comprador para gerar o Pix.</p>
+
         <form class="payment-form" id="paymentForm">
           <input id="paymentPlan" name="plano" type="hidden" value="mensal">
 
-          <label class="payment-field payment-field-full">
+          <label>
             <span>Nome completo</span>
-            <input id="paymentName" name="nome" type="text" autocomplete="name" maxlength="120" placeholder="Digite seu nome completo" required>
+            <input id="paymentName" name="nome" type="text" autocomplete="name" maxlength="120" required>
           </label>
 
-          <label class="payment-field payment-field-full">
+          <label>
             <span>E-mail</span>
-            <input id="paymentEmail" name="email" type="email" autocomplete="email" maxlength="160" placeholder="voce@exemplo.com" required>
+            <input id="paymentEmail" name="email" type="email" autocomplete="email" maxlength="160" required>
           </label>
 
           <div class="payment-form-row">
-            <label class="payment-field">
+            <label>
               <span>CPF</span>
               <input id="paymentCpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000.000.000-00" required>
             </label>
 
-            <label class="payment-field">
+            <label>
               <span>Celular com DDD</span>
               <input id="paymentPhone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="(11) 99999-9999" required>
             </label>
           </div>
 
-          <div class="payment-trust-row" aria-label="Informações de segurança">
-            <span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="5" y="10" width="14" height="10" rx="3"/></svg>
-              Dados protegidos
-            </span>
-            <span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v10H4z"/><path d="M7 12h4"/></svg>
-              Pagamento via Pix
-            </span>
-          </div>
-
-          <p class="payment-privacy-note">Seus dados são usados somente para emitir e identificar esta cobrança.</p>
+          <p class="payment-privacy-note">Os dados são enviados com segurança ao processador de pagamento para gerar a cobrança Pix.</p>
 
           <div class="payment-error" id="paymentError" role="alert" hidden></div>
 
@@ -216,29 +209,18 @@
       </div>
 
       <div class="payment-pix-step" id="paymentPixStep" hidden>
-        <div class="payment-success-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.4 3.4L17.8 8"/></svg>
-        </div>
+        <div class="payment-success-icon" aria-hidden="true">✓</div>
+        <h3>Pix gerado com sucesso</h3>
+        <p>Copie o código abaixo e pague no aplicativo do seu banco.</p>
 
-        <div class="payment-pix-heading">
-          <h3>Seu Pix está pronto</h3>
-          <p>Escaneie o QR Code ou copie o código abaixo.</p>
-        </div>
-
-        <div class="pix-qr-card" id="pixQrCard">
-          <div class="pix-qr" id="pixQrCode" aria-label="QR Code do pagamento Pix"></div>
-        </div>
-
-        <div class="pix-copy-area">
-          <span>Pix copia e cola</span>
-          <code class="pix-code" id="pixCode"></code>
-        </div>
+        <code class="pix-code" id="pixCode"></code>
 
         <button class="payment-primary-button" id="copyPix" type="button">
           Copiar código Pix
         </button>
 
         <small class="payment-transaction" id="paymentTransaction"></small>
+        <p class="payment-pending-note">Após o pagamento, a confirmação será processada pela SyncPay. A liberação automática do acesso será configurada na próxima etapa.</p>
 
         <button class="payment-secondary-button" id="newPayment" type="button">
           Gerar outro Pix
@@ -251,7 +233,6 @@
 
   <script src="../config.js"></script>
   <script src="../privacy.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script src="../payment.js"></script>
 </body>
 </html>

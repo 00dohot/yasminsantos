@@ -49,6 +49,7 @@
   }
 
   const PLAN_CODES = Object.freeze({
+    daily: "diario",
     monthly: "mensal",
     quarterly: "trimestral",
     lifetime: "vitalicio"
@@ -57,21 +58,35 @@
   let leadSaveTimer = 0;
 
   function getPlanDetails(trigger) {
-    if (trigger.id === "featuredOffer") {
-      const offer = cfg.subscription?.mainOffer || {};
+    const directCode = String(trigger.dataset.planCode || "").trim();
+    const directLabel = String(trigger.dataset.planLabel || "").trim();
+
+    if (directCode) {
       return {
-        code: "mensal",
-        label: `Assinatura mensal — ${offer.price || "R$ 20,00"}`
+        code: directCode,
+        label: directLabel || "Acesso exclusivo"
       };
     }
 
-    const configKey = trigger.dataset.plan;
+    const configKey = String(trigger.dataset.plan || "").trim();
     const plan = cfg.subscription?.plans?.[configKey] || {};
 
-    return {
-      code: PLAN_CODES[configKey] || "",
-      label: `${plan.name || "Assinatura"} — ${plan.price || ""}`.trim()
-    };
+    if (configKey) {
+      return {
+        code: String(plan.code || PLAN_CODES[configKey] || ""),
+        label: `${plan.name || "Acesso"} — ${plan.price || ""}`.trim()
+      };
+    }
+
+    if (trigger.id === "featuredOffer") {
+      const monthly = cfg.subscription?.plans?.monthly || {};
+      return {
+        code: String(monthly.code || "mensal"),
+        label: `${monthly.name || "Acesso mensal"} — ${monthly.price || "R$ 24,90"}`
+      };
+    }
+
+    return { code: "", label: "" };
   }
 
   function setError(message = "") {
@@ -369,7 +384,7 @@
   });
 
   document.addEventListener("click", (event) => {
-    const trigger = event.target.closest("#featuredOffer, [data-plan]");
+    const trigger = event.target.closest("[data-payment-plan], #featuredOffer, [data-plan]");
     if (!trigger) return;
 
     event.preventDefault();
