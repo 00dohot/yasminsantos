@@ -8,12 +8,21 @@
     ? Number(paymentConfig.timeoutMs)
     : 25000;
 
+  // Os dados ficam somente na aba atual e expiram automaticamente em 1 hora.
+  const STORAGE_TTL_MS = 60 * 60 * 1000;
+  const LEAD_STORAGE_KEY = "yasmin_payment_lead_v1";
+  const PIX_STORAGE_KEY = "yasmin_payment_pix_v1";
+
   const modal = document.getElementById("purchaseModal");
   const formStep = document.getElementById("paymentFormStep");
   const pixStep = document.getElementById("paymentPixStep");
   const form = document.getElementById("paymentForm");
   const selectedPlan = document.getElementById("selectedPlan");
   const planInput = document.getElementById("paymentPlan");
+  const nameInput = document.getElementById("paymentName");
+  const emailInput = document.getElementById("paymentEmail");
+  const cpfInput = document.getElementById("paymentCpf");
+  const phoneInput = document.getElementById("paymentPhone");
   const submitButton = document.getElementById("paymentSubmit");
   const errorBox = document.getElementById("paymentError");
   const pixCode = document.getElementById("pixCode");
@@ -22,14 +31,21 @@
   const transactionId = document.getElementById("paymentTransaction");
   const copyButton = document.getElementById("copyPix");
   const newPaymentButton = document.getElementById("newPayment");
+  const pixInstruction = pixStep?.querySelector(".payment-pix-heading p");
+  const privacyNote = form?.querySelector(".payment-privacy-note");
 
   if (
     !modal || !formStep || !pixStep || !form || !selectedPlan ||
-    !planInput || !submitButton || !errorBox || !pixCode ||
-    !pixQrCode || !pixQrCard || !transactionId || !copyButton ||
-    !newPaymentButton
+    !planInput || !nameInput || !emailInput || !cpfInput || !phoneInput ||
+    !submitButton || !errorBox || !pixCode || !pixQrCode || !pixQrCard ||
+    !transactionId || !copyButton || !newPaymentButton
   ) {
     return;
+  }
+
+  if (privacyNote) {
+    privacyNote.textContent =
+      "Seus dados ficam salvos somente nesta aba por até 1 hora para facilitar o pagamento.";
   }
 
   const PLAN_CODES = Object.freeze({
@@ -37,6 +53,8 @@
     quarterly: "trimestral",
     lifetime: "vitalicio"
   });
+
+  let leadSaveTimer = 0;
 
   function getPlanDetails(trigger) {
     if (trigger.id === "featuredOffer") {
@@ -60,88 +78,6 @@
     const text = String(message || "").trim();
     errorBox.textContent = text;
     errorBox.hidden = !text;
-  }
-
-  function clearQrCode() {
-    pixQrCode.innerHTML = "";
-    pixQrCard.hidden = false;
-  }
-
-  function renderQrCode(value) {
-    clearQrCode();
-
-    if (!value || typeof window.QRCode !== "function") {
-      pixQrCard.hidden = true;
-      return;
-    }
-
-    new window.QRCode(pixQrCode, {
-      text: value,
-      width: 196,
-      height: 196,
-      colorDark: "#17131a",
-      colorLight: "#ffffff",
-      correctLevel: window.QRCode.CorrectLevel.M
-    });
-  }
-
-  function showFormStep() {
-    formStep.hidden = false;
-    pixStep.hidden = true;
-    clearQrCode();
-    setError("");
-  }
-
-  function showPixStep(payment) {
-    const code = String(payment.pixCopiaECola || "").trim();
-
-    pixCode.textContent = code;
-    transactionId.textContent = payment.id
-      ? `ID da cobrança: ${payment.id}`
-      : "";
-
-    renderQrCode(code);
-    formStep.hidden = true;
-    pixStep.hidden = false;
-    setError("");
-  }
-
-  function openModal(plan) {
-    if (!endpoint) {
-      alert("A integração de pagamento ainda não foi configurada.");
-      return;
-    }
-
-    if (!plan.code) {
-      alert("Não foi possível identificar o plano selecionado.");
-      return;
-    }
-
-    form.reset();
-    planInput.value = plan.code;
-    selectedPlan.textContent = plan.label;
-    submitButton.disabled = false;
-    submitButton.textContent = "Gerar Pix";
-    copyButton.textContent = "Copiar código Pix";
-    showFormStep();
-
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-
-    window.setTimeout(() => {
-      document.getElementById("paymentName")?.focus();
-    }, 180);
-  }
-
-  function closeModal() {
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-    submitButton.disabled = false;
-    submitButton.textContent = "Gerar Pix";
-    setError("");
-    clearQrCode();
   }
 
   function onlyDigits(value) {
@@ -170,12 +106,266 @@
       .replace(/(\d{5})(\d)/, "$1-$2");
   }
 
-  document.getElementById("paymentCpf")?.addEventListener("input", (event) => {
-    event.target.value = formatCpf(event.target.value);
+  function readStorage(key, fallback) {
+    try {
+      const raw = window.sessionStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function writeStorage(key, value) {
+    try {
+      window.sessionStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function removeStorage(key) {
+    try {
+      window.sessionStorage.removeItem(key);
+    } catch {
+      // O checkout continua funcionando mesmo se o navegador bloquear storage.
+    }
+  }
+
+  function getLeadFromForm() {
+    return {
+      nome: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      cpf: onlyDigits(cpfInput.value),
+      telefone: onlyDigits(phoneInput.value)
+    };
+  }
+
+  function saveLead(lead = getLeadFromForm()) {
+    const hasValue = Object.values(lead).some((value) => String(value || "").trim());
+
+    if (!hasValue) {
+      removeStorage(LEAD_STORAGE_KEY);
+      return;
+    }
+
+    writeStorage(LEAD_STORAGE_KEY, {
+      ...lead,
+      savedAt: Date.now(),
+      expiresAt: Date.now() + STORAGE_TTL_MS
+    });
+  }
+
+  function scheduleLeadSave() {
+    window.clearTimeout(leadSaveTimer);
+    leadSaveTimer = window.setTimeout(() => saveLead(), 180);
+  }
+
+  function getSavedLead() {
+    const lead = readStorage(LEAD_STORAGE_KEY, null);
+
+    if (!lead || Number(lead.expiresAt) <= Date.now()) {
+      removeStorage(LEAD_STORAGE_KEY);
+      return null;
+    }
+
+    return lead;
+  }
+
+  function fillSavedLead() {
+    const lead = getSavedLead();
+    if (!lead) return false;
+
+    nameInput.value = String(lead.nome || "");
+    emailInput.value = String(lead.email || "");
+    cpfInput.value = formatCpf(lead.cpf || "");
+    phoneInput.value = formatPhone(lead.telefone || "");
+    return true;
+  }
+
+  function readPixStore() {
+    const store = readStorage(PIX_STORAGE_KEY, {});
+    const validStore = store && typeof store === "object" ? store : {};
+    let changed = false;
+
+    Object.keys(validStore).forEach((planCode) => {
+      const entry = validStore[planCode];
+      const expired = !entry || Number(entry.expiresAt) <= Date.now();
+      const missingCode = !entry?.payment?.pixCopiaECola;
+
+      if (expired || missingCode) {
+        delete validStore[planCode];
+        changed = true;
+      }
+    });
+
+    if (changed) {
+      writeStorage(PIX_STORAGE_KEY, validStore);
+    }
+
+    return validStore;
+  }
+
+  function getSavedPix(planCode) {
+    const store = readPixStore();
+    return store[planCode] || null;
+  }
+
+  function savePix(plan, payment) {
+    const now = Date.now();
+    const store = readPixStore();
+
+    store[plan.code] = {
+      planCode: plan.code,
+      planLabel: plan.label,
+      payment: {
+        id: String(payment.id || ""),
+        plano: String(payment.plano || plan.code),
+        titulo: String(payment.titulo || ""),
+        valor: payment.valor,
+        diasDeAcesso: payment.diasDeAcesso ?? null,
+        status: String(payment.status || "pending"),
+        pixCopiaECola: String(payment.pixCopiaECola || "")
+      },
+      createdAt: now,
+      expiresAt: now + STORAGE_TTL_MS
+    };
+
+    writeStorage(PIX_STORAGE_KEY, store);
+    return store[plan.code];
+  }
+
+  function removeSavedPix(planCode) {
+    const store = readPixStore();
+    delete store[planCode];
+    writeStorage(PIX_STORAGE_KEY, store);
+  }
+
+  function clearQrCode() {
+    pixQrCode.innerHTML = "";
+    pixQrCard.hidden = false;
+  }
+
+  function renderQrCode(value) {
+    clearQrCode();
+
+    if (!value || typeof window.QRCode !== "function") {
+      pixQrCard.hidden = true;
+      return;
+    }
+
+    new window.QRCode(pixQrCode, {
+      text: value,
+      width: 196,
+      height: 196,
+      colorDark: "#17131a",
+      colorLight: "#ffffff",
+      correctLevel: window.QRCode.CorrectLevel.M
+    });
+  }
+
+  function clearPixPresentation() {
+    pixCode.textContent = "";
+    transactionId.textContent = "";
+    clearQrCode();
+  }
+
+  function showFormStep() {
+    formStep.hidden = false;
+    pixStep.hidden = true;
+    clearPixPresentation();
+    setError("");
+  }
+
+  function showPixStep(payment, options = {}) {
+    const code = String(payment.pixCopiaECola || "").trim();
+    const remainingMs = Number(options.expiresAt) - Date.now();
+    const remainingMinutes = Math.max(1, Math.ceil(remainingMs / 60000));
+
+    pixCode.textContent = code;
+    transactionId.textContent = payment.id
+      ? `ID da cobrança: ${payment.id}`
+      : "";
+
+    if (pixInstruction) {
+      pixInstruction.textContent = options.restored
+        ? `Cobrança recuperada. O código ficará salvo nesta aba por mais ${remainingMinutes} min.`
+        : "Escaneie o QR Code ou copie o código abaixo. Ele ficará salvo nesta aba por até 1 hora.";
+    }
+
+    renderQrCode(code);
+    formStep.hidden = true;
+    pixStep.hidden = false;
+    setError("");
+  }
+
+  function openModal(plan) {
+    if (!endpoint) {
+      alert("A integração de pagamento ainda não foi configurada.");
+      return;
+    }
+
+    if (!plan.code) {
+      alert("Não foi possível identificar o plano selecionado.");
+      return;
+    }
+
+    form.reset();
+    planInput.value = plan.code;
+    selectedPlan.textContent = plan.label;
+    fillSavedLead();
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Gerar Pix";
+    copyButton.textContent = "Copiar código Pix";
+
+    const savedPix = getSavedPix(plan.code);
+
+    if (savedPix) {
+      showPixStep(savedPix.payment, {
+        restored: true,
+        expiresAt: savedPix.expiresAt
+      });
+    } else {
+      showFormStep();
+    }
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    if (!savedPix) {
+      window.setTimeout(() => {
+        const firstEmptyField = [nameInput, emailInput, cpfInput, phoneInput]
+          .find((input) => !input.value.trim());
+        firstEmptyField?.focus();
+      }, 180);
+    }
+  }
+
+  function closeModal() {
+    saveLead();
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    submitButton.disabled = false;
+    submitButton.textContent = "Gerar Pix";
+    setError("");
+    clearQrCode();
+  }
+
+  [nameInput, emailInput].forEach((input) => {
+    input.addEventListener("input", scheduleLeadSave);
   });
 
-  document.getElementById("paymentPhone")?.addEventListener("input", (event) => {
+  cpfInput.addEventListener("input", (event) => {
+    event.target.value = formatCpf(event.target.value);
+    scheduleLeadSave();
+  });
+
+  phoneInput.addEventListener("input", (event) => {
     event.target.value = formatPhone(event.target.value);
+    scheduleLeadSave();
   });
 
   document.addEventListener("click", (event) => {
@@ -206,11 +396,13 @@
 
     const body = {
       plano: planInput.value,
-      nome: document.getElementById("paymentName").value.trim(),
-      email: document.getElementById("paymentEmail").value.trim(),
-      cpf: onlyDigits(document.getElementById("paymentCpf").value),
-      telefone: onlyDigits(document.getElementById("paymentPhone").value)
+      nome: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      cpf: onlyDigits(cpfInput.value),
+      telefone: onlyDigits(phoneInput.value)
     };
+
+    saveLead(body);
 
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
@@ -237,7 +429,16 @@
         );
       }
 
-      showPixStep(data.pagamento);
+      const currentPlan = {
+        code: planInput.value,
+        label: selectedPlan.textContent.trim()
+      };
+
+      const savedPix = savePix(currentPlan, data.pagamento);
+      showPixStep(savedPix.payment, {
+        restored: false,
+        expiresAt: savedPix.expiresAt
+      });
     } catch (error) {
       const message = error?.name === "AbortError"
         ? "A solicitação demorou demais. Tente novamente."
@@ -274,9 +475,17 @@
 
   newPaymentButton.addEventListener("click", () => {
     const currentPlan = planInput.value;
+    removeSavedPix(currentPlan);
+
     form.reset();
     planInput.value = currentPlan;
+    fillSavedLead();
     showFormStep();
-    document.getElementById("paymentName")?.focus();
+
+    const firstEmptyField = [nameInput, emailInput, cpfInput, phoneInput]
+      .find((input) => !input.value.trim());
+    (firstEmptyField || nameInput).focus();
   });
+
+  window.addEventListener("pagehide", () => saveLead());
 })();
