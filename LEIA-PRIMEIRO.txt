@@ -1,0 +1,39 @@
+ATUALIZAÇÃO — CHECKOUT DO SITE + AJUSTES VISUAIS
+
+Substitua no GitHub somente estes arquivos:
+
+site/index.html
+site/payment.css
+site/script.js
+site/instagram/index.html
+site/privacy/index.html
+site/privacy.js
+
+O que foi alterado:
+
+1. Checkout dos planos da página principal
+- Novo visual escuro com detalhes dourados, seguindo a identidade da página inicial.
+- O checkout do Privacy continua com o visual claro e laranja, sem alteração.
+- Botão de fechar fixado no canto superior esquerdo.
+- Enquadramento corrigido no formulário e na tela do QR Code.
+- Modal continua rolável, mas a barra de rolagem fica invisível.
+- A página inicial também permanece rolável sem exibir a barra lateral.
+
+2. Privacy
+- Contador alterado para 15,2k Likes.
+- Curtidas abaixo da publicação também aparecem abreviadas como 15,2k likes.
+- Checkout, planos e identidade visual do Privacy foram preservados.
+
+3. Instagram
+- Contador alterado de 12 para 9 publicações.
+- A grade agora gera exatamente 9 publicações.
+- Navegação anterior/próxima foi ajustada para as 9 publicações.
+
+Não altere:
+- config.js
+- payment.js
+- Worker da Cloudflare
+- banco D1
+- preços ou códigos dos planos
+
+Depois de substituir os arquivos, aguarde o GitHub Pages atualizar e recarregue com Ctrl + F5.
