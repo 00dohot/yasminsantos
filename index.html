@@ -29,7 +29,7 @@
       <a href="instagram/">◎ <span>Instagram</span></a>
       <button type="button" data-open-home-telegram>✈ <span>Telegram</span></button>
       <a href="previas/">◉ <span>Prévias</span></a>
-      <button type="button" data-open-site-plans>♢ <span>Conteúdos</span></button>
+      <a href="privacy/">♢ <span>Privacy</span></a>
       <a href="roleta/">◌ <span>Roleta</span></a>
     </nav>
 
@@ -51,7 +51,7 @@
         <div class="hero-links">
           <a href="instagram/">Instagram</a>
           <button type="button" class="hero-link-button" data-open-home-telegram>Telegram</button>
-          <button type="button" class="hero-link-button" data-open-site-plans>Conteúdos</button>
+          <a href="privacy/">Privacy</a>
           <a href="roleta/">Roleta</a>
         </div>
       </div>
@@ -133,7 +133,7 @@
             class="plan-action"
             type="button"
             data-payment-plan
-            data-plan-code="diario"
+            data-plan-code="site_diario"
             data-plan-label="Acesso diário — R$ 9,90">
             Desbloquear por R$ 9,90
           </button>
@@ -146,7 +146,7 @@
           </div>
           <h3>Acesso mensal</h3>
           <p class="plan-description">A melhor experiência para acompanhar as atualizações durante o mês.</p>
-          <div class="plan-price"><small>R$</small><strong>24,90</strong><span>30 dias</span></div>
+          <div class="plan-price"><small>R$</small><strong>34,90</strong><span>30 dias</span></div>
           <ul>
             <li>30 dias de acesso</li>
             <li>Novas fotos e vídeos</li>
@@ -156,8 +156,8 @@
             class="plan-action primary-plan-action"
             type="button"
             data-payment-plan
-            data-plan-code="mensal"
-            data-plan-label="Acesso mensal — R$ 24,90">
+            data-plan-code="site_mensal"
+            data-plan-label="Acesso mensal — R$ 34,90">
             Quero acesso mensal
           </button>
         </article>
@@ -180,7 +180,7 @@
             class="plan-action lifetime-action"
             type="button"
             data-payment-plan
-            data-plan-code="vitalicio"
+            data-plan-code="site_vitalicio"
             data-plan-label="Vitalício VIP — R$ 199,00">
             Garantir acesso vitalício
           </button>
@@ -204,17 +204,18 @@
       </header>
 
       <div class="home-telegram-options telegram-two-cards">
-        <a class="telegram-access-card" data-link="telegramBot" target="_blank" rel="noopener">
-          <span class="telegram-option-icon">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.7 3.4 18.5 19c-.2 1.1-.9 1.4-1.8.9l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.1 12.8 1.3 11.3c-1-.3-1-1 .2-1.5L20.2 2.6c.9-.3 1.7.2 1.5.8Z"/></svg>
+        <button class="telegram-access-card telegram-bot-card" type="button" data-open-telegram-bot>
+          <span class="telegram-bot-thumb">
+            <img src="assets/images/modelo-piscina.png" alt="Miniatura do bot de acesso" data-telegram-bot-avatar>
+            <i aria-hidden="true"></i>
           </span>
           <div>
-            <span class="telegram-card-label">ACESSO</span>
+            <span class="telegram-card-label">BOT OFICIAL</span>
             <strong>Bot de acesso</strong>
-            <small>Abra o atendimento automatizado no Telegram.</small>
+            <small data-brand="botHandle">@yasminsantos_bot</small>
           </div>
-          <b>↗</b>
-        </a>
+          <b>Ver bot</b>
+        </button>
 
         <a class="telegram-preview-card" data-link="previewsReal" target="_blank" rel="noopener">
           <span class="telegram-option-icon">
@@ -232,6 +233,39 @@
 
     <footer class="site-footer">© <span data-year></span> Yasmin Santos</footer>
   </main>
+
+
+  <div class="telegram-bot-modal" id="telegramBotModal" aria-hidden="true">
+    <div class="telegram-bot-modal-backdrop" data-close-telegram-bot></div>
+
+    <section class="telegram-bot-dialog" role="dialog" aria-modal="true" aria-labelledby="telegramBotTitle">
+      <button class="telegram-bot-close" type="button" aria-label="Fechar" data-close-telegram-bot>×</button>
+
+      <div class="telegram-bot-profile">
+        <span class="telegram-bot-profile-photo">
+          <img src="assets/images/modelo-piscina.png" alt="Miniatura do bot de acesso" data-telegram-bot-avatar>
+          <i aria-hidden="true"></i>
+        </span>
+
+        <span class="telegram-bot-status">BOT OFICIAL • ONLINE</span>
+        <h3 id="telegramBotTitle">Bot de acesso</h3>
+        <p class="telegram-bot-handle" data-brand="botHandle">@yasminsantos_bot</p>
+        <p class="telegram-bot-description">
+          Abra o atendimento automatizado para receber instruções, acessar canais e falar com o suporte.
+        </p>
+
+        <div class="telegram-bot-features">
+          <span>⚡ Atendimento automático</span>
+          <span>🔒 Acesso seguro</span>
+          <span>📱 Abre no Telegram</span>
+        </div>
+
+        <a class="telegram-bot-open" data-link="telegramBot" target="_blank" rel="noopener">
+          Abrir bot no Telegram
+        </a>
+      </div>
+    </section>
+  </div>
 
   <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
     <div class="modal-overlay" data-close-modal></div>
@@ -254,11 +288,11 @@
         </div>
       </header>
 
-      <div class="selected-plan payment-plan-summary" id="selectedPlan">Acesso mensal — R$ 24,90</div>
+      <div class="selected-plan payment-plan-summary" id="selectedPlan">Acesso mensal — R$ 34,90</div>
 
       <div id="paymentFormStep">
         <form class="payment-form" id="paymentForm">
-          <input id="paymentPlan" name="plano" type="hidden" value="mensal">
+          <input id="paymentPlan" name="plano" type="hidden" value="site_mensal">
 
           <label class="payment-field payment-field-full">
             <span>Nome completo</span>

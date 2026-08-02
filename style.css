@@ -1528,3 +1528,199 @@ body.modal-open{overflow:hidden}
   .plan-price strong{font-size:2rem}
   .plans-trust-strip{display:grid}
 }
+
+/* ============================================================
+   CARD E PRÉVIA DO BOT DO TELEGRAM
+   O bot real abre no Telegram. O site mostra uma prévia elegante.
+   ============================================================ */
+.telegram-two-cards > button.telegram-bot-card{
+  width:100%;
+  min-height:145px;
+  display:grid;
+  grid-template-columns:58px 1fr auto;
+  align-items:center;
+  gap:11px;
+  padding:22px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:20px;
+  color:inherit;
+  text-align:left;
+  cursor:pointer;
+  background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 45px rgba(0,0,0,.22);
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+.telegram-two-cards > button.telegram-bot-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(78,190,241,.45);
+  background:rgba(255,255,255,.1);
+}
+.telegram-bot-card > div{
+  display:grid;
+  gap:4px;
+}
+.telegram-bot-card strong{
+  font-size:1.12rem;
+}
+.telegram-bot-card small{
+  color:var(--muted);
+  line-height:1.45;
+}
+.telegram-bot-card > b{
+  color:#79cef4;
+  font-size:.78rem;
+  white-space:nowrap;
+}
+.telegram-bot-thumb,
+.telegram-bot-profile-photo{
+  position:relative;
+  display:block;
+  flex:0 0 auto;
+  border-radius:50%;
+}
+.telegram-bot-thumb{
+  width:56px;
+  height:56px;
+}
+.telegram-bot-thumb img,
+.telegram-bot-profile-photo img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.78);
+}
+.telegram-bot-thumb i,
+.telegram-bot-profile-photo i{
+  position:absolute;
+  right:1px;
+  bottom:1px;
+  width:14px;
+  height:14px;
+  border:3px solid #101820;
+  border-radius:50%;
+  background:#39d98a;
+}
+
+.telegram-bot-modal{
+  position:fixed;
+  inset:0;
+  z-index:2100;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .2s ease,visibility .2s ease;
+}
+.telegram-bot-modal.open{
+  opacity:1;
+  visibility:visible;
+}
+.telegram-bot-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(3,8,14,.78);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.telegram-bot-dialog{
+  position:relative;
+  z-index:1;
+  width:min(440px,100%);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 50% 0,rgba(34,158,217,.2),transparent 42%),
+    linear-gradient(155deg,#111c25,#080b0f 68%);
+  box-shadow:0 28px 90px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.15);
+}
+.telegram-bot-close{
+  position:absolute;
+  top:13px;
+  right:13px;
+  z-index:2;
+  width:38px;
+  height:38px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:50%;
+  color:#fff;
+  font-size:1.4rem;
+  cursor:pointer;
+  background:rgba(255,255,255,.07);
+}
+.telegram-bot-profile{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:42px 28px 30px;
+  text-align:center;
+}
+.telegram-bot-profile-photo{
+  width:104px;
+  height:104px;
+  margin-bottom:17px;
+  box-shadow:0 14px 35px rgba(0,0,0,.35);
+}
+.telegram-bot-profile-photo i{
+  width:20px;
+  height:20px;
+  border-width:4px;
+}
+.telegram-bot-status{
+  color:#68c8f3;
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+.telegram-bot-profile h3{
+  margin:8px 0 2px;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.72rem;
+}
+.telegram-bot-handle{
+  margin:0;
+  color:#8ea5b4;
+}
+.telegram-bot-description{
+  max-width:340px;
+  margin:18px auto;
+  color:#c6d0d6;
+  line-height:1.6;
+}
+.telegram-bot-features{
+  width:100%;
+  display:grid;
+  gap:9px;
+  margin:0 0 22px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  color:#dbe5ea;
+  text-align:left;
+  background:rgba(255,255,255,.045);
+}
+.telegram-bot-open{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  border-radius:15px;
+  color:#fff;
+  font-weight:800;
+  background:linear-gradient(135deg,#229ed9,#1389c2);
+  box-shadow:0 14px 30px rgba(34,158,217,.24);
+}
+body.telegram-bot-modal-open{
+  overflow:hidden;
+}
+@media(max-width:720px){
+  .telegram-two-cards > button.telegram-bot-card{
+    min-height:auto;
+    padding:18px;
+  }
+}
+

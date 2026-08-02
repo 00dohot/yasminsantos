@@ -425,3 +425,41 @@
   renderSuggestions();
   showView("posts");
 })();
+
+// ============================================================
+// PRÉVIA DO BOT DO TELEGRAM DENTRO DO SITE
+// ============================================================
+(() => {
+  const modal = document.getElementById("telegramBotModal");
+  if (!modal) return;
+
+  const openButtons = document.querySelectorAll("[data-open-telegram-bot]");
+  const closeButtons = modal.querySelectorAll("[data-close-telegram-bot]");
+
+  function openBotPreview() {
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("telegram-bot-modal-open");
+  }
+
+  function closeBotPreview() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("telegram-bot-modal-open");
+  }
+
+  openButtons.forEach(button => {
+    button.addEventListener("click", openBotPreview);
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener("click", closeBotPreview);
+  });
+
+  window.addEventListener("keydown", event => {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+      closeBotPreview();
+    }
+  });
+})();
+
