@@ -17,7 +17,7 @@
       <a class="ig-brand-icon" href="../" aria-label="Voltar ao site">◎</a>
 
       <nav>
-        <a href="../" title="Início">⌂</a>
+        <button type="button" title="Início" data-instagram-view="posts">⌂</button>
         <button type="button" title="Reels" data-instagram-view="reels">▹</button>
         <button type="button" title="Mensagens" data-open-direct>⌁<span class="ig-badge">1</span></button>
         <button type="button" title="Pesquisar" data-instagram-view="search">⌕</button>
@@ -35,6 +35,7 @@
     <main class="instagram-profile-page">
       <header class="instagram-mobile-header"><a href="../" class="instagram-back">Voltar</a><span class="instagram-mobile-wordmark">Instagram</span><span></span></header>
 
+      <div class="ig-view-panel" id="igProfileView">
       <section class="ig-desktop-profile">
         <button class="ig-large-avatar-button" type="button" data-open-instagram-image="../assets/images/modelo-piscina.png">
           <span class="ig-large-avatar-ring">
@@ -102,11 +103,12 @@
         <button type="button">♙</button>
       </nav>
       <section class="ig-post-grid" id="igPublications"></section>
-      <section class="ig-reels-view" id="igReelsView" hidden>
+      </div>
+      <section class="ig-reels-view ig-view-panel" id="igReelsView" aria-hidden="true" hidden>
         <header><h2>Reels</h2><p>Três espaços configuráveis para vídeos.</p></header>
         <div id="igReelsGrid"></div>
       </section>
-      <section class="ig-search-view" id="igSearchView" hidden>
+      <section class="ig-search-view ig-view-panel" id="igSearchView" aria-hidden="true" hidden>
         <header><label><span>⌕</span><input id="igSearchInput" type="search" placeholder="Pesquisar perfis"></label></header>
         <h2>Sugestões para você</h2>
         <div class="ig-suggestions" id="igSuggestions"></div>
@@ -121,11 +123,11 @@
   </button>
 
   <nav class="ig-mobile-bottom-nav">
-    <a href="../">⌂</a>
+    <button type="button" data-instagram-view="posts" aria-label="Início">⌂</button>
     <button type="button" data-instagram-view="search">⌕</button>
     <button type="button">⊞</button>
     <button type="button" data-instagram-view="reels">▹</button>
-    <button type="button" class="ig-bottom-avatar" data-open-instagram-image="../assets/images/modelo-piscina.png">
+    <button type="button" class="ig-bottom-avatar" data-instagram-view="posts" aria-label="Perfil">
       <img src="../assets/images/modelo-piscina.png" alt="">
     </button>
   </nav>
@@ -199,7 +201,7 @@
 
   <div class="instagram-image-modal ig-profile-photo-modal" id="instagramImageModal" aria-hidden="true">
     <div class="modal-bg" data-close-instagram-image></div>
-    <section class="instagram-image-dialog">
+    <section class="instagram-image-dialog" role="dialog" aria-modal="true" aria-label="Foto do perfil">
       <button type="button" data-close-instagram-image>×</button>
       <img id="instagramImagePreview" src="" alt="">
     </section>

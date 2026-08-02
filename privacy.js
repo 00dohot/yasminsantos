@@ -92,12 +92,8 @@
 
   function renderPost() {
     const state = readState();
-
-    likeButton.textContent = state.liked ? "♥" : "♡";
     likeButton.classList.toggle("active", state.liked);
     likeButton.setAttribute("aria-pressed", String(state.liked));
-
-    saveButton.textContent = state.saved ? "◆" : "◇";
     saveButton.classList.toggle("active", state.saved);
     saveButton.setAttribute("aria-pressed", String(state.saved));
 

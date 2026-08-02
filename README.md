@@ -126,3 +126,18 @@ E responder:
 - Roleta: tela inteira com título e botão sobrepostos.
 - Telegram: abre dentro da página principal em Liquid Glass.
 - Página principal: botões grandes removidos e primeiro card aproximado dos links.
+
+
+## V12 corrigida
+
+- Telegram agora substitui completamente os cards inferiores da página principal.
+- Ao fechar o Telegram, os cards normais voltam.
+- Busca e Reels do Instagram agora são telas internas independentes.
+- Início e avatar da barra inferior voltam para o perfil.
+- Foto do perfil do Instagram abre em proporção quadrada 1:1.
+- Roleta recebeu chamada arrastável e fechável no topo.
+- A chamada da Roleta não fica mais sobre saldo, botão de giro ou valor.
+- Selos visuais do Instagram e Privacy foram redesenhados em branco e azul.
+- Card de perfil da Privacy ficou alinhado à largura dos demais cards.
+- Ícones de curtir, comentar, compartilhar e salvar foram substituídos por SVGs refinados.
+- Ícones dos contadores de fotos, vídeos e curtidas foram ampliados e redesenhados.

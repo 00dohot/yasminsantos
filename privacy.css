@@ -873,3 +873,139 @@ body{
 
 .featured-offer,.featured-offer *,.plans button,.plans button *{color:var(--text)!important;text-decoration:none!important}
 .featured-offer>span{color:white!important}
+
+
+/* =====================================================
+   V12 CORRIGIDA — PRIVACY
+   ===================================================== */
+
+/* Card de perfil e cards abaixo na mesma largura. */
+.page-shell{
+  width:min(780px,calc(100% - 30px)) !important;
+}
+.content-layout{
+  width:100%;
+  max-width:none !important;
+}
+.profile-card{
+  width:100%;
+}
+.cover{
+  height:225px;
+}
+
+/* Selo visual branco, contorno azul e check azul. */
+.verified{
+  position:relative !important;
+  width:21px !important;
+  height:21px !important;
+  display:inline-grid !important;
+  place-items:center !important;
+  flex:0 0 21px;
+  border:0 !important;
+  border-radius:0 !important;
+  color:transparent !important;
+  background:#1787e8 !important;
+  clip-path:polygon(50% 0,61% 8%,74% 5%,82% 17%,95% 22%,93% 36%,100% 50%,92% 62%,95% 77%,81% 83%,74% 96%,60% 92%,50% 100%,39% 92%,25% 96%,18% 83%,5% 77%,8% 62%,0 50%,7% 36%,5% 22%,18% 17%,26% 5%,39% 8%);
+}
+.verified::before{
+  content:"";
+  position:absolute;
+  inset:2px;
+  background:white;
+  clip-path:inherit;
+}
+.verified::after{
+  content:"✓";
+  position:relative;
+  z-index:1;
+  color:#1787e8;
+  font-size:12px;
+  font-weight:900;
+  line-height:1;
+}
+
+/* Ações refinadas em SVG. */
+.post-actions{
+  align-items:center;
+  gap:15px;
+}
+.post-actions .privacy-action{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  padding:2px;
+  border:0;
+  color:#26212a;
+  background:transparent !important;
+}
+.post-actions .privacy-action:last-child{
+  margin-left:auto;
+}
+.post-actions .privacy-action svg{
+  width:24px;
+  height:24px;
+  overflow:visible;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.post-actions .privacy-action:hover{
+  transform:scale(1.07);
+}
+.post-actions .privacy-like.active{
+  color:#e9345f;
+}
+.post-actions .privacy-like.active svg path{
+  fill:currentColor;
+}
+.post-actions .privacy-save.active{
+  color:#17131a;
+}
+.post-actions .privacy-save.active svg path{
+  fill:currentColor;
+}
+
+/* Contadores maiores e com ícones desenhados. */
+.locked-stats{
+  width:min(420px,96%);
+  padding:14px 8px;
+}
+.locked-stats .stat-icon{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+}
+.locked-stats .stat-icon svg{
+  width:23px;
+  height:23px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.65;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.locked-stats .flipped-video-icon{
+  transform:scaleX(-1);
+}
+.locked-stats b{
+  font-size:.95rem;
+}
+.locked-stats small{
+  font-size:.68rem;
+}
+
+@media(max-width:620px){
+  .page-shell{
+    width:min(100% - 20px,780px) !important;
+  }
+  .cover{
+    height:205px;
+  }
+  .locked-stats{
+    width:100%;
+  }
+}

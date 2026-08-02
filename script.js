@@ -271,20 +271,123 @@
   });
 })();
 
+
+
+// ============================================================
+// V12 CORRIGIDA — TELEGRAM SUBSTITUI O CONTEÚDO
+// ============================================================
 (() => {
-  const normal=document.getElementById("homeDefaultContent"),panel=document.getElementById("homeTelegramPanel");
-  if(!normal||!panel)return;
-  document.querySelectorAll("[data-open-home-telegram]").forEach(b=>b.addEventListener("click",()=>{normal.hidden=true;panel.hidden=false;panel.scrollIntoView({behavior:"smooth",block:"start"})}));
-  document.querySelectorAll("[data-close-home-telegram]").forEach(b=>b.addEventListener("click",()=>{panel.hidden=true;normal.hidden=false;normal.scrollIntoView({behavior:"smooth",block:"start"})}));
+  const body = document.body;
+  const normalContent = document.getElementById("homeDefaultContent");
+  const telegramPanel = document.getElementById("homeTelegramPanel");
+  if (!body.classList.contains("home-page") || !normalContent || !telegramPanel) return;
+
+  function openTelegram() {
+    body.classList.add("telegram-mode");
+    normalContent.hidden = true;
+    normalContent.setAttribute("aria-hidden", "true");
+    telegramPanel.hidden = false;
+    telegramPanel.setAttribute("aria-hidden", "false");
+    requestAnimationFrame(() => {
+      telegramPanel.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  }
+
+  function closeTelegram() {
+    body.classList.remove("telegram-mode");
+    telegramPanel.hidden = true;
+    telegramPanel.setAttribute("aria-hidden", "true");
+    normalContent.hidden = false;
+    normalContent.setAttribute("aria-hidden", "false");
+    requestAnimationFrame(() => {
+      normalContent.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  }
+
+  document.querySelectorAll("[data-open-home-telegram]").forEach(button => {
+    button.addEventListener("click", openTelegram);
+  });
+
+  document.querySelectorAll("[data-close-home-telegram]").forEach(button => {
+    button.addEventListener("click", closeTelegram);
+  });
 })();
+
+// ============================================================
+// V12 CORRIGIDA — INSTAGRAM COM TELAS INDEPENDENTES
+// ============================================================
 (() => {
-  const posts=document.getElementById("igPublications"),reels=document.getElementById("igReelsView"),search=document.getElementById("igSearchView");
-  if(!posts||!reels||!search)return;
-  const cfg=window.SITE_CONFIG||{},reelsGrid=document.getElementById("igReelsGrid"),suggestions=document.getElementById("igSuggestions"),input=document.getElementById("igSearchInput");
-  const profiles=cfg.instagramSuggestions||[],reelItems=(cfg.instagramReels||[]).slice(0,3);
-  reelsGrid.innerHTML=reelItems.map(x=>`<button class="ig-reel-card" type="button"><img src="${x.thumbnail}" alt="${x.title}"><span>${x.title}</span></button>`).join("");
-  const render=(q="")=>{const t=q.toLowerCase();suggestions.innerHTML=profiles.filter(p=>(p.name+" "+p.handle).toLowerCase().includes(t)).map(p=>`<article class="ig-suggestion-card"><img src="${p.image}" alt=""><div><strong>${p.handle}</strong><small>${p.name}</small></div><a href="${p.url}" target="_blank" rel="noopener">Ver perfil</a></article>`).join("")};
-  const show=v=>{posts.hidden=v!=="posts";reels.hidden=v!=="reels";search.hidden=v!=="search";document.querySelectorAll("[data-instagram-view]").forEach(b=>b.classList.toggle("active",b.dataset.instagramView===v));if(v==="search")setTimeout(()=>input.focus(),100)};
-  document.querySelectorAll("[data-instagram-view]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.instagramView)));
-  input.addEventListener("input",()=>render(input.value));render();
+  const body = document.body;
+  const profileView = document.getElementById("igProfileView");
+  const reelsView = document.getElementById("igReelsView");
+  const searchView = document.getElementById("igSearchView");
+  const reelsGrid = document.getElementById("igReelsGrid");
+  const suggestions = document.getElementById("igSuggestions");
+  const searchInput = document.getElementById("igSearchInput");
+
+  if (!body.classList.contains("instagram-reference") ||
+      !profileView || !reelsView || !searchView ||
+      !reelsGrid || !suggestions || !searchInput) return;
+
+  const cfg = window.SITE_CONFIG || {};
+  const profiles = Array.isArray(cfg.instagramSuggestions) ? cfg.instagramSuggestions : [];
+  const reels = Array.isArray(cfg.instagramReels) ? cfg.instagramReels.slice(0, 3) : [];
+
+  function renderReels() {
+    reelsGrid.innerHTML = reels.map((item, index) => `
+      <button class="ig-reel-card" type="button" data-reel-index="${index}">
+        <img src="${item.thumbnail}" alt="${item.title}">
+        <span>${item.title}</span>
+      </button>
+    `).join("");
+  }
+
+  function renderSuggestions(query = "") {
+    const term = query.trim().toLowerCase();
+    const filtered = profiles.filter(profile =>
+      `${profile.name} ${profile.handle}`.toLowerCase().includes(term)
+    );
+
+    suggestions.innerHTML = filtered.map(profile => `
+      <article class="ig-suggestion-card">
+        <img src="${profile.image}" alt="">
+        <div>
+          <strong>${profile.handle}</strong>
+          <small>${profile.name}</small>
+        </div>
+        <a href="${profile.url}" target="_blank" rel="noopener">Ver perfil</a>
+      </article>
+    `).join("");
+  }
+
+  function showView(view) {
+    body.classList.remove("is-posts-view", "is-search-view", "is-reels-view");
+    body.classList.add(`is-${view}-view`);
+
+    profileView.hidden = view !== "posts";
+    profileView.setAttribute("aria-hidden", String(view !== "posts"));
+
+    reelsView.hidden = view !== "reels";
+    reelsView.setAttribute("aria-hidden", String(view !== "reels"));
+
+    searchView.hidden = view !== "search";
+    searchView.setAttribute("aria-hidden", String(view !== "search"));
+
+    document.querySelectorAll("[data-instagram-view]").forEach(button => {
+      button.classList.toggle("active", button.dataset.instagramView === view);
+    });
+
+    window.scrollTo({top:0, behavior:"smooth"});
+    if (view === "search") setTimeout(() => searchInput.focus(), 180);
+  }
+
+  document.querySelectorAll("[data-instagram-view]").forEach(button => {
+    button.addEventListener("click", () => showView(button.dataset.instagramView));
+  });
+
+  searchInput.addEventListener("input", () => renderSuggestions(searchInput.value));
+
+  renderReels();
+  renderSuggestions();
+  showView("posts");
 })();
