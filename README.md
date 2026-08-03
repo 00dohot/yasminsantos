@@ -1,4 +1,4 @@
-# Yasmin Site — V13.1 Beta
+# Yasmin Site — V13.2 Beta
 
 Esta versão foi construída diretamente sobre a **V12 corrigida**. O visual, os cards, menus e demais funções da V12 foram preservados; somente as correções solicitadas foram aplicadas.
 
@@ -58,5 +58,9 @@ O GitHub Pages é público. Não envie fotos ou vídeos privados diretamente par
 Envie para a raiz do repositório o **conteúdo interno** desta pasta, mantendo as subpastas. O arquivo `index.html` deve ficar na raiz.
 
 
-## Ajuste V13.1 Beta
+## Ajuste V13.2 Beta
 A página Privacy recebeu somente a identidade visual da referência: cabeçalho, planos, abas Fotos/Vídeos e card bloqueado sem imagem de fundo. Os valores e códigos dos planos permanecem inalterados.
+
+
+## Ajuste V13.2 Beta
+A página Privacy recebeu somente um ajuste fino responsivo no primeiro card para aproximar o mobile da referência, sem mudanças nos planos ou no backend.
