@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Área exclusiva de Yasmin Santos.">
-  <meta name="theme-color" content="#fbf8f4">
+  <meta name="theme-color" content="#f7f4ef">
   <title>privacy. | Yasmin Santos</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../privacy.css">
 </head>
-<body>
+<body class="privacy-v13-3">
   <header class="topbar">
     <div class="topbar-inner">
       <a class="privacy-back" href="../" data-i18n="back">Voltar</a>
@@ -35,42 +35,54 @@
   </header>
 
   <main class="page-shell">
-    <section class="profile-card">
+    <section class="profile-card privacy-profile-complete">
       <button class="cover image-open-button" type="button" data-open-profile-image="../assets/images/modelo-piscina.png" aria-label="Abrir foto de capa">
         <img src="../assets/images/modelo-piscina.png" alt="Capa de Yasmin Santos">
-        <div class="cover-shade"></div>
       </button>
 
-      <div class="profile-content">
-        <button class="avatar-button image-open-button" type="button" data-open-profile-image="../assets/images/modelo-piscina.png" aria-label="Abrir foto de perfil">
-          <img class="avatar" src="../assets/images/modelo-piscina.png" alt="Yasmin Santos">
-        </button>
+      <div class="privacy-profile-body">
+        <div class="profile-summary-row">
+          <button class="avatar-button image-open-button" type="button" data-open-profile-image="../assets/images/modelo-piscina.png" aria-label="Abrir foto de perfil">
+            <img class="avatar" src="../assets/images/modelo-piscina.png" alt="Yasmin Santos">
+          </button>
+
+          <div class="profile-stats profile-stats-inline" aria-label="Contadores do perfil">
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"></rect><circle cx="9" cy="9" r="1.3"></circle><path d="m6.5 17 4-4.5 2.8 2.4 2.5-2.7 1.7 1.8"></path></svg>
+              <strong>50</strong><span data-i18n="photos">Fotos</span>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="m10 9 5 3-5 3V9ZM4 9h16"></path></svg>
+              <strong>89</strong><span data-i18n="videos">Vídeos</span>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.3a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.1-1.1a5.1 5.1 0 1 0-7.2 7.2L12 20l8.3-7.5a5.1 5.1 0 0 0 0-7.2Z"></path></svg>
+              <strong>15,2K</strong><span data-i18n="likes">Curtidas</span>
+            </div>
+          </div>
+        </div>
 
         <div class="profile-copy">
           <div class="profile-name-row">
             <h1>Yasmin Santos</h1>
             <span class="verified">✓</span>
-            <span class="online" data-i18n="online">● Online</span>
+          </div>
+          <p class="handle">@yasminsantos</p>
+
+          <div class="privacy-socials" aria-label="Redes sociais">
+            <span class="privacy-social-chip privacy-social-x" aria-label="X">𝕏</span>
+            <span class="privacy-social-chip privacy-social-tiktok" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.3 3.5c.4 2.4 1.8 3.8 4.2 4.1v3.1a8.5 8.5 0 0 1-4.1-1.2v5.3a6 6 0 1 1-5.2-5.9v3.2a2.8 2.8 0 1 0 2.1 2.7V3.5h3Z"></path></svg>
+            </span>
           </div>
 
-          <p class="handle">@yasminsantos</p>
           <p class="bio" data-i18n-html="bio">
             Conteúdos exclusivos, ensaios e bastidores.<br>
             Live semanal • WhatsApp exclusivo • Novas fotos e vídeos.
           </p>
-
-          <div class="profile-stats" aria-label="Contadores do perfil">
-            <div><strong>50</strong><span data-i18n="photos">Fotos</span></div>
-            <div><strong>89</strong><span data-i18n="videos">Vídeos</span></div>
-            <div><strong>15,2K</strong><span data-i18n="likes">Curtidas</span></div>
-          </div>
         </div>
-      </div>
-    </section>
 
-    <div class="content-layout">
-      <section class="main-column">
-        <article class="subscription-card">
+        <article class="subscription-card privacy-subscription-inside">
           <section class="subscription-group">
             <h2 data-i18n="subscriptions">Assinaturas</h2>
 
@@ -99,23 +111,28 @@
             </div>
           </section>
         </article>
+      </div>
+    </section>
 
-        <nav class="privacy-media-tabs" aria-label="Tipos de conteúdo" data-i18n-aria="contentTypes">
-          <button class="media-tab active" type="button" data-media-tab="photos" aria-pressed="true">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 7h6M9 17h6"></path></svg>
-            <span><b>50</b> <span data-i18n="photos">Fotos</span></span>
-          </button>
-          <button class="media-tab" type="button" data-media-tab="videos" aria-pressed="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="m10 9 5 3-5 3V9ZM4 9h16"></path></svg>
-            <span><b>89</b> <span data-i18n="videos">Vídeos</span></span>
-          </button>
-        </nav>
+    <nav class="privacy-media-tabs" aria-label="Tipos de conteúdo" data-i18n-aria="contentTypes">
+      <button class="media-tab active" type="button" data-media-tab="photos" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 7h6M9 17h6"></path></svg>
+        <span><b>50</b> <span data-i18n="photos">Fotos</span></span>
+      </button>
+      <button class="media-tab" type="button" data-media-tab="videos" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="m10 9 5 3-5 3V9ZM4 9h16"></path></svg>
+        <span><b>89</b> <span data-i18n="videos">Vídeos</span></span>
+      </button>
+    </nav>
+
+    <section class="content-layout">
+      <div class="main-column">
         <article class="post-card" data-post-id="privacy-main">
           <header class="post-header">
             <img src="../assets/images/modelo-piscina.png" alt="">
             <div>
-              <strong>Yasmin Santos</strong>
-              <span>@yasminsantos • <span data-i18n="now">Agora</span></span>
+              <strong>Yasmin Santos <span class="post-verified" aria-hidden="true">✓</span></strong>
+              <span>@yasminsantos</span>
             </div>
             <button type="button" aria-label="Mais opções" data-i18n-aria="moreOptions">⋮</button>
           </header>
@@ -144,11 +161,11 @@
 
           <strong class="likes"><span data-like-count>15,2K</span> <span data-i18n="likesLower">curtidas</span></strong>
         </article>
-      </section>
-</div>
+      </div>
+    </section>
+
     <div class="privacy-page-end" aria-hidden="true"></div>
   </main>
-
 
   <div class="profile-image-modal" id="profileImageModal" aria-hidden="true">
     <div class="modal-overlay" data-close-profile-image></div>

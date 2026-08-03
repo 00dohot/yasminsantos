@@ -1468,3 +1468,474 @@ body{color:var(--text);background:#f8f5f0!important;background-image:none!import
     font-size:.72rem!important;
   }
 }
+
+
+/* =====================================================
+   V13.3 BETA — PRIVACY REFINADO PELA REFERÊNCIA MOBILE
+   Mantém dados e preços existentes; altera somente layout.
+   ===================================================== */
+body.privacy-v13-3{
+  --privacy-bg:#f7f4ef;
+  --privacy-card:#fff;
+  --privacy-ink:#222735;
+  --privacy-muted:#6f7178;
+  --privacy-border:#ddd9d4;
+  --privacy-orange:#ff8d38;
+  --privacy-peach:#ffc79e;
+  --privacy-rose:#f5a59e;
+  background:var(--privacy-bg)!important;
+  color:var(--privacy-ink)!important;
+}
+body.privacy-v13-3 .topbar{
+  position:sticky!important;
+  top:0;
+  height:112px!important;
+  background:rgba(250,248,244,.97)!important;
+  border-bottom:1px solid #ddd9d4!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+}
+body.privacy-v13-3 .topbar-inner{
+  width:min(760px,calc(100% - 30px))!important;
+  display:grid!important;
+  grid-template-columns:1fr auto 1fr!important;
+}
+body.privacy-v13-3 .privacy-back{
+  justify-self:start;
+  color:#36425a;
+  font-size:.84rem;
+  font-weight:700;
+}
+body.privacy-v13-3 .privacy-logo{
+  justify-self:center;
+  color:#211e20;
+  font-size:2.45rem!important;
+  font-weight:800;
+  letter-spacing:-.085em!important;
+}
+body.privacy-v13-3 .privacy-logo span{color:#ff8b35!important}
+body.privacy-v13-3 .language-picker{
+  position:relative;
+  justify-self:end;
+  width:48px!important;
+  height:48px!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.privacy-v13-3 .language-picker-icon{
+  display:block!important;
+  width:42px!important;
+  height:42px!important;
+  fill:none;
+  stroke:#34425c!important;
+  stroke-width:1.55;
+}
+body.privacy-v13-3 .language-picker select{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  opacity:0!important;
+  cursor:pointer;
+}
+body.privacy-v13-3 .page-shell{
+  width:min(760px,calc(100% - 30px))!important;
+  margin:16px auto 66px!important;
+}
+body.privacy-v13-3 .profile-card.privacy-profile-complete{
+  width:100%;
+  overflow:hidden!important;
+  border:1px solid var(--privacy-border)!important;
+  border-radius:42px!important;
+  background:var(--privacy-card)!important;
+  box-shadow:none!important;
+}
+body.privacy-v13-3 .profile-card.privacy-profile-complete::before{display:none!important}
+body.privacy-v13-3 .profile-card .cover{
+  width:calc(100% - 30px)!important;
+  height:176px!important;
+  margin:15px 15px 0!important;
+  border:0!important;
+  border-radius:30px 30px 0 0!important;
+  background:#ece7df;
+}
+body.privacy-v13-3 .profile-card .cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 43%;
+}
+body.privacy-v13-3 .privacy-profile-body{
+  position:relative;
+  z-index:2;
+  padding:0 30px 30px;
+}
+body.privacy-v13-3 .profile-summary-row{
+  min-height:86px;
+  display:grid;
+  grid-template-columns:132px minmax(0,1fr);
+  align-items:center;
+  gap:18px;
+}
+body.privacy-v13-3 .avatar-button{
+  position:relative!important;
+  z-index:3!important;
+  width:132px!important;
+  height:132px!important;
+  margin:-58px 0 0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+body.privacy-v13-3 .avatar-button .avatar,
+body.privacy-v13-3 .profile-card .avatar{
+  width:132px!important;
+  height:132px!important;
+  margin:0!important;
+  border:8px solid #fff!important;
+  border-radius:50%!important;
+  object-fit:cover;
+  box-shadow:0 3px 11px rgba(0,0,0,.08)!important;
+}
+body.privacy-v13-3 .profile-stats.profile-stats-inline{
+  width:100%!important;
+  min-width:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:21px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.privacy-v13-3 .profile-stats.profile-stats-inline div{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  padding:0!important;
+  border:0!important;
+  color:#323235!important;
+  white-space:nowrap;
+}
+body.privacy-v13-3 .profile-stats.profile-stats-inline svg{
+  width:25px!important;
+  height:25px!important;
+  flex:0 0 25px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.55;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+body.privacy-v13-3 .profile-stats.profile-stats-inline strong{
+  font-size:1.02rem!important;
+  font-weight:500!important;
+  line-height:1;
+}
+body.privacy-v13-3 .profile-stats.profile-stats-inline span{display:none!important}
+body.privacy-v13-3 .profile-copy{
+  padding:6px 0 0!important;
+  text-align:left!important;
+}
+body.privacy-v13-3 .profile-name-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  margin:0!important;
+}
+body.privacy-v13-3 .profile-name-row h1{
+  margin:0!important;
+  color:#202737!important;
+  font-size:2.05rem!important;
+  line-height:1.08;
+  font-weight:800!important;
+  letter-spacing:-.035em;
+}
+body.privacy-v13-3 .verified{
+  width:27px!important;
+  height:27px!important;
+  flex:0 0 27px!important;
+}
+body.privacy-v13-3 .handle{
+  margin:7px 0 0!important;
+  color:#30333a!important;
+  font-size:1.38rem!important;
+  line-height:1.2;
+}
+body.privacy-v13-3 .privacy-socials{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-top:28px;
+}
+body.privacy-v13-3 .privacy-social-chip{
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#111;
+  background:#f7f5f1;
+  font-size:2rem;
+  line-height:1;
+}
+body.privacy-v13-3 .privacy-social-chip svg{width:30px;height:30px;fill:currentColor}
+body.privacy-v13-3 .bio{display:none!important}
+body.privacy-v13-3 .subscription-card.privacy-subscription-inside{
+  margin-top:34px!important;
+  padding:0!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+body.privacy-v13-3 .subscription-card.privacy-subscription-inside::before{display:none!important}
+body.privacy-v13-3 .subscription-group h2{
+  margin:0 0 12px!important;
+  color:#111!important;
+  font-size:1.7rem!important;
+  font-weight:600!important;
+}
+body.privacy-v13-3 .promotion-group{margin-top:28px!important}
+body.privacy-v13-3 .plans-toggle{
+  padding:0 7px 12px!important;
+  color:#111!important;
+  font-size:1.55rem!important;
+  font-weight:500!important;
+}
+body.privacy-v13-3 .plans-toggle .arrow{
+  color:#999!important;
+  font-size:1.7rem!important;
+  font-weight:500!important;
+}
+body.privacy-v13-3 .plans{gap:13px!important}
+body.privacy-v13-3 .featured-offer,
+body.privacy-v13-3 .plans button,
+body.privacy-v13-3 .privacy-plan-button{
+  min-height:86px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  padding:0 62px!important;
+  border:0!important;
+  border-radius:999px!important;
+  color:#111!important;
+  background:linear-gradient(100deg,var(--privacy-orange) 0%,var(--privacy-peach) 49%,var(--privacy-rose) 100%)!important;
+  box-shadow:none!important;
+  text-align:left!important;
+}
+body.privacy-v13-3 .featured-offer strong,
+body.privacy-v13-3 .plans button strong{
+  color:#111!important;
+  font-size:1.44rem!important;
+  font-weight:500!important;
+}
+body.privacy-v13-3 .featured-offer b,
+body.privacy-v13-3 .plans button b{
+  color:#111!important;
+  font-size:1.42rem!important;
+  font-weight:500!important;
+}
+body.privacy-v13-3 .privacy-media-tabs{
+  width:100%!important;
+  min-height:100px!important;
+  margin-top:30px!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  overflow:hidden!important;
+  border:1px solid var(--privacy-border)!important;
+  border-radius:30px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+body.privacy-v13-3 .media-tab{
+  position:relative;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  border:0!important;
+  color:#353536!important;
+  background:#fff!important;
+  font-size:1.26rem!important;
+  font-weight:500!important;
+}
+body.privacy-v13-3 .media-tab svg{
+  width:29px!important;
+  height:29px!important;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.55;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+body.privacy-v13-3 .media-tab.active{color:#ff8431!important}
+body.privacy-v13-3 .media-tab.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:4px;
+  background:#ff8b35;
+}
+body.privacy-v13-3 .content-layout{
+  width:100%!important;
+  max-width:none!important;
+  display:block!important;
+  margin-top:30px!important;
+}
+body.privacy-v13-3 .main-column{display:block!important}
+body.privacy-v13-3 .post-card{
+  padding:0 0 18px!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:34px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+body.privacy-v13-3 .post-card::before{display:none!important}
+body.privacy-v13-3 .post-header{
+  min-height:118px!important;
+  margin:0!important;
+  padding:25px 28px 19px!important;
+  gap:14px!important;
+  background:#fff!important;
+}
+body.privacy-v13-3 .post-header img{
+  width:68px!important;
+  height:68px!important;
+  border-radius:50%!important;
+}
+body.privacy-v13-3 .post-header div strong{
+  color:#222a3d!important;
+  font-size:1.25rem!important;
+  font-weight:700!important;
+}
+body.privacy-v13-3 .post-header div>span{
+  color:#343842!important;
+  font-size:1rem!important;
+}
+body.privacy-v13-3 .post-verified{
+  display:inline-grid;
+  place-items:center;
+  width:20px;
+  height:20px;
+  margin-left:2px;
+  border:1.8px solid #248cff;
+  border-radius:50%;
+  color:#248cff;
+  font-size:.68rem;
+  vertical-align:2px;
+}
+body.privacy-v13-3 .post-header>button{
+  color:#20283b!important;
+  font-size:2rem!important;
+}
+body.privacy-v13-3 .post-media.post-media-lock{
+  aspect-ratio:4/5!important;
+  border-radius:0!important;
+  background:#f2ece2!important;
+}
+body.privacy-v13-3 .post-actions,
+body.privacy-v13-3 .likes{margin-left:22px;margin-right:22px}
+body.privacy-v13-3 .privacy-page-end{
+  height:46px!important;
+  margin-top:8px!important;
+  border-top:1px solid #d9d3cb!important;
+}
+
+@media(max-width:620px){
+  body.privacy-v13-3 .topbar{height:92px!important}
+  body.privacy-v13-3 .topbar-inner{width:calc(100% - 26px)!important}
+  body.privacy-v13-3 .privacy-back{font-size:.72rem!important}
+  body.privacy-v13-3 .privacy-logo{font-size:2.05rem!important}
+  body.privacy-v13-3 .language-picker{width:43px!important;height:43px!important}
+  body.privacy-v13-3 .language-picker-icon{width:38px!important;height:38px!important}
+  body.privacy-v13-3 .page-shell{width:calc(100% - 20px)!important;margin-top:10px!important}
+  body.privacy-v13-3 .profile-card.privacy-profile-complete{border-radius:30px!important}
+  body.privacy-v13-3 .profile-card .cover{
+    width:calc(100% - 18px)!important;
+    height:148px!important;
+    margin:9px 9px 0!important;
+    border-radius:26px 26px 0 0!important;
+  }
+  body.privacy-v13-3 .privacy-profile-body{padding:0 24px 26px!important}
+  body.privacy-v13-3 .profile-summary-row{
+    min-height:72px!important;
+    grid-template-columns:104px minmax(0,1fr)!important;
+    gap:12px!important;
+  }
+  body.privacy-v13-3 .avatar-button{width:104px!important;height:104px!important;margin-top:-43px!important}
+  body.privacy-v13-3 .avatar-button .avatar,
+  body.privacy-v13-3 .profile-card .avatar{width:104px!important;height:104px!important;border-width:6px!important}
+  body.privacy-v13-3 .profile-stats.profile-stats-inline{gap:12px!important;justify-content:space-between!important}
+  body.privacy-v13-3 .profile-stats.profile-stats-inline div{gap:4px!important}
+  body.privacy-v13-3 .profile-stats.profile-stats-inline svg{width:20px!important;height:20px!important;flex-basis:20px!important}
+  body.privacy-v13-3 .profile-stats.profile-stats-inline strong{font-size:.86rem!important}
+  body.privacy-v13-3 .profile-copy{padding-top:8px!important}
+  body.privacy-v13-3 .profile-name-row h1{font-size:1.62rem!important}
+  body.privacy-v13-3 .verified{width:23px!important;height:23px!important;flex-basis:23px!important}
+  body.privacy-v13-3 .handle{font-size:1.05rem!important;margin-top:5px!important}
+  body.privacy-v13-3 .privacy-socials{gap:16px!important;margin-top:20px!important}
+  body.privacy-v13-3 .privacy-social-chip{width:48px!important;height:48px!important;font-size:1.65rem!important}
+  body.privacy-v13-3 .privacy-social-chip svg{width:26px!important;height:26px!important}
+  body.privacy-v13-3 .subscription-card.privacy-subscription-inside{margin-top:27px!important}
+  body.privacy-v13-3 .subscription-group h2{font-size:1.38rem!important;margin-bottom:10px!important}
+  body.privacy-v13-3 .promotion-group{margin-top:24px!important}
+  body.privacy-v13-3 .plans-toggle{font-size:1.26rem!important;padding-left:5px!important;padding-right:5px!important}
+  body.privacy-v13-3 .featured-offer,
+  body.privacy-v13-3 .plans button,
+  body.privacy-v13-3 .privacy-plan-button{
+    min-height:70px!important;
+    padding:0 38px!important;
+  }
+  body.privacy-v13-3 .featured-offer strong,
+  body.privacy-v13-3 .plans button strong{font-size:1.08rem!important}
+  body.privacy-v13-3 .featured-offer b,
+  body.privacy-v13-3 .plans button b{font-size:1.07rem!important}
+  body.privacy-v13-3 .privacy-media-tabs{min-height:84px!important;margin-top:22px!important;border-radius:24px!important}
+  body.privacy-v13-3 .media-tab{gap:8px!important;font-size:.98rem!important}
+  body.privacy-v13-3 .media-tab svg{width:25px!important;height:25px!important}
+  body.privacy-v13-3 .content-layout{margin-top:22px!important}
+  body.privacy-v13-3 .post-card{border-radius:28px!important}
+  body.privacy-v13-3 .post-header{min-height:96px!important;padding:18px 20px 14px!important}
+  body.privacy-v13-3 .post-header img{width:58px!important;height:58px!important}
+  body.privacy-v13-3 .post-header div strong{font-size:1rem!important}
+  body.privacy-v13-3 .post-header div>span{font-size:.82rem!important}
+}
+
+@media(max-width:390px){
+  body.privacy-v13-3 .privacy-profile-body{padding-left:20px!important;padding-right:20px!important}
+  body.privacy-v13-3 .profile-summary-row{grid-template-columns:94px minmax(0,1fr)!important;gap:9px!important}
+  body.privacy-v13-3 .avatar-button{width:94px!important;height:94px!important}
+  body.privacy-v13-3 .avatar-button .avatar,
+  body.privacy-v13-3 .profile-card .avatar{width:94px!important;height:94px!important}
+  body.privacy-v13-3 .profile-stats.profile-stats-inline{gap:8px!important}
+  body.privacy-v13-3 .profile-stats.profile-stats-inline svg{width:18px!important;height:18px!important;flex-basis:18px!important}
+  body.privacy-v13-3 .profile-stats.profile-stats-inline strong{font-size:.78rem!important}
+  body.privacy-v13-3 .profile-name-row h1{font-size:1.45rem!important}
+  body.privacy-v13-3 .featured-offer,
+  body.privacy-v13-3 .plans button,
+  body.privacy-v13-3 .privacy-plan-button{padding:0 28px!important}
+  body.privacy-v13-3 .featured-offer strong,
+  body.privacy-v13-3 .plans button strong{font-size:1rem!important}
+  body.privacy-v13-3 .featured-offer b,
+  body.privacy-v13-3 .plans button b{font-size:.99rem!important}
+}
