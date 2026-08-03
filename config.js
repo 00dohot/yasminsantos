@@ -7,42 +7,92 @@ window.SITE_CONFIG = {
     headline: "Seu acesso exclusivo começa aqui",
     description: "Conheça meu canal VIP, conteúdos e prévias em um só lugar."
   },
+
   links: {
     instagramReal: "https://instagram.com/SEU_USUARIO",
     telegramReal: "https://t.me/SEU_USUARIO",
     telegramBot: "https://t.me/SEU_BOT",
     previewsReal: "https://t.me/SEU_GRUPO_DE_PREVIAS",
     support: "https://wa.me/55SEUNUMERO",
-    rouletteExternal: "https://sharkbot.com.br/r/yasminsantos",
-    exclusiveCheckout: "https://SEU-CHECKOUT-CONTEUDO-EXCLUSIVO.com"
-  },
-  instagram: {
-    posts: "9",
-    followers: "12,8 mil",
-    following: "184"
-  },
-  privacy: {
-    photos: "50",
-    videos: "89",
-    likes: "15,2k"
-  },
-  subscription: {
-    mainOffer: {
-      originalPrice: "R$ 25,00",
-      price: "R$ 20,00",
-      discount: "20% OFF",
-      checkoutUrl: "https://SEU-CHECKOUT-PRINCIPAL.com"
-    },
-    plans: {
-      monthly: { code:"privacy_mensal", name:"Plano mensal Privacy", period:"30 dias", price:"R$ 20,00", checkoutUrl:"https://SEU-CHECKOUT-MENSAL.com" },
-      quarterly: { code:"privacy_trimestral", name:"Plano trimestral Privacy", period:"90 dias", price:"R$ 55,00", checkoutUrl:"https://SEU-CHECKOUT-TRIMESTRAL.com" },
-      semiannual: { code:"privacy_semestral", name:"Plano semestral Privacy", period:"180 dias", price:"R$ 99,90", checkoutUrl:"https://SEU-CHECKOUT-SEMESTRAL.com" }
-    }
+    rouletteExternal: "https://sharkbot.com.br/r/yasminsantos"
   },
 
   payment: {
-    endpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/criar-pagamento",
-    timeoutMs: 25000
+    createEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/criar-pagamento",
+    statusEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/status-pagamento",
+    verifyEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/verificar-acesso",
+    pollIntervalMs: 5000,
+    maxPollAttempts: 120
+  },
+
+  /*
+    Planos vendidos diretamente pelo site.
+    A entrega é uma página de conteúdo liberada após a confirmação do Pix.
+  */
+  siteAccess: {
+    plans: {
+      monthly: {
+        code: "mensal",
+        name: "Plano mensal",
+        period: "30 dias",
+        price: "R$ 20,00"
+      },
+      quarterly: {
+        code: "trimestral",
+        name: "Plano trimestral",
+        period: "90 dias",
+        price: "R$ 49,90"
+      },
+      lifetime: {
+        code: "vitalicio",
+        name: "Acesso vitalício",
+        period: "Sem expiração",
+        price: "R$ 99,90"
+      }
+    }
+  },
+
+  /*
+    Planos da página Privacy.
+    A entrega é o botão “Acesse aqui”, liberado somente após a confirmação.
+    O endereço real do grupo VIP fica no Secret PRIVACY_TELEGRAM_URL do Worker,
+    portanto não aparece neste arquivo público.
+  */
+  privacyAccess: {
+    mainOffer: {
+      code: "mensal",
+      name: "Plano mensal",
+      period: "30 dias",
+      originalPrice: "R$ 25,00",
+      price: "R$ 20,00",
+      discount: "20% OFF"
+    },
+    plans: {
+      quarterly: {
+        code: "trimestral",
+        name: "Plano trimestral",
+        period: "90 dias",
+        price: "R$ 49,90"
+      },
+      semester: {
+        code: "semestral",
+        name: "Plano de 6 meses",
+        period: "180 dias",
+        price: "R$ 99,90"
+      }
+    }
+  },
+
+  instagram: {
+    posts: "12",
+    followers: "12,8 mil",
+    following: "184"
+  },
+
+  privacy: {
+    photos: "50",
+    videos: "89",
+    likes: "15,2 mil"
   },
 
   aiChat: {

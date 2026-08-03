@@ -1,4 +1,3 @@
-
 (() => {
   const cfg = window.SITE_CONFIG || {};
 
@@ -11,54 +10,13 @@
   const plansToggle = document.getElementById("plansToggle");
   const plansArrow = document.getElementById("plansArrow");
 
-  plansToggle.addEventListener("click", () => {
-    const collapsed = plans.classList.toggle("collapsed");
-    plansToggle.setAttribute("aria-expanded", String(!collapsed));
-    plansArrow.textContent = collapsed ? "⌄" : "⌃";
-  });
-
-  const modal = document.getElementById("purchaseModal");
-  const checkoutLink = document.getElementById("checkoutLink");
-  const selectedPlan = document.getElementById("selectedPlan");
-
-  function openModal(label, url) {
-    if (!url || url.includes("SEU-CHECKOUT")) {
-      alert("Configure este checkout no arquivo config.js.");
-      return;
-    }
-
-    selectedPlan.textContent = label;
-    checkoutLink.href = url;
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-  }
-
-  function closeModal() {
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-  }
-
-  document.getElementById("featuredOffer").addEventListener("click", () => {
-    const offer = cfg.subscription?.mainOffer;
-    openModal(`Assinatura — ${offer?.price || "R$ 20,00"}`, offer?.checkoutUrl);
-  });
-
-  document.querySelectorAll("[data-plan]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const plan = cfg.subscription?.plans?.[button.dataset.plan];
-      openModal(`${plan?.name || "Assinatura"} — ${plan?.price || ""}`, plan?.checkoutUrl);
+  if (plans && plansToggle && plansArrow) {
+    plansToggle.addEventListener("click", () => {
+      const collapsed = plans.classList.toggle("collapsed");
+      plansToggle.setAttribute("aria-expanded", String(!collapsed));
+      plansArrow.textContent = collapsed ? "⌄" : "⌃";
     });
-  });
-
-  modal.querySelectorAll("[data-close-modal]").forEach((element) => {
-    element.addEventListener("click", closeModal);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeModal();
-  });
+  }
 
   const postKey = "yasmin-privacy-v9-post";
   const likeButton = document.querySelector("[data-like]");
@@ -90,13 +48,6 @@
       .replaceAll("'", "&#039;");
   }
 
-  function formatCompactLikes(value) {
-    const amount = Number(value) || 0;
-    if (amount < 1000) return String(amount);
-
-    return `${(amount / 1000).toFixed(1).replace(".", ",")}k`;
-  }
-
   function renderPost() {
     const state = readState();
     likeButton.classList.toggle("active", state.liked);
@@ -104,7 +55,7 @@
     saveButton.classList.toggle("active", state.saved);
     saveButton.setAttribute("aria-pressed", String(state.saved));
 
-    likeCount.textContent = formatCompactLikes(15200 + state.likes);
+    likeCount.textContent = 15200 + state.likes;
 
     comments.innerHTML = state.comments.map((comment) => `
       <div class="comment">

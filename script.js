@@ -59,7 +59,7 @@
 
   const pubs = document.getElementById("igPublications");
   if (pubs) {
-    const captions = ["Noite perfeita ✨","Bastidores","Só para quem sabe","Hoje","Nova prévia","Exclusivo","Fim de tarde","Meu olhar favorito","Obrigada pelo carinho"];
+    const captions = ["Noite perfeita ✨","Bastidores","Só para quem sabe","Hoje","Nova prévia","Exclusivo","Fim de tarde","Meu olhar favorito","Obrigada pelo carinho","Mais uma","Segredo","Última do dia"];
     pubs.innerHTML = captions.map((c,i)=>`<button data-post-index="${i}" data-caption="${c}"><img src="../assets/images/modelo-piscina.png" alt="Publicação ${i+1}"></button>`).join("");
 
     const postModal = document.getElementById("postModal");
@@ -93,8 +93,8 @@
     const closePost = () => { postModal.classList.remove("open"); postModal.setAttribute("aria-hidden","true"); document.body.style.overflow=""; };
     pubs.querySelectorAll("[data-post-index]").forEach(b=>b.addEventListener("click",()=>openPost(Number(b.dataset.postIndex))));
     document.querySelectorAll("[data-close-post]").forEach(x=>x.addEventListener("click",closePost));
-    document.getElementById("postPrev").addEventListener("click",()=>{current=(current+captions.length-1)%captions.length;renderPost()});
-    document.getElementById("postNext").addEventListener("click",()=>{current=(current+1)%captions.length;renderPost()});
+    document.getElementById("postPrev").addEventListener("click",()=>{current=(current+11)%12;renderPost()});
+    document.getElementById("postNext").addEventListener("click",()=>{current=(current+1)%12;renderPost()});
     likeBtn.addEventListener("click",()=>{const d=readPost(current);d.liked=!d.liked;d.likes+=d.liked?1:-1;savePost(current,d);renderPost()});
     saveBtn.addEventListener("click",()=>{const d=readPost(current);d.saved=!d.saved;savePost(current,d);renderPost()});
     document.getElementById("focusComment").addEventListener("click",()=>document.getElementById("commentHandle").focus());
@@ -274,76 +274,42 @@
 
 
 // ============================================================
-// HOME — TELAS INTERNAS DE PLANOS E TELEGRAM
+// V12 CORRIGIDA — TELEGRAM SUBSTITUI O CONTEÚDO
 // ============================================================
 (() => {
   const body = document.body;
   const normalContent = document.getElementById("homeDefaultContent");
-  const plansPanel = document.getElementById("sitePlansPanel");
   const telegramPanel = document.getElementById("homeTelegramPanel");
+  if (!body.classList.contains("home-page") || !normalContent || !telegramPanel) return;
 
-  if (!body.classList.contains("home-page") || !normalContent || !plansPanel || !telegramPanel) return;
-
-  const panels = {
-    home: normalContent,
-    planos: plansPanel,
-    telegram: telegramPanel
-  };
-
-  function closeDrawer() {
-    document.getElementById("drawer")?.classList.remove("open");
-    document.getElementById("drawerOverlay")?.classList.remove("show");
-    document.getElementById("drawer")?.setAttribute("aria-hidden", "true");
-    document.getElementById("menuTab")?.setAttribute("aria-expanded", "false");
-  }
-
-  function showView(view, options = {}) {
-    const nextView = panels[view] ? view : "home";
-
-    Object.entries(panels).forEach(([name, panel]) => {
-      const visible = name === nextView;
-      panel.hidden = !visible;
-      panel.setAttribute("aria-hidden", String(!visible));
+  function openTelegram() {
+    body.classList.add("telegram-mode");
+    normalContent.hidden = true;
+    normalContent.setAttribute("aria-hidden", "true");
+    telegramPanel.hidden = false;
+    telegramPanel.setAttribute("aria-hidden", "false");
+    requestAnimationFrame(() => {
+      telegramPanel.scrollIntoView({behavior:"smooth", block:"start"});
     });
-
-    body.classList.toggle("site-plans-mode", nextView === "planos");
-    body.classList.toggle("telegram-mode", nextView === "telegram");
-    closeDrawer();
-
-    if (options.updateHistory !== false) {
-      const nextHash = nextView === "home" ? location.pathname : `#${nextView}`;
-      history.pushState({homeView: nextView}, "", nextHash);
-    }
-
-    const target = panels[nextView];
-    if (options.scroll !== false) {
-      requestAnimationFrame(() => target.scrollIntoView({behavior:"smooth", block:"start"}));
-    }
   }
 
-  document.querySelectorAll("[data-open-site-plans]").forEach(button => {
-    button.addEventListener("click", () => showView("planos"));
-  });
+  function closeTelegram() {
+    body.classList.remove("telegram-mode");
+    telegramPanel.hidden = true;
+    telegramPanel.setAttribute("aria-hidden", "true");
+    normalContent.hidden = false;
+    normalContent.setAttribute("aria-hidden", "false");
+    requestAnimationFrame(() => {
+      normalContent.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  }
 
   document.querySelectorAll("[data-open-home-telegram]").forEach(button => {
-    button.addEventListener("click", () => showView("telegram"));
+    button.addEventListener("click", openTelegram);
   });
 
-  document.querySelectorAll("[data-close-home-panel]").forEach(button => {
-    button.addEventListener("click", () => showView("home"));
-  });
-
-  window.addEventListener("popstate", () => {
-    const requested = location.hash.replace("#", "");
-    showView(requested === "planos" || requested === "telegram" ? requested : "home", {
-      updateHistory: false
-    });
-  });
-
-  const initial = location.hash.replace("#", "");
-  showView(initial === "planos" || initial === "telegram" ? initial : "home", {
-    updateHistory: false,
-    scroll: false
+  document.querySelectorAll("[data-close-home-telegram]").forEach(button => {
+    button.addEventListener("click", closeTelegram);
   });
 })();
 
@@ -425,41 +391,3 @@
   renderSuggestions();
   showView("posts");
 })();
-
-// ============================================================
-// PRÉVIA DO BOT DO TELEGRAM DENTRO DO SITE
-// ============================================================
-(() => {
-  const modal = document.getElementById("telegramBotModal");
-  if (!modal) return;
-
-  const openButtons = document.querySelectorAll("[data-open-telegram-bot]");
-  const closeButtons = modal.querySelectorAll("[data-close-telegram-bot]");
-
-  function openBotPreview() {
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("telegram-bot-modal-open");
-  }
-
-  function closeBotPreview() {
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("telegram-bot-modal-open");
-  }
-
-  openButtons.forEach(button => {
-    button.addEventListener("click", openBotPreview);
-  });
-
-  closeButtons.forEach(button => {
-    button.addEventListener("click", closeBotPreview);
-  });
-
-  window.addEventListener("keydown", event => {
-    if (event.key === "Escape" && modal.classList.contains("open")) {
-      closeBotPreview();
-    }
-  });
-})();
-

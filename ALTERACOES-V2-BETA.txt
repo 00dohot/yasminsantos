@@ -1,0 +1,10 @@
+ALTERAÇÕES APLICADAS SOBRE A V12 CORRIGIDA
+
+- Visual original preservado.
+- Limite visual no final das páginas.
+- Menu inferior do Instagram fixo no celular.
+- Página inicial: mensal, trimestral e vitalício; entrega da área de conteúdo após confirmação.
+- Privacy: mensal, trimestral e 6 meses; vitalício removido.
+- Privacy: botão final com o texto “Acesse aqui”; destino real guardado no Worker.
+- Nenhuma tela de login ou senha foi criada.
+- Worker com catálogo e entregas separados por produto.

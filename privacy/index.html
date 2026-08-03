@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../privacy.css">
-  <link rel="stylesheet" href="../payment.css">
 </head>
 <body>
   <header class="topbar">
@@ -58,29 +57,18 @@
         <article class="subscription-card">
           <header class="section-header">
             <div>
-              <span class="eyebrow">ACESSO EXCLUSIVO PRIVACY</span>
+              <span class="eyebrow">ACESSO EXCLUSIVO</span>
               <h2>Assinaturas</h2>
             </div>
             <span class="secure-pill">Pagamento seguro</span>
           </header>
 
-          <button
-            class="featured-offer"
-            id="featuredOffer"
-            type="button"
-            data-payment-plan
-            data-plan-code="privacy_mensal"
-            data-plan-label="Plano mensal Privacy — R$ 20,00">
-            <div class="privacy-featured-copy">
-              <small>PLANO MAIS ESCOLHIDO</small>
-              <strong class="privacy-plan-name">Acesso mensal</strong>
-              <span class="privacy-featured-price">
-                <s>R$ 25,00</s>
-                <b>R$ 20,00</b>
-              </span>
-              <small class="privacy-featured-note">30 dias de acesso ao conteúdo do Privacy</small>
+          <button class="featured-offer" id="featuredOffer" type="button" data-payment-trigger data-product="privacy" data-plan="mensal" data-label="Plano mensal — R$ 20,00">
+            <div>
+              <small>DE <s>R$ 25,00</s></small>
+              <strong>Assine agora por R$ 20,00</strong>
             </div>
-            <span class="privacy-featured-discount">20% OFF</span>
+            <span>20% OFF</span>
           </button>
 
           <button class="plans-toggle" id="plansToggle" type="button" aria-expanded="true">
@@ -89,38 +77,14 @@
           </button>
 
           <div class="plans" id="plans">
-            <button
-              class="privacy-plan-option"
-              type="button"
-              data-payment-plan
-              data-plan-code="privacy_trimestral"
-              data-plan-label="Plano trimestral Privacy — R$ 55,00">
-              <span class="privacy-plan-copy">
-                <strong>Acesso trimestral</strong>
-                <small>90 dias de acesso • economize R$ 20,00</small>
-              </span>
-              <span class="privacy-plan-price">
-                <small class="privacy-plan-old">De <s>R$ 75,00</s></small>
-                <b class="privacy-plan-current">R$ 55,00</b>
-                <em class="privacy-plan-discount">27% OFF</em>
-              </span>
+<button type="button" data-payment-trigger data-product="privacy" data-plan="trimestral" data-label="Plano trimestral — R$ 49,90">
+              <span><strong>Plano trimestral</strong><small>90 dias de acesso</small></span>
+              <b>R$ 49,90</b>
             </button>
 
-            <button
-              class="privacy-plan-option"
-              type="button"
-              data-payment-plan
-              data-plan-code="privacy_semestral"
-              data-plan-label="Plano semestral Privacy — R$ 99,90">
-              <span class="privacy-plan-copy">
-                <strong>Acesso semestral</strong>
-                <small>6 meses de acesso • economize R$ 50,10</small>
-              </span>
-              <span class="privacy-plan-price">
-                <small class="privacy-plan-old">De <s>R$ 150,00</s></small>
-                <b class="privacy-plan-current">R$ 99,90</b>
-                <em class="privacy-plan-discount">33% OFF</em>
-              </span>
+            <button type="button" data-payment-trigger data-product="privacy" data-plan="semestral" data-label="Plano de 6 meses — R$ 99,90">
+              <span><strong>Plano de 6 meses</strong><small>180 dias de acesso</small></span>
+              <b>R$ 99,90</b>
             </button>
           </div>
         </article>
@@ -143,7 +107,7 @@
               <div class="locked-stats">
                 <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2"/><circle cx="10" cy="9" r="1.5"/><path d="m7.5 17 3.5-4 2.5 2 3-3 1.5 2"/></svg></span><b>50</b><small>Fotos</small></div>
                 <div><span class="stat-icon"><svg class="flipped-video-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="13" height="14" rx="2"/><path d="m20 8-3 2.2v3.6l3 2.2V8Z"/><path d="m12.8 9.3-3.6 2.7 3.6 2.7V9.3Z"/></svg></span><b>89</b><small>Vídeos</small></div>
-                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.3a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.1-1.1a5.1 5.1 0 1 0-7.2 7.2L12 20l8.3-7.5a5.1 5.1 0 0 0 0-7.2Z"/></svg></span><b>15,2k</b><small>Likes</small></div>
+                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.3a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.1-1.1a5.1 5.1 0 1 0-7.2 7.2L12 20l8.3-7.5a5.1 5.1 0 0 0 0-7.2Z"/></svg></span><b>15,2 mil</b><small>Curtidas</small></div>
               </div>
             </div>
           </div>
@@ -155,7 +119,7 @@
             <button class="privacy-action privacy-save" type="button" data-save aria-pressed="false" aria-label="Salvar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12v17l-6-3.9-6 3.9v-17Z"/></svg></button>
           </div>
 
-          <strong class="likes"><span data-like-count>15,2k</span> likes</strong>
+          <strong class="likes"><span data-like-count>15200</span> curtidas</strong>
 
           <div class="comments" id="comments"></div>
 
@@ -167,6 +131,7 @@
         </article>
       </section>
 </div>
+    <div class="privacy-page-end" aria-hidden="true"></div>
   </main>
 
 
@@ -178,115 +143,48 @@
     </section>
   </div>
 
-  <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
-    <div class="modal-overlay" data-close-modal></div>
+  <div class="purchase-modal" id="purchaseModal" data-payment-modal data-default-product="privacy" aria-hidden="true">
+    <div class="modal-overlay" data-close-payment></div>
 
-    <section class="purchase-dialog payment-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
-      <button class="close-modal payment-close" type="button" data-close-modal aria-label="Fechar pagamento">×</button>
+    <section class="purchase-dialog" role="dialog" aria-modal="true" aria-label="Finalizar pagamento">
+      <button class="close-modal" type="button" data-close-payment aria-label="Fechar">×</button>
 
-      <header class="payment-header">
-        <div class="payment-security-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M7 10V7a5 5 0 0 1 10 0v3"/>
-            <rect x="5" y="10" width="14" height="10" rx="3"/>
-            <path d="M12 14v2"/>
-          </svg>
-        </div>
-        <div>
-          <span class="payment-kicker">PAGAMENTO SEGURO</span>
-          <h2 id="paymentTitle">Finalize sua assinatura</h2>
-          <p>Gere seu Pix em poucos segundos.</p>
-        </div>
-      </header>
+      <img class="modal-avatar" src="../assets/images/modelo-piscina.png" alt="">
+      <h2>Yasmin Santos</h2>
+      <p>@yasminsantos</p>
 
-      <div class="selected-plan payment-plan-summary" id="selectedPlan">
-        Plano mensal Privacy — R$ 20,00
-      </div>
+      <div data-payment-form-step>
+        <div class="selected-plan" data-selected-plan>Plano mensal — R$ 20,00</div>
 
-      <div id="paymentFormStep">
-        <form class="payment-form" id="paymentForm">
-          <input id="paymentPlan" name="plano" type="hidden" value="privacy_mensal">
-
-          <label class="payment-field payment-field-full">
-            <span>Nome completo</span>
-            <input id="paymentName" name="nome" type="text" autocomplete="name" maxlength="120" placeholder="Digite seu nome completo" required>
-          </label>
-
-          <label class="payment-field payment-field-full">
-            <span>E-mail</span>
-            <input id="paymentEmail" name="email" type="email" autocomplete="email" maxlength="160" placeholder="voce@exemplo.com" required>
-          </label>
-
-          <div class="payment-form-row">
-            <label class="payment-field">
-              <span>CPF</span>
-              <input id="paymentCpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000.000.000-00" required>
-            </label>
-
-            <label class="payment-field">
-              <span>Celular com DDD</span>
-              <input id="paymentPhone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="(11) 99999-9999" required>
-            </label>
-          </div>
-
-          <div class="payment-trust-row" aria-label="Informações de segurança">
-            <span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="5" y="10" width="14" height="10" rx="3"/></svg>
-              Dados protegidos
-            </span>
-            <span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v10H4z"/><path d="M7 12h4"/></svg>
-              Pagamento via Pix
-            </span>
-          </div>
-
-          <p class="payment-privacy-note">Seus dados são usados somente para emitir e identificar esta cobrança.</p>
-
-          <div class="payment-error" id="paymentError" role="alert" hidden></div>
-
-          <button class="payment-primary-button" id="paymentSubmit" type="submit">
-            Gerar Pix
-          </button>
+        <form class="privacy-payment-form" data-payment-form>
+          <label>Nome completo<input name="nome" type="text" minlength="3" maxlength="120" autocomplete="name" required></label>
+          <label>E-mail<input name="email" type="email" maxlength="160" autocomplete="email" required></label>
+          <label>CPF<input name="cpf" type="text" inputmode="numeric" maxlength="14" autocomplete="off" required></label>
+          <label>Celular com DDD<input name="telefone" type="tel" inputmode="tel" maxlength="16" autocomplete="tel" required></label>
+          <p class="payment-error" data-payment-error hidden></p>
+          <button class="privacy-payment-submit" type="submit" data-payment-submit>Gerar Pix</button>
         </form>
       </div>
 
-      <div class="payment-pix-step" id="paymentPixStep" hidden>
-        <div class="payment-success-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.4 3.4L17.8 8"/></svg>
+      <div class="privacy-payment-result" data-payment-result-step hidden>
+        <div class="selected-plan" data-selected-plan>Pagamento via Pix</div>
+        <p class="payment-status" data-payment-status>Aguardando a confirmação do Pix...</p>
+        <code class="pix-code" data-pix-code></code>
+        <small class="payment-reference" data-payment-reference></small>
+        <div class="payment-result-actions">
+          <button type="button" data-copy-pix>Copiar código Pix</button>
+          <button type="button" data-check-payment>Verificar pagamento</button>
+          <a data-delivery-button hidden>Acesse aqui</a>
         </div>
-
-        <div class="payment-pix-heading">
-          <h3>Seu Pix está pronto</h3>
-          <p>Escaneie o QR Code ou copie o código abaixo.</p>
-        </div>
-
-        <div class="pix-qr-card" id="pixQrCard">
-          <div class="pix-qr" id="pixQrCode" aria-label="QR Code do pagamento Pix"></div>
-        </div>
-
-        <div class="pix-copy-area">
-          <span>Pix copia e cola</span>
-          <code class="pix-code" id="pixCode"></code>
-        </div>
-
-        <button class="payment-primary-button" id="copyPix" type="button">
-          Copiar código Pix
-        </button>
-
-        <small class="payment-transaction" id="paymentTransaction"></small>
-
-        <button class="payment-secondary-button" id="newPayment" type="button">
-          Gerar outro Pix
-        </button>
+        <button class="payment-secondary" type="button" data-new-payment>Gerar outro Pix</button>
       </div>
 
-      <a id="checkoutLink" href="#" hidden aria-hidden="true" tabindex="-1"></a>
+      <div data-payment-plan-step hidden></div>
     </section>
   </div>
 
   <script src="../config.js"></script>
   <script src="../privacy.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script src="../payment.js"></script>
 </body>
 </html>

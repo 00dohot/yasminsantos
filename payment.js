@@ -2,97 +2,33 @@
   "use strict";
 
   const cfg = window.SITE_CONFIG || {};
-  const paymentConfig = cfg.payment || {};
-  const endpoint = String(paymentConfig.endpoint || "").trim();
-  const timeoutMs = Number(paymentConfig.timeoutMs) > 0
-    ? Number(paymentConfig.timeoutMs)
-    : 25000;
+  const paymentCfg = cfg.payment || {};
+  const modal = document.querySelector("[data-payment-modal]");
 
-  // Os dados ficam somente na aba atual e expiram automaticamente em 1 hora.
-  const STORAGE_TTL_MS = 60 * 60 * 1000;
-  const LEAD_STORAGE_KEY = "yasmin_payment_lead_v1";
-  const PIX_STORAGE_KEY = "yasmin_payment_pix_v1";
+  if (!modal) return;
 
-  const modal = document.getElementById("purchaseModal");
-  const formStep = document.getElementById("paymentFormStep");
-  const pixStep = document.getElementById("paymentPixStep");
-  const form = document.getElementById("paymentForm");
-  const selectedPlan = document.getElementById("selectedPlan");
-  const planInput = document.getElementById("paymentPlan");
-  const nameInput = document.getElementById("paymentName");
-  const emailInput = document.getElementById("paymentEmail");
-  const cpfInput = document.getElementById("paymentCpf");
-  const phoneInput = document.getElementById("paymentPhone");
-  const submitButton = document.getElementById("paymentSubmit");
-  const errorBox = document.getElementById("paymentError");
-  const pixCode = document.getElementById("pixCode");
-  const pixQrCode = document.getElementById("pixQrCode");
-  const pixQrCard = document.getElementById("pixQrCard");
-  const transactionId = document.getElementById("paymentTransaction");
-  const copyButton = document.getElementById("copyPix");
-  const newPaymentButton = document.getElementById("newPayment");
-  const pixInstruction = pixStep?.querySelector(".payment-pix-heading p");
-  const privacyNote = form?.querySelector(".payment-privacy-note");
+  const planStep = modal.querySelector("[data-payment-plan-step]");
+  const formStep = modal.querySelector("[data-payment-form-step]");
+  const resultStep = modal.querySelector("[data-payment-result-step]");
+  const form = modal.querySelector("[data-payment-form]");
+  const selectedPlan = modal.querySelector("[data-selected-plan]");
+  const errorBox = modal.querySelector("[data-payment-error]");
+  const submitButton = modal.querySelector("[data-payment-submit]");
+  const pixCode = modal.querySelector("[data-pix-code]");
+  const paymentStatus = modal.querySelector("[data-payment-status]");
+  const paymentReference = modal.querySelector("[data-payment-reference]");
+  const copyButton = modal.querySelector("[data-copy-pix]");
+  const checkButton = modal.querySelector("[data-check-payment]");
+  const deliveryButton = modal.querySelector("[data-delivery-button]");
+  const nameInput = modal.querySelector("[name='nome']");
+  const emailInput = modal.querySelector("[name='email']");
+  const cpfInput = modal.querySelector("[name='cpf']");
+  const phoneInput = modal.querySelector("[name='telefone']");
 
-  if (
-    !modal || !formStep || !pixStep || !form || !selectedPlan ||
-    !planInput || !nameInput || !emailInput || !cpfInput || !phoneInput ||
-    !submitButton || !errorBox || !pixCode || !pixQrCode || !pixQrCard ||
-    !transactionId || !copyButton || !newPaymentButton
-  ) {
-    return;
-  }
-
-  if (privacyNote) {
-    privacyNote.textContent =
-      "Seus dados ficam salvos somente nesta aba por até 1 hora para facilitar o pagamento.";
-  }
-
-  const PLAN_CODES = Object.freeze({
-    monthly: "mensal",
-    quarterly: "trimestral",
-    lifetime: "vitalicio"
-  });
-
-  let leadSaveTimer = 0;
-
-  function getPlanDetails(trigger) {
-    const directCode = String(trigger.dataset.planCode || "").trim();
-    const directLabel = String(trigger.dataset.planLabel || "").trim();
-
-    if (directCode) {
-      return {
-        code: directCode,
-        label: directLabel || "Acesso exclusivo"
-      };
-    }
-
-    const configKey = String(trigger.dataset.plan || "").trim();
-    const plan = cfg.subscription?.plans?.[configKey] || {};
-
-    if (configKey) {
-      return {
-        code: String(plan.code || PLAN_CODES[configKey] || ""),
-        label: `${plan.name || "Acesso"} — ${plan.price || ""}`.trim()
-      };
-    }
-
-    if (trigger.id === "featuredOffer") {
-      const monthly = cfg.subscription?.plans?.monthly || {};
-      return {
-        code: String(monthly.code || "mensal"),
-        label: `${monthly.name || "Plano mensal"} — ${monthly.price || "R$ 20,00"}`
-      };
-    }
-
-    return { code: "", label: "" };
-  }
-
-  function setError(message = "") {
-    const text = String(message || "").trim();
-    errorBox.textContent = text;
-    errorBox.hidden = !text;
-  }
+  let selection = null;
+  let payment = null;
+  let pollTimer = null;
+  let pollAttempts = 0;
 
   function onlyDigits(value) {
     return String(value || "").replace(/\D/g, "");
@@ -108,378 +44,349 @@
 
   function formatPhone(value) {
     const digits = onlyDigits(value).slice(0, 11);
-
     if (digits.length <= 10) {
       return digits
         .replace(/(\d{2})(\d)/, "($1) $2")
         .replace(/(\d{4})(\d)/, "$1-$2");
     }
-
     return digits
       .replace(/(\d{2})(\d)/, "($1) $2")
       .replace(/(\d{5})(\d)/, "$1-$2");
   }
 
-  function readStorage(key, fallback) {
-    try {
-      const raw = window.sessionStorage.getItem(key);
-      return raw ? JSON.parse(raw) : fallback;
-    } catch {
-      return fallback;
-    }
+  function setStep(step) {
+    if (planStep) planStep.hidden = step !== "plans";
+    if (formStep) formStep.hidden = step !== "form";
+    if (resultStep) resultStep.hidden = step !== "result";
   }
 
-  function writeStorage(key, value) {
-    try {
-      window.sessionStorage.setItem(key, JSON.stringify(value));
-      return true;
-    } catch {
-      return false;
-    }
+  function setError(message = "") {
+    if (!errorBox) return;
+    const text = String(message || "").trim();
+    errorBox.textContent = text;
+    errorBox.hidden = !text;
   }
 
-  function removeStorage(key) {
-    try {
-      window.sessionStorage.removeItem(key);
-    } catch {
-      // O checkout continua funcionando mesmo se o navegador bloquear storage.
-    }
+  function stopPolling() {
+    if (pollTimer) window.clearTimeout(pollTimer);
+    pollTimer = null;
   }
 
-  function getLeadFromForm() {
-    return {
-      nome: nameInput.value.trim(),
-      email: emailInput.value.trim(),
-      cpf: onlyDigits(cpfInput.value),
-      telefone: onlyDigits(phoneInput.value)
-    };
-  }
-
-  function saveLead(lead = getLeadFromForm()) {
-    const hasValue = Object.values(lead).some((value) => String(value || "").trim());
-
-    if (!hasValue) {
-      removeStorage(LEAD_STORAGE_KEY);
-      return;
-    }
-
-    writeStorage(LEAD_STORAGE_KEY, {
-      ...lead,
-      savedAt: Date.now(),
-      expiresAt: Date.now() + STORAGE_TTL_MS
-    });
-  }
-
-  function scheduleLeadSave() {
-    window.clearTimeout(leadSaveTimer);
-    leadSaveTimer = window.setTimeout(() => saveLead(), 180);
-  }
-
-  function getSavedLead() {
-    const lead = readStorage(LEAD_STORAGE_KEY, null);
-
-    if (!lead || Number(lead.expiresAt) <= Date.now()) {
-      removeStorage(LEAD_STORAGE_KEY);
-      return null;
-    }
-
-    return lead;
-  }
-
-  function fillSavedLead() {
-    const lead = getSavedLead();
-    if (!lead) return false;
-
-    nameInput.value = String(lead.nome || "");
-    emailInput.value = String(lead.email || "");
-    cpfInput.value = formatCpf(lead.cpf || "");
-    phoneInput.value = formatPhone(lead.telefone || "");
-    return true;
-  }
-
-  function readPixStore() {
-    const store = readStorage(PIX_STORAGE_KEY, {});
-    const validStore = store && typeof store === "object" ? store : {};
-    let changed = false;
-
-    Object.keys(validStore).forEach((planCode) => {
-      const entry = validStore[planCode];
-      const expired = !entry || Number(entry.expiresAt) <= Date.now();
-      const missingCode = !entry?.payment?.pixCopiaECola;
-
-      if (expired || missingCode) {
-        delete validStore[planCode];
-        changed = true;
-      }
-    });
-
-    if (changed) {
-      writeStorage(PIX_STORAGE_KEY, validStore);
-    }
-
-    return validStore;
-  }
-
-  function getSavedPix(planCode) {
-    const store = readPixStore();
-    return store[planCode] || null;
-  }
-
-  function savePix(plan, payment) {
-    const now = Date.now();
-    const store = readPixStore();
-
-    store[plan.code] = {
-      planCode: plan.code,
-      planLabel: plan.label,
-      payment: {
-        id: String(payment.id || ""),
-        plano: String(payment.plano || plan.code),
-        titulo: String(payment.titulo || ""),
-        valor: payment.valor,
-        diasDeAcesso: payment.diasDeAcesso ?? null,
-        status: String(payment.status || "pending"),
-        pixCopiaECola: String(payment.pixCopiaECola || "")
-      },
-      createdAt: now,
-      expiresAt: now + STORAGE_TTL_MS
-    };
-
-    writeStorage(PIX_STORAGE_KEY, store);
-    return store[plan.code];
-  }
-
-  function removeSavedPix(planCode) {
-    const store = readPixStore();
-    delete store[planCode];
-    writeStorage(PIX_STORAGE_KEY, store);
-  }
-
-  function clearQrCode() {
-    pixQrCode.innerHTML = "";
-    pixQrCard.hidden = false;
-  }
-
-  function renderQrCode(value) {
-    clearQrCode();
-
-    if (!value || typeof window.QRCode !== "function") {
-      pixQrCard.hidden = true;
-      return;
-    }
-
-    new window.QRCode(pixQrCode, {
-      text: value,
-      width: 196,
-      height: 196,
-      colorDark: "#17131a",
-      colorLight: "#ffffff",
-      correctLevel: window.QRCode.CorrectLevel.M
-    });
-  }
-
-  function clearPixPresentation() {
-    pixCode.textContent = "";
-    transactionId.textContent = "";
-    clearQrCode();
-  }
-
-  function showFormStep() {
-    formStep.hidden = false;
-    pixStep.hidden = true;
-    clearPixPresentation();
+  function openModal(step = "plans") {
     setError("");
-  }
-
-  function showPixStep(payment, options = {}) {
-    const code = String(payment.pixCopiaECola || "").trim();
-    const remainingMs = Number(options.expiresAt) - Date.now();
-    const remainingMinutes = Math.max(1, Math.ceil(remainingMs / 60000));
-
-    pixCode.textContent = code;
-    transactionId.textContent = payment.id
-      ? `ID da cobrança: ${payment.id}`
-      : "";
-
-    if (pixInstruction) {
-      pixInstruction.textContent = options.restored
-        ? `Cobrança recuperada. O código ficará salvo nesta aba por mais ${remainingMinutes} min.`
-        : "Escaneie o QR Code ou copie o código abaixo. Ele ficará salvo nesta aba por até 1 hora.";
-    }
-
-    renderQrCode(code);
-    formStep.hidden = true;
-    pixStep.hidden = false;
-    setError("");
-  }
-
-  function openModal(plan) {
-    if (!endpoint) {
-      alert("A integração de pagamento ainda não foi configurada.");
-      return;
-    }
-
-    if (!plan.code) {
-      alert("Não foi possível identificar o plano selecionado.");
-      return;
-    }
-
-    form.reset();
-    planInput.value = plan.code;
-    selectedPlan.textContent = plan.label;
-    fillSavedLead();
-
-    submitButton.disabled = false;
-    submitButton.textContent = "Gerar Pix";
-    copyButton.textContent = "Copiar código Pix";
-
-    const savedPix = getSavedPix(plan.code);
-
-    if (savedPix) {
-      showPixStep(savedPix.payment, {
-        restored: true,
-        expiresAt: savedPix.expiresAt
-      });
-    } else {
-      showFormStep();
-    }
-
+    setStep(step);
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
-
-    if (!savedPix) {
-      window.setTimeout(() => {
-        const firstEmptyField = [nameInput, emailInput, cpfInput, phoneInput]
-          .find((input) => !input.value.trim());
-        firstEmptyField?.focus();
-      }, 180);
-    }
   }
 
   function closeModal() {
-    saveLead();
+    stopPolling();
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
-    submitButton.disabled = false;
-    submitButton.textContent = "Gerar Pix";
-    setError("");
-    clearQrCode();
   }
 
-  [nameInput, emailInput].forEach((input) => {
-    input.addEventListener("input", scheduleLeadSave);
-  });
-
-  cpfInput.addEventListener("input", (event) => {
-    event.target.value = formatCpf(event.target.value);
-    scheduleLeadSave();
-  });
-
-  phoneInput.addEventListener("input", (event) => {
-    event.target.value = formatPhone(event.target.value);
-    scheduleLeadSave();
-  });
-
-  document.addEventListener("click", (event) => {
-    const trigger = event.target.closest("[data-payment-plan], #featuredOffer, [data-plan]");
-    if (!trigger) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-    openModal(getPlanDetails(trigger));
-  }, true);
-
-  modal.querySelectorAll("[data-close-modal]").forEach((element) => {
-    element.addEventListener("click", closeModal);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modal.classList.contains("open")) {
-      closeModal();
+  function planFromConfig(product, plan) {
+    if (product === "site") {
+      const plans = cfg.siteAccess?.plans || {};
+      const match = Object.values(plans).find(item => item.code === plan);
+      return match || null;
     }
-  });
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    setError("");
+    if (product === "privacy") {
+      const access = cfg.privacyAccess || {};
+      if (access.mainOffer?.code === plan) return access.mainOffer;
+      const match = Object.values(access.plans || {}).find(item => item.code === plan);
+      return match || null;
+    }
 
-    if (!form.reportValidity()) return;
+    return null;
+  }
 
-    const body = {
-      plano: planInput.value,
-      nome: nameInput.value.trim(),
-      email: emailInput.value.trim(),
-      cpf: onlyDigits(cpfInput.value),
-      telefone: onlyDigits(phoneInput.value)
+  function choosePlan(product, plan, label = "") {
+    const configured = planFromConfig(product, plan);
+    if (!configured) {
+      setError("Não foi possível identificar o plano selecionado.");
+      openModal("plans");
+      return;
+    }
+
+    if (form) form.reset();
+
+    selection = {
+      product,
+      plan,
+      label: label || `${configured.name} — ${configured.price}`
     };
 
-    saveLead(body);
+    if (selectedPlan) selectedPlan.textContent = selection.label;
+    setError("");
+    setStep("form");
+    openModal("form");
+    window.setTimeout(() => nameInput?.focus(), 180);
+  }
 
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+  async function readJson(response) {
+    try {
+      return await response.json();
+    } catch {
+      return {};
+    }
+  }
 
-    submitButton.disabled = true;
-    submitButton.textContent = "Gerando Pix...";
+  function buildAccessUrl(data) {
+    if (typeof data?.accessUrl === "string" && data.accessUrl) {
+      return data.accessUrl;
+    }
+    return "";
+  }
+
+  function unlockDelivery(data) {
+    stopPolling();
+    if (paymentStatus) {
+      paymentStatus.textContent = selection?.product === "privacy"
+        ? "Pagamento confirmado. Seu acesso está disponível."
+        : "Pagamento confirmado. Seu conteúdo está disponível.";
+      paymentStatus.classList.add("confirmed");
+    }
+
+    const accessUrl = buildAccessUrl(data);
+    if (deliveryButton && accessUrl) {
+      deliveryButton.href = accessUrl;
+      deliveryButton.textContent = selection?.product === "privacy"
+        ? "Acesse aqui"
+        : "Acessar conteúdo";
+      deliveryButton.hidden = false;
+    }
+
+    if (checkButton) checkButton.hidden = true;
+  }
+
+  async function checkPayment({silent = false} = {}) {
+    if (!payment?.id || !payment?.accessToken || !paymentCfg.statusEndpoint) {
+      if (!silent) setError("A confirmação automática ainda não está disponível.");
+      return false;
+    }
+
+    if (checkButton && !silent) {
+      checkButton.disabled = true;
+      checkButton.textContent = "Verificando...";
+    }
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(paymentCfg.statusEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify(body),
-        signal: controller.signal
+        body: JSON.stringify({
+          id: payment.id,
+          token: payment.accessToken
+        })
       });
 
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok || !data.ok || !data.pagamento?.pixCopiaECola) {
-        throw new Error(
-          data.erro || "Não foi possível gerar o Pix. Tente novamente."
-        );
+      const data = await readJson(response);
+      if (!response.ok || !data.ok) {
+        throw new Error(data.erro || "Não foi possível verificar o pagamento.");
       }
 
-      const currentPlan = {
-        code: planInput.value,
-        label: selectedPlan.textContent.trim()
-      };
+      const status = String(data.status || "pending").toLowerCase();
+      if (["completed", "paid", "approved", "confirmed"].includes(status)) {
+        if (data.autorizado && data.accessUrl) {
+          unlockDelivery(data);
+          return true;
+        }
 
-      const savedPix = savePix(currentPlan, data.pagamento);
-      showPixStep(savedPix.payment, {
-        restored: false,
-        expiresAt: savedPix.expiresAt
-      });
+        if (data.expirado) {
+          stopPolling();
+          if (paymentStatus) paymentStatus.textContent = "O período deste acesso terminou.";
+          if (!silent) setError("Este acesso expirou.");
+          return false;
+        }
+      }
+
+      if (paymentStatus) {
+        paymentStatus.textContent = "Aguardando a confirmação do Pix...";
+      }
+      return false;
     } catch (error) {
-      const message = error?.name === "AbortError"
-        ? "A solicitação demorou demais. Tente novamente."
-        : error?.message || "Não foi possível gerar o Pix.";
-
-      setError(message);
+      if (!silent) setError(error?.message || "Não foi possível verificar o pagamento.");
+      return false;
     } finally {
-      window.clearTimeout(timeout);
+      if (checkButton && !checkButton.hidden) {
+        checkButton.disabled = false;
+        checkButton.textContent = "Verificar pagamento";
+      }
+    }
+  }
+
+  function schedulePoll() {
+    stopPolling();
+    if (!payment?.trackingEnabled) return;
+
+    const maxAttempts = Number(paymentCfg.maxPollAttempts) || 120;
+    const interval = Number(paymentCfg.pollIntervalMs) || 5000;
+
+    const run = async () => {
+      pollAttempts += 1;
+      const completed = await checkPayment({silent:true});
+      if (completed || pollAttempts >= maxAttempts) return;
+      pollTimer = window.setTimeout(run, interval);
+    };
+
+    pollTimer = window.setTimeout(run, interval);
+  }
+
+  function showPaymentResult(data) {
+    payment = {
+      id: data.id,
+      pixCopiaECola: data.pixCopiaECola,
+      accessToken: data.accessToken || "",
+      trackingEnabled: Boolean(data.trackingEnabled)
+    };
+
+    if (pixCode) pixCode.textContent = payment.pixCopiaECola;
+    if (paymentReference) {
+      paymentReference.textContent = payment.id
+        ? `Identificação: ${payment.id}`
+        : "";
+    }
+    if (paymentStatus) {
+      paymentStatus.classList.remove("confirmed");
+      paymentStatus.textContent = payment.trackingEnabled
+        ? "Pix gerado. Aguardando a confirmação do pagamento..."
+        : "Pix gerado. A confirmação automática será ativada após configurar o banco do Worker.";
+    }
+    if (deliveryButton) {
+      deliveryButton.hidden = true;
+      deliveryButton.removeAttribute("href");
+    }
+    if (checkButton) checkButton.hidden = !payment.trackingEnabled;
+
+    setStep("result");
+    pollAttempts = 0;
+    schedulePoll();
+  }
+
+  document.querySelectorAll("[data-payment-open-plans]").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      selection = null;
+      payment = null;
+      if (form) form.reset();
+      openModal("plans");
+    });
+  });
+
+  document.querySelectorAll("[data-payment-trigger]").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      choosePlan(
+        button.dataset.product,
+        button.dataset.plan,
+        button.dataset.label || ""
+      );
+    });
+  });
+
+  modal.querySelectorAll("[data-close-payment]").forEach(element => {
+    element.addEventListener("click", closeModal);
+  });
+
+  modal.querySelectorAll("[data-back-to-plans]").forEach(element => {
+    element.addEventListener("click", () => {
+      setError("");
+      setStep("plans");
+    });
+  });
+
+  modal.querySelectorAll("[data-new-payment]").forEach(element => {
+    element.addEventListener("click", () => {
+      stopPolling();
+      payment = null;
+      if (form) form.reset();
+      if (modal.dataset.defaultProduct === "privacy" && selection) {
+        setStep("form");
+      } else {
+        setStep("plans");
+      }
+    });
+  });
+
+  cpfInput?.addEventListener("input", event => {
+    event.target.value = formatCpf(event.target.value);
+  });
+
+  phoneInput?.addEventListener("input", event => {
+    event.target.value = formatPhone(event.target.value);
+  });
+
+  form?.addEventListener("submit", async event => {
+    event.preventDefault();
+    setError("");
+
+    if (!selection) {
+      setError("Selecione um plano antes de continuar.");
+      return;
+    }
+
+    if (!paymentCfg.createEndpoint) {
+      setError("A integração de pagamento ainda não foi configurada.");
+      return;
+    }
+
+    if (!form.reportValidity()) return;
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Gerando Pix...";
+
+    try {
+      const response = await fetch(paymentCfg.createEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          produto: selection.product,
+          plano: selection.plan,
+          nome: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          cpf: onlyDigits(cpfInput.value),
+          telefone: onlyDigits(phoneInput.value)
+        })
+      });
+
+      const data = await readJson(response);
+      if (!response.ok || !data.ok || !data.pagamento?.pixCopiaECola) {
+        throw new Error(data.erro || "Não foi possível gerar o Pix.");
+      }
+
+      showPaymentResult(data.pagamento);
+    } catch (error) {
+      setError(error?.message || "Não foi possível gerar o Pix.");
+    } finally {
       submitButton.disabled = false;
       submitButton.textContent = "Gerar Pix";
     }
   });
 
-  copyButton.addEventListener("click", async () => {
-    const value = pixCode.textContent.trim();
+  copyButton?.addEventListener("click", async () => {
+    const value = pixCode?.textContent?.trim();
     if (!value) return;
 
     try {
       await navigator.clipboard.writeText(value);
-      copyButton.textContent = "Código copiado ✓";
+      copyButton.textContent = "Código copiado";
     } catch {
       const range = document.createRange();
       range.selectNodeContents(pixCode);
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-      copyButton.textContent = "Selecione e copie o código";
+      const selectionObject = window.getSelection();
+      selectionObject.removeAllRanges();
+      selectionObject.addRange(range);
+      copyButton.textContent = "Selecione e copie";
     }
 
     window.setTimeout(() => {
@@ -487,19 +394,11 @@
     }, 2200);
   });
 
-  newPaymentButton.addEventListener("click", () => {
-    const currentPlan = planInput.value;
-    removeSavedPix(currentPlan);
+  checkButton?.addEventListener("click", () => checkPayment());
 
-    form.reset();
-    planInput.value = currentPlan;
-    fillSavedLead();
-    showFormStep();
-
-    const firstEmptyField = [nameInput, emailInput, cpfInput, phoneInput]
-      .find((input) => !input.value.trim());
-    (firstEmptyField || nameInput).focus();
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+      closeModal();
+    }
   });
-
-  window.addEventListener("pagehide", () => saveLead());
 })();

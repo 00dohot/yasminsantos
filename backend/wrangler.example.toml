@@ -1,0 +1,18 @@
+name = "yasmin-backend"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://yasminsantospriv.github.io"
+SITE_URL = "https://yasminsantospriv.github.io/site"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "yasmin-payments"
+database_id = "COLOQUE_O_ID_DO_D1"
+
+# Configure como Secrets no painel do Cloudflare, nunca neste arquivo:
+# SYNCPAY_CLIENT_ID
+# SYNCPAY_CLIENT_SECRET
+# WEBHOOK_SECRET
+# PRIVACY_TELEGRAM_URL
