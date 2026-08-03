@@ -1185,3 +1185,35 @@ body{
 .post-media.post-media-screenshot>img{object-fit:cover;object-position:center;filter:brightness(.56);transform:none}
 .post-media.post-media-screenshot .locked{background:linear-gradient(180deg,rgba(10,13,16,.08),rgba(10,13,16,.42))}
 @media(max-width:620px){.topbar-inner{width:min(100% - 18px,1120px)}.topbar nav{gap:8px}.topbar nav>a{font-size:.72rem}.language-picker{padding:0 7px}.language-picker-icon{display:none}.language-picker select{max-width:88px;font-size:.7rem}.profile-stats{margin-left:auto;margin-right:auto}}
+
+/* =====================================================
+   V13 BETA — CORREÇÃO DOS BOTÕES DE ASSINATURA
+   Mantém o restante visual da V12 sem alterações.
+   ===================================================== */
+.featured-offer,
+.plans button{
+  color:#fff!important;
+  border:1px solid rgba(205,76,8,.40)!important;
+  background:linear-gradient(180deg,#ff9a5a 0%,#f36f21 48%,#d95710 100%)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    0 12px 28px rgba(225,84,12,.22)!important;
+}
+.featured-offer *,
+.plans button *{
+  color:#fff!important;
+}
+.featured-offer small,
+.plans button small{
+  color:rgba(255,255,255,.78)!important;
+}
+.featured-offer>span{
+  color:#8b3509!important;
+  background:rgba(255,255,255,.90)!important;
+}
+.featured-offer:hover,
+.plans button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(184,59,0,.58)!important;
+  background:linear-gradient(180deg,#ffa56a 0%,#f47a2e 48%,#de5d15 100%)!important;
+}

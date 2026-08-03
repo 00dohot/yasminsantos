@@ -1,128 +1,58 @@
-# Yasmin Santos — V2.1 Beta (visual preservado)
+# Yasmin Site — V13 Beta
 
-Esta versão foi montada sobre a **V12 corrigida**. O visual e as interações existentes foram mantidos; as alterações estão restritas aos pontos combinados.
+Esta versão foi construída diretamente sobre a **V12 corrigida**. O visual, os cards, menus e demais funções da V12 foram preservados; somente as correções solicitadas foram aplicadas.
 
-## O que permanece igual
+## Planos separados
 
-- Página inicial, cards, menu lateral, Telegram interno e roleta.
-- Página do Instagram com perfil, publicações, stories, reels, busca, direct e modais.
-- Página Privacy com perfil, postagem, curtidas, comentários e visualização das imagens.
-- Página de prévias, página do Telegram, imagens e identidade visual da V12.
+### Conteúdos do site
+- Mensal: R$ 20,00 — 30 dias
+- Trimestral: R$ 49,90 — 90 dias
+- Vitalício: R$ 99,90 — sem expiração
 
-## Alterações desta V2.1 Beta
+Depois da confirmação do pagamento, o Worker libera o botão **Acessar conteúdo**. A pasta `conteudo/` contém apenas a estrutura da futura página protegida.
 
-### 1. Limite no final das páginas
+### Página Privacy
+- Mensal: R$ 20,00 — 30 dias
+- Trimestral: R$ 49,90 — 90 dias
+- Seis meses: R$ 99,90 — 180 dias
 
-Foi adicionado um encerramento visual discreto no fim da página inicial, Instagram, Privacy, Telegram, prévias e área exclusiva. A roleta continua em tela cheia.
+O plano vitalício não aparece no Privacy. Depois da confirmação, o Worker libera somente o botão **Acesse aqui**, que redireciona para o endereço configurado no Secret `PRIVACY_TELEGRAM_URL`.
 
-### 2. Menu inferior do Instagram
+## Correções visuais da V13
+- botão Suporte removido do Privacy;
+- seletor de idioma Português, English e Español;
+- comentários removidos;
+- 15,2K curtidas;
+- contadores no primeiro card do perfil;
+- print enviado aplicado no último card;
+- botões de assinatura do Privacy em degradê laranja;
+- limites visuais no fim das páginas;
+- menu inferior do Instagram fixo no celular, com o conteúdo terminando antes dele.
 
-No celular, a barra inferior do Instagram fica fixa na parte de baixo da tela. O conteúdo possui espaço final próprio e termina antes da barra, sem empurrá-la para cima durante a rolagem.
+## Cloudflare Worker
 
-### 3. Dois produtos independentes
-
-#### Conteúdos do site — vendidos na página inicial
-
-- Mensal: R$ 20,00 — 30 dias.
-- Trimestral: R$ 49,90 — 90 dias.
-- Vitalício: R$ 99,90 — sem expiração.
-
-Não foi criado login nem senha. Depois que a SyncPay confirmar o pagamento, o botão **Acessar conteúdo** libera a página `conteudo/` por meio de um token validado pelo Worker.
-
-#### Acesso vendido na página Privacy
-
-- Mensal: R$ 20,00 — 30 dias.
-- Trimestral: R$ 49,90 — 90 dias.
-- Seis meses: R$ 99,90 — 180 dias.
-
-O plano vitalício não aparece no Privacy. Depois da confirmação, o site mostra somente o botão **Acesse aqui**. O link real de destino não fica no GitHub: ele é guardado no Secret `PRIVACY_TELEGRAM_URL` do Worker.
-
-## Fluxo do pagamento
-
-1. O comprador escolhe o plano.
-2. Preenche nome, e-mail, CPF e celular.
-3. O Worker gera o Pix na SyncPay.
-4. O site aguarda a atualização do webhook.
-5. Quando o status passa para `completed`, o Worker libera o destino correspondente ao produto comprado.
-
-## Arquivos do site
-
-Envie o conteúdo desta pasta para a raiz do repositório GitHub Pages. O endereço configurado é:
-
-```text
-https://yasminsantospriv.github.io/site/
-```
-
-Os endpoints ficam em `config.js`.
-
-## Configuração do Cloudflare Worker
-
-### Código
-
-Use o arquivo:
-
-```text
-backend/worker.js
-```
+Copie `backend/worker.js` para o seu Worker e configure:
 
 ### Secrets
+- `SYNCPAY_CLIENT_ID`
+- `SYNCPAY_CLIENT_SECRET`
+- `WEBHOOK_SECRET`
+- `PRIVACY_TELEGRAM_URL`
 
-Mantenha os Secrets da SyncPay e crie também:
-
-```text
-SYNCPAY_CLIENT_ID
-SYNCPAY_CLIENT_SECRET
-WEBHOOK_SECRET
-PRIVACY_TELEGRAM_URL
-```
-
-`PRIVACY_TELEGRAM_URL` contém o endereço real aberto pelo botão **Acesse aqui**. Ele não aparece no código público do site.
-
-### Variáveis comuns
-
-```text
-ALLOWED_ORIGINS = https://yasminsantospriv.github.io
-SITE_URL = https://yasminsantospriv.github.io/site
-```
+### Variáveis
+- `ALLOWED_ORIGINS=https://yasminsantospriv.github.io`
+- `SITE_URL=https://yasminsantospriv.github.io/site`
 
 ### Banco D1
+1. Crie um banco D1.
+2. Execute `backend/schema.sql`.
+3. Vincule o banco ao Worker usando o nome exato `DB`.
+4. Faça o Deploy do Worker.
 
-Crie um banco D1, execute `backend/schema.sql` e vincule-o ao Worker com o nome exato:
+## Segurança da área exclusiva
 
-```text
-DB
-```
+O GitHub Pages é público. Não envie fotos ou vídeos privados diretamente para o repositório, mesmo que a página esteja escondida. A verificação desta versão controla o acesso à página, mas a mídia real deve ser entregue futuramente por armazenamento privado, URLs temporárias ou outro backend protegido.
 
-O exemplo de configuração está em `backend/wrangler.example.toml`.
+## Publicação
 
-### Conferência
-
-Depois do Deploy, abra `GET /api/status`. A resposta deve indicar que SyncPay, webhook, banco e destino do Privacy estão configurados.
-
-## Rotas usadas
-
-```text
-GET  /api/status
-POST /api/testar-syncpay
-POST /api/criar-pagamento
-POST /api/status-pagamento
-POST /api/webhook/syncpay
-GET  /api/verificar-acesso
-GET  /api/acesso/telegram
-```
-
-## Proteção da futura página de fotos e vídeos
-
-A página `conteudo/` só revela a interface após validar o pagamento. Contudo, um repositório público do GitHub não é adequado para armazenar mídia paga real. Quando as fotos e os vídeos definitivos forem adicionados, coloque-os em armazenamento privado, como Cloudflare R2, e faça o Worker entregá-los somente após validar o token.
-
-Nesta Beta, a página exclusiva usa apenas os mesmos arquivos visuais públicos já presentes no projeto.
-
-
-## Ajustes V2.1 Beta
-
-- Botão Suporte removido apenas da página Privacy.
-- Seletor de idioma na página Privacy: português, inglês e espanhol.
-- Comentários removidos da página Privacy.
-- Curtidas exibidas como 15,2K.
-- Contadores adicionados ao card de perfil da página Privacy.
-- Imagem do último card substituída pelo print de referência enviado.
+Envie para a raiz do repositório o **conteúdo interno** desta pasta, mantendo as subpastas. O arquivo `index.html` deve ficar na raiz.

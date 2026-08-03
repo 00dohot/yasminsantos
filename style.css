@@ -1653,3 +1653,15 @@ body.instagram-page.instagram-reference{
 @media(max-width:720px){
   .exclusive-media-grid{grid-template-columns:repeat(2,1fr)}
 }
+
+/* Estrutura vazia da futura área exclusiva: não publica mídia privada no GitHub. */
+.content-placeholder{
+  min-height:220px;
+  display:grid!important;
+  place-items:center;
+  padding:22px;
+  border:1px dashed rgba(228,184,95,.28)!important;
+  color:#cdbfae;
+  background:rgba(255,255,255,.035)!important;
+  text-align:center;
+}

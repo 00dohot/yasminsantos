@@ -1,0 +1,29 @@
+YASMIN SITE — V13 BETA
+Base usada: V12 corrigida.
+
+Foram alterados somente os pontos solicitados:
+
+1. Visual geral da V12 preservado.
+2. Limite visual adicionado no final das páginas.
+3. Menu inferior do Instagram mantido fixo no celular.
+4. A página do Instagram termina antes do menu inferior.
+5. Produtos de pagamento separados:
+   - Site: mensal, trimestral e vitalício.
+   - Privacy: mensal, trimestral e seis meses.
+6. Entregas separadas após confirmação:
+   - Site: botão para a futura página de conteúdo confirmado.
+   - Privacy: botão “Acesse aqui”, redirecionado pelo Worker ao endereço secreto.
+7. Privacy:
+   - botão Suporte removido;
+   - seletor Português / English / Español;
+   - comentários removidos;
+   - curtidas exibidas como 15,2K;
+   - contadores adicionados ao primeiro card do perfil;
+   - imagem do último card substituída pelo print enviado;
+   - vitalício removido e trocado por seis meses a R$ 99,90;
+   - botões de assinatura corrigidos para o degradê laranja.
+8. Nenhum login ou senha foi criado.
+
+IMPORTANTE:
+- O endereço do grupo não fica no GitHub. Configure PRIVACY_TELEGRAM_URL no Worker.
+- Não coloque mídias privadas diretamente em um repositório público. A pasta conteudo/ é somente a estrutura visual; a entrega real de mídia deve vir de armazenamento privado ou URLs assinadas depois da verificação.

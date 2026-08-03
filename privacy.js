@@ -18,7 +18,7 @@
     });
   }
 
-  const postKey = "yasmin-privacy-v21-post";
+  const postKey = "yasmin-privacy-v13-post";
   const likeButton = document.querySelector("[data-like]");
   const saveButton = document.querySelector("[data-save]");
   const shareButton = document.querySelector("[data-share]");
