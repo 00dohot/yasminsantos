@@ -1217,3 +1217,52 @@ body{
   border-color:rgba(184,59,0,.58)!important;
   background:linear-gradient(180deg,#ffa56a 0%,#f47a2e 48%,#de5d15 100%)!important;
 }
+
+
+/* =====================================================
+   V13.1 BETA — IDENTIDADE VISUAL PRIVACY DA REFERÊNCIA
+   Somente a página Privacy é alterada.
+   ===================================================== */
+:root{--orange:#ff8734;--orange-dark:#f06d20;--orange-soft:#fff0e5;--text:#20283a;--muted:#727985;--line:#dedede;--surface:#fff;--background:#f8f5f0}
+body{color:var(--text);background:#f8f5f0!important;background-image:none!important}
+.topbar{height:94px;background:#fbf8f4!important;border-bottom:1px solid #dedede!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+.topbar-inner{width:min(780px,calc(100% - 38px));display:grid!important;grid-template-columns:minmax(72px,1fr) auto minmax(72px,1fr);align-items:center}
+.privacy-back{justify-self:start;color:#3f4a60;font-size:.82rem;font-weight:700}
+.privacy-logo{justify-self:center;color:#211e20;font-size:2.22rem;letter-spacing:-.085em;line-height:1}
+.privacy-logo span{color:#ff8734!important}
+.language-picker{position:relative;justify-self:end;width:46px;height:46px;display:grid!important;place-items:center;padding:0!important;border:0!important;border-radius:50%;color:#38455d;background:transparent!important;box-shadow:none!important}
+.language-picker-icon{display:block!important;width:37px;height:37px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.language-picker select{position:absolute;inset:0;width:100%;max-width:none!important;height:100%;opacity:0;cursor:pointer}
+.page-shell{width:min(760px,calc(100% - 30px))!important;margin-top:26px}
+.profile-card,.subscription-card,.post-card,.info-card{border:1px solid #dedede!important;background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+.profile-card::before,.subscription-card::before,.post-card::before,.info-card::before{display:none!important}
+.profile-card{border-radius:26px}.content-layout{margin-top:20px}.main-column{gap:26px}
+.subscription-card{padding:28px 26px 30px!important;border-radius:0 0 34px 34px!important}
+.subscription-group h2{margin:0 8px 10px;color:#111;font-size:1.45rem;font-weight:700}
+.promotion-group{margin-top:27px}
+.featured-offer,.plans button,.privacy-plan-button{width:100%;min-height:74px;display:flex!important;align-items:center;justify-content:space-between;gap:18px;padding:0 54px!important;border:0!important;border-radius:999px!important;color:#111!important;background:linear-gradient(100deg,#ff973f 0%,#ffc89f 48%,#f7a7a0 100%)!important;box-shadow:none!important;text-align:left;transition:transform .18s ease,filter .18s ease}
+.featured-offer *,.plans button *{color:#111!important}
+.featured-offer strong,.plans button strong{font-size:1.22rem;font-weight:500}
+.featured-offer b,.plans button b{flex:0 0 auto;font-size:1.18rem;font-weight:500}
+.featured-offer:hover,.plans button:hover{border:0!important;background:linear-gradient(100deg,#ff973f 0%,#ffc89f 48%,#f7a7a0 100%)!important;filter:brightness(1.015);transform:translateY(-1px)}
+.plans-toggle{min-height:49px;padding:0 9px 8px!important;color:#111;font-size:1.42rem;font-weight:500}
+.plans-toggle .arrow{color:#999;font-size:1.58rem;font-weight:600}.plans{gap:13px}.plans.collapsed{max-height:0}
+.privacy-media-tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:106px;overflow:hidden;border:1px solid #dedede;border-radius:28px;background:#fff}
+.media-tab{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;padding:18px 12px;border:0;color:#343434;background:#fff;font-size:1.05rem}
+.media-tab svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}.media-tab b{font-weight:600}.media-tab.active{color:#ff8734}
+.media-tab.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:#ff8734}
+.post-card{padding:0!important;overflow:hidden;border-radius:28px!important}
+.post-header{min-height:132px;margin:0!important;padding:25px 36px 20px;background:#fff}.post-header img{width:72px;height:72px}.post-header strong{color:#20283a;font-size:1rem}.post-header span{color:#20283a;font-size:.9rem}.post-header>button{color:#20283a;font-size:2rem;line-height:1}
+.post-media.post-media-lock{position:relative;aspect-ratio:4/5;overflow:hidden;border:0!important;border-radius:0!important;color:#687896;background:#f2ece2!important;box-shadow:none!important}
+.post-media.post-media-lock::before,.post-media.post-media-lock::after{content:"";position:absolute;left:50%;top:52%;border:18px solid rgba(255,255,255,.42);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+.post-media.post-media-lock::before{width:118%;aspect-ratio:1}.post-media.post-media-lock::after{width:88%;aspect-ratio:1;border-width:3px;border-color:rgba(255,255,255,.22)}
+.post-media.post-media-lock .locked{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;padding:44px 24px 92px;color:#687896;background:transparent!important}
+.post-media.post-media-lock .lock-icon{width:82px;height:82px;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.post-media.post-media-lock .locked-stats{position:absolute;left:50%;bottom:8.5%;width:auto!important;display:flex!important;grid-template-columns:none!important;align-items:center;justify-content:center;gap:22px;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;color:#687896;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important;transform:translateX(-50%);white-space:nowrap}
+.post-media.post-media-lock .locked-stats div{display:flex!important;align-items:center;gap:7px;padding:0;color:#687896!important}.post-media.post-media-lock .locked-stats div+div{border:0!important}
+.post-media.post-media-lock .stat-icon{width:28px!important;height:28px!important;color:#687896!important;background:transparent!important}.post-media.post-media-lock .stat-icon svg{width:26px!important;height:26px!important;stroke-width:1.55!important}
+.post-media.post-media-lock .locked-stats b{color:#687896;font-size:1rem;font-weight:500}.post-media.post-media-lock .locked-stats small{display:none}
+.post-actions{padding:16px 22px 10px!important}.likes{display:block;padding:0 22px 22px}
+.purchase-dialog{background:#fff!important;border-color:#dedede!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+@media(max-width:620px){.topbar{height:78px}.topbar-inner{width:calc(100% - 22px);grid-template-columns:minmax(58px,1fr) auto minmax(58px,1fr)}.privacy-back{font-size:.74rem}.privacy-logo{font-size:1.95rem}.language-picker{width:42px;height:42px}.language-picker-icon{width:34px;height:34px}.page-shell{width:calc(100% - 18px)!important;margin-top:18px}.subscription-card{padding:24px 20px 26px!important;border-radius:0 0 28px 28px!important}.subscription-group h2{font-size:1.28rem}.featured-offer,.plans button,.privacy-plan-button{min-height:65px;padding:0 29px!important}.featured-offer strong,.plans button strong{font-size:1.05rem}.featured-offer b,.plans button b{font-size:1rem}.plans-toggle{font-size:1.25rem}.privacy-media-tabs{min-height:92px;border-radius:23px}.media-tab{gap:8px;font-size:.94rem}.media-tab svg{width:27px;height:27px}.post-header{min-height:112px;padding:20px 22px 16px}.post-header img{width:62px;height:62px}.post-media.post-media-lock .lock-icon{width:70px;height:70px}.post-media.post-media-lock .locked-stats{gap:13px;bottom:8%}.post-media.post-media-lock .stat-icon{width:23px!important;height:23px!important}.post-media.post-media-lock .stat-icon svg{width:22px!important;height:22px!important}.post-media.post-media-lock .locked-stats b{font-size:.88rem}}
+@media(max-width:390px){.featured-offer,.plans button,.privacy-plan-button{padding:0 22px!important}.featured-offer strong,.plans button strong{font-size:.96rem}.featured-offer b,.plans button b{font-size:.94rem}.post-media.post-media-lock .locked-stats{gap:9px}}

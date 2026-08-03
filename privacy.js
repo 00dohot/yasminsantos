@@ -61,15 +61,27 @@
     renderPost();
   });
 
+  const mediaTabs = [...document.querySelectorAll("[data-media-tab]")];
+  const contentPreview = document.querySelector("[data-content-preview]");
+  mediaTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      mediaTabs.forEach((item) => {
+        const active = item === tab;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      if (contentPreview) contentPreview.dataset.contentPreview = tab.dataset.mediaTab || "photos";
+    });
+  });
+
   const translations = {
     pt: {
-      backToSite: "Voltar ao site", languageLabel: "Idioma", online: "● Online",
+      back: "Voltar", languageLabel: "Idioma", online: "● Online",
       bio: "Conteúdos exclusivos, ensaios e bastidores.<br>Live semanal • WhatsApp exclusivo • Novas fotos e vídeos.",
       photos: "Fotos", videos: "Vídeos", likes: "Curtidas", likesLower: "curtidas",
-      exclusiveAccess: "ACESSO EXCLUSIVO", subscriptions: "Assinaturas", securePayment: "Pagamento seguro",
-      from: "DE", subscribeNow: "Assine agora por R$ 20,00", off20: "20% OFF",
-      otherPlans: "Outras opções de assinatura", quarterlyPlan: "Plano trimestral", access90: "90 dias de acesso",
-      sixMonthPlan: "Plano de 6 meses", access180: "180 dias de acesso", now: "Agora",
+      subscriptions: "Assinaturas", oneMonth: "1 mês", promotions: "Promoções",
+      threeMonthsOffer: "3 meses (5% off)", sixMonthsOffer: "6 meses (16% off)",
+      contentTypes: "Tipos de conteúdo", now: "Agora",
       moreOptions: "Mais opções", exclusivePreview: "Prévia exclusiva", exclusiveContent: "Conteúdo exclusivo",
       likeAction: "Curtir", shareAction: "Compartilhar", saveAction: "Salvar", close: "Fechar",
       fullName: "Nome completo", email: "E-mail", phone: "Celular com DDD", generatePix: "Gerar Pix",
@@ -78,13 +90,12 @@
       newPix: "Gerar outro Pix", linkCopied: "Link copiado."
     },
     en: {
-      backToSite: "Back to website", languageLabel: "Language", online: "● Online",
+      back: "Back", languageLabel: "Language", online: "● Online",
       bio: "Exclusive content, photoshoots and behind the scenes.<br>Weekly live • Exclusive WhatsApp • New photos and videos.",
       photos: "Photos", videos: "Videos", likes: "Likes", likesLower: "likes",
-      exclusiveAccess: "EXCLUSIVE ACCESS", subscriptions: "Subscriptions", securePayment: "Secure payment",
-      from: "FROM", subscribeNow: "Subscribe now for R$ 20,00", off20: "20% OFF",
-      otherPlans: "Other subscription options", quarterlyPlan: "3-month plan", access90: "90 days of access",
-      sixMonthPlan: "6-month plan", access180: "180 days of access", now: "Now",
+      subscriptions: "Subscriptions", oneMonth: "1 month", promotions: "Promotions",
+      threeMonthsOffer: "3 months (5% off)", sixMonthsOffer: "6 months (16% off)",
+      contentTypes: "Content types", now: "Now",
       moreOptions: "More options", exclusivePreview: "Exclusive preview", exclusiveContent: "Exclusive content",
       likeAction: "Like", shareAction: "Share", saveAction: "Save", close: "Close",
       fullName: "Full name", email: "Email", phone: "Phone with area code", generatePix: "Generate Pix",
@@ -93,13 +104,12 @@
       newPix: "Generate another Pix", linkCopied: "Link copied."
     },
     es: {
-      backToSite: "Volver al sitio", languageLabel: "Idioma", online: "● En línea",
+      back: "Volver", languageLabel: "Idioma", online: "● En línea",
       bio: "Contenido exclusivo, sesiones y detrás de cámaras.<br>En vivo semanal • WhatsApp exclusivo • Nuevas fotos y videos.",
       photos: "Fotos", videos: "Videos", likes: "Me gusta", likesLower: "me gusta",
-      exclusiveAccess: "ACCESO EXCLUSIVO", subscriptions: "Suscripciones", securePayment: "Pago seguro",
-      from: "DE", subscribeNow: "Suscríbete ahora por R$ 20,00", off20: "20% OFF",
-      otherPlans: "Otras opciones de suscripción", quarterlyPlan: "Plan trimestral", access90: "90 días de acceso",
-      sixMonthPlan: "Plan de 6 meses", access180: "180 días de acceso", now: "Ahora",
+      subscriptions: "Suscripciones", oneMonth: "1 mes", promotions: "Promociones",
+      threeMonthsOffer: "3 meses (5% off)", sixMonthsOffer: "6 meses (16% off)",
+      contentTypes: "Tipos de contenido", now: "Ahora",
       moreOptions: "Más opciones", exclusivePreview: "Vista previa exclusiva", exclusiveContent: "Contenido exclusivo",
       likeAction: "Me gusta", shareAction: "Compartir", saveAction: "Guardar", close: "Cerrar",
       fullName: "Nombre completo", email: "Correo electrónico", phone: "Teléfono con código de área", generatePix: "Generar Pix",

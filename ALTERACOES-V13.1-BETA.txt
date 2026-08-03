@@ -1,0 +1,14 @@
+YASMIN SITE — V13.1 BETA
+
+Base: V13 Beta / continuação da V12 corrigida.
+
+Alterações somente na página Privacy:
+- Identidade visual ajustada à referência enviada.
+- Logo privacy centralizada e símbolo de idioma no canto superior direito.
+- Texto “Voltar ao site” alterado para “Voltar”.
+- Planos exibidos como 1 mês, 3 meses (5% off) e 6 meses (16% off).
+- Valores mantidos em R$ 20,00, R$ 49,90 e R$ 99,90.
+- Adicionados botões Fotos e Vídeos no formato da referência.
+- Último card sem imagem de fundo, com fundo neutro, círculos e ícone de cadeado.
+
+Nenhuma outra página ou regra de pagamento foi alterada.

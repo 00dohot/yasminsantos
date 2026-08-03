@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Área exclusiva de Yasmin Santos.">
-  <meta name="theme-color" content="#f36f21">
+  <meta name="theme-color" content="#fbf8f4">
   <title>privacy. | Yasmin Santos</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,21 +15,22 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <strong class="privacy-logo">privacy<span>.</span></strong>
+      <a class="privacy-back" href="../" data-i18n="back">Voltar</a>
 
-      <nav>
-        <a href="../" data-i18n="backToSite">Voltar ao site</a>
+      <strong class="privacy-logo" aria-label="privacy">privacy<span>.</span></strong>
 
-        <label class="language-picker" for="languageSelect">
-          <span class="language-picker-icon" aria-hidden="true">🌐</span>
-          <span class="sr-only" data-i18n="languageLabel">Idioma</span>
-          <select id="languageSelect" aria-label="Selecionar idioma">
-            <option value="pt">Português</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-          </select>
-        </label>
-      </nav>
+      <label class="language-picker" for="languageSelect">
+        <svg class="language-picker-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.7 2.4 4.1 5.4 4.1 9S14.7 18.6 12 21M12 3C9.3 5.4 7.9 8.4 7.9 12s1.4 6.6 4.1 9"></path>
+        </svg>
+        <span class="sr-only" data-i18n="languageLabel">Idioma</span>
+        <select id="languageSelect" aria-label="Selecionar idioma">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </label>
     </div>
   </header>
 
@@ -70,59 +71,67 @@
     <div class="content-layout">
       <section class="main-column">
         <article class="subscription-card">
-          <header class="section-header">
-            <div>
-              <span class="eyebrow" data-i18n="exclusiveAccess">ACESSO EXCLUSIVO</span>
-              <h2 data-i18n="subscriptions">Assinaturas</h2>
-            </div>
-            <span class="secure-pill" data-i18n="securePayment">Pagamento seguro</span>
-          </header>
+          <section class="subscription-group">
+            <h2 data-i18n="subscriptions">Assinaturas</h2>
 
-          <button class="featured-offer" id="featuredOffer" type="button" data-payment-trigger data-product="privacy" data-plan="mensal" data-label="Plano mensal — R$ 20,00" data-label-pt="Plano mensal — R$ 20,00" data-label-en="Monthly plan — R$ 20,00" data-label-es="Plan mensual — R$ 20,00">
-            <div>
-              <small><span data-i18n="from">DE</span> <s>R$ 25,00</s></small>
-              <strong data-i18n="subscribeNow">Assine agora por R$ 20,00</strong>
-            </div>
-            <span data-i18n="off20">20% OFF</span>
-          </button>
+            <button class="featured-offer privacy-plan-button" id="featuredOffer" type="button" data-payment-trigger data-product="privacy" data-plan="mensal" data-label="1 mês — R$ 20,00" data-label-pt="1 mês — R$ 20,00" data-label-en="1 month — R$ 20,00" data-label-es="1 mes — R$ 20,00">
+              <strong data-i18n="oneMonth">1 mês</strong>
+              <b>R$ 20,00</b>
+            </button>
+          </section>
 
-          <button class="plans-toggle" id="plansToggle" type="button" aria-expanded="true">
-            <span data-i18n="otherPlans">Outras opções de assinatura</span>
-            <span class="arrow" id="plansArrow">⌃</span>
-          </button>
-
-          <div class="plans" id="plans">
-<button type="button" data-payment-trigger data-product="privacy" data-plan="trimestral" data-label="Plano trimestral — R$ 49,90" data-label-pt="Plano trimestral — R$ 49,90" data-label-en="3-month plan — R$ 49,90" data-label-es="Plan trimestral — R$ 49,90">
-              <span><strong data-i18n="quarterlyPlan">Plano trimestral</strong><small data-i18n="access90">90 dias de acesso</small></span>
-              <b>R$ 49,90</b>
+          <section class="promotion-group">
+            <button class="plans-toggle" id="plansToggle" type="button" aria-expanded="true">
+              <span data-i18n="promotions">Promoções</span>
+              <span class="arrow" id="plansArrow" aria-hidden="true">⌃</span>
             </button>
 
-            <button type="button" data-payment-trigger data-product="privacy" data-plan="semestral" data-label="Plano de 6 meses — R$ 99,90" data-label-pt="Plano de 6 meses — R$ 99,90" data-label-en="6-month plan — R$ 99,90" data-label-es="Plan de 6 meses — R$ 99,90">
-              <span><strong data-i18n="sixMonthPlan">Plano de 6 meses</strong><small data-i18n="access180">180 dias de acesso</small></span>
-              <b>R$ 99,90</b>
-            </button>
-          </div>
+            <div class="plans" id="plans">
+              <button class="privacy-plan-button" type="button" data-payment-trigger data-product="privacy" data-plan="trimestral" data-label="3 meses (5% off) — R$ 49,90" data-label-pt="3 meses (5% off) — R$ 49,90" data-label-en="3 months (5% off) — R$ 49,90" data-label-es="3 meses (5% off) — R$ 49,90">
+                <strong data-i18n="threeMonthsOffer">3 meses (5% off)</strong>
+                <b>R$ 49,90</b>
+              </button>
+
+              <button class="privacy-plan-button" type="button" data-payment-trigger data-product="privacy" data-plan="semestral" data-label="6 meses (16% off) — R$ 99,90" data-label-pt="6 meses (16% off) — R$ 99,90" data-label-en="6 months (16% off) — R$ 99,90" data-label-es="6 meses (16% off) — R$ 99,90">
+                <strong data-i18n="sixMonthsOffer">6 meses (16% off)</strong>
+                <b>R$ 99,90</b>
+              </button>
+            </div>
+          </section>
         </article>
-<article class="post-card" data-post-id="privacy-main">
+
+        <nav class="privacy-media-tabs" aria-label="Tipos de conteúdo" data-i18n-aria="contentTypes">
+          <button class="media-tab active" type="button" data-media-tab="photos" aria-pressed="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 7h6M9 17h6"></path></svg>
+            <span><b>50</b> <span data-i18n="photos">Fotos</span></span>
+          </button>
+          <button class="media-tab" type="button" data-media-tab="videos" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="m10 9 5 3-5 3V9ZM4 9h16"></path></svg>
+            <span><b>89</b> <span data-i18n="videos">Vídeos</span></span>
+          </button>
+        </nav>
+        <article class="post-card" data-post-id="privacy-main">
           <header class="post-header">
             <img src="../assets/images/modelo-piscina.png" alt="">
             <div>
               <strong>Yasmin Santos</strong>
               <span>@yasminsantos • <span data-i18n="now">Agora</span></span>
             </div>
-            <button type="button" aria-label="Mais opções" data-i18n-aria="moreOptions">•••</button>
+            <button type="button" aria-label="Mais opções" data-i18n-aria="moreOptions">⋮</button>
           </header>
 
-          <div class="post-media post-media-screenshot">
-            <img src="../assets/images/referencia-instagram.png" alt="Prévia exclusiva" data-i18n-alt="exclusivePreview">
+          <div class="post-media post-media-lock" data-content-preview="photos">
             <div class="locked">
-              <span class="lock-icon">🔒</span>
-              <strong data-i18n="exclusiveContent">Conteúdo exclusivo</strong>
+              <svg class="lock-icon" viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="13" y="27" width="38" height="29" rx="6"></rect>
+                <path d="M22 27v-8c0-6.6 4.5-12 10-12s10 5.4 10 12v8M32 38v8"></path>
+              </svg>
+              <span class="sr-only" data-i18n="exclusiveContent">Conteúdo exclusivo</span>
 
               <div class="locked-stats">
-                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2"/><circle cx="10" cy="9" r="1.5"/><path d="m7.5 17 3.5-4 2.5 2 3-3 1.5 2"/></svg></span><b>50</b><small data-i18n="photos">Fotos</small></div>
-                <div><span class="stat-icon"><svg class="flipped-video-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="13" height="14" rx="2"/><path d="m20 8-3 2.2v3.6l3 2.2V8Z"/><path d="m12.8 9.3-3.6 2.7 3.6 2.7V9.3Z"/></svg></span><b>89</b><small data-i18n="videos">Vídeos</small></div>
-                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.3a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.1-1.1a5.1 5.1 0 1 0-7.2 7.2L12 20l8.3-7.5a5.1 5.1 0 0 0 0-7.2Z"/></svg></span><b>15,2K</b><small data-i18n="likes">Curtidas</small></div>
+                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"></rect><circle cx="9" cy="9" r="1.3"></circle><path d="m6.5 17 4-4.5 2.8 2.4 2.5-2.7 1.7 1.8"></path></svg></span><b>50</b><small data-i18n="photos">Fotos</small></div>
+                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="m10 9 5 3-5 3V9ZM4 9h16"></path></svg></span><b>89</b><small data-i18n="videos">Vídeos</small></div>
+                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.3a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.1-1.1a5.1 5.1 0 1 0-7.2 7.2L12 20l8.3-7.5a5.1 5.1 0 0 0 0-7.2Z"></path></svg></span><b>15,2K</b><small data-i18n="likes">Curtidas</small></div>
               </div>
             </div>
           </div>
