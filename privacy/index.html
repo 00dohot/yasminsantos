@@ -18,8 +18,17 @@
       <strong class="privacy-logo">privacy<span>.</span></strong>
 
       <nav>
-        <a href="../">Voltar ao site</a>
-        <a class="support-link" data-link="support" target="_blank" rel="noopener">Suporte</a>
+        <a href="../" data-i18n="backToSite">Voltar ao site</a>
+
+        <label class="language-picker" for="languageSelect">
+          <span class="language-picker-icon" aria-hidden="true">🌐</span>
+          <span class="sr-only" data-i18n="languageLabel">Idioma</span>
+          <select id="languageSelect" aria-label="Selecionar idioma">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
+        </label>
       </nav>
     </div>
   </header>
@@ -40,14 +49,20 @@
           <div class="profile-name-row">
             <h1>Yasmin Santos</h1>
             <span class="verified">✓</span>
-            <span class="online">● Online</span>
+            <span class="online" data-i18n="online">● Online</span>
           </div>
 
           <p class="handle">@yasminsantos</p>
-          <p class="bio">
+          <p class="bio" data-i18n-html="bio">
             Conteúdos exclusivos, ensaios e bastidores.<br>
             Live semanal • WhatsApp exclusivo • Novas fotos e vídeos.
           </p>
+
+          <div class="profile-stats" aria-label="Contadores do perfil">
+            <div><strong>50</strong><span data-i18n="photos">Fotos</span></div>
+            <div><strong>89</strong><span data-i18n="videos">Vídeos</span></div>
+            <div><strong>15,2K</strong><span data-i18n="likes">Curtidas</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -57,33 +72,33 @@
         <article class="subscription-card">
           <header class="section-header">
             <div>
-              <span class="eyebrow">ACESSO EXCLUSIVO</span>
-              <h2>Assinaturas</h2>
+              <span class="eyebrow" data-i18n="exclusiveAccess">ACESSO EXCLUSIVO</span>
+              <h2 data-i18n="subscriptions">Assinaturas</h2>
             </div>
-            <span class="secure-pill">Pagamento seguro</span>
+            <span class="secure-pill" data-i18n="securePayment">Pagamento seguro</span>
           </header>
 
-          <button class="featured-offer" id="featuredOffer" type="button" data-payment-trigger data-product="privacy" data-plan="mensal" data-label="Plano mensal — R$ 20,00">
+          <button class="featured-offer" id="featuredOffer" type="button" data-payment-trigger data-product="privacy" data-plan="mensal" data-label="Plano mensal — R$ 20,00" data-label-pt="Plano mensal — R$ 20,00" data-label-en="Monthly plan — R$ 20,00" data-label-es="Plan mensual — R$ 20,00">
             <div>
-              <small>DE <s>R$ 25,00</s></small>
-              <strong>Assine agora por R$ 20,00</strong>
+              <small><span data-i18n="from">DE</span> <s>R$ 25,00</s></small>
+              <strong data-i18n="subscribeNow">Assine agora por R$ 20,00</strong>
             </div>
-            <span>20% OFF</span>
+            <span data-i18n="off20">20% OFF</span>
           </button>
 
           <button class="plans-toggle" id="plansToggle" type="button" aria-expanded="true">
-            <span>Outras opções de assinatura</span>
+            <span data-i18n="otherPlans">Outras opções de assinatura</span>
             <span class="arrow" id="plansArrow">⌃</span>
           </button>
 
           <div class="plans" id="plans">
-<button type="button" data-payment-trigger data-product="privacy" data-plan="trimestral" data-label="Plano trimestral — R$ 49,90">
-              <span><strong>Plano trimestral</strong><small>90 dias de acesso</small></span>
+<button type="button" data-payment-trigger data-product="privacy" data-plan="trimestral" data-label="Plano trimestral — R$ 49,90" data-label-pt="Plano trimestral — R$ 49,90" data-label-en="3-month plan — R$ 49,90" data-label-es="Plan trimestral — R$ 49,90">
+              <span><strong data-i18n="quarterlyPlan">Plano trimestral</strong><small data-i18n="access90">90 dias de acesso</small></span>
               <b>R$ 49,90</b>
             </button>
 
-            <button type="button" data-payment-trigger data-product="privacy" data-plan="semestral" data-label="Plano de 6 meses — R$ 99,90">
-              <span><strong>Plano de 6 meses</strong><small>180 dias de acesso</small></span>
+            <button type="button" data-payment-trigger data-product="privacy" data-plan="semestral" data-label="Plano de 6 meses — R$ 99,90" data-label-pt="Plano de 6 meses — R$ 99,90" data-label-en="6-month plan — R$ 99,90" data-label-es="Plan de 6 meses — R$ 99,90">
+              <span><strong data-i18n="sixMonthPlan">Plano de 6 meses</strong><small data-i18n="access180">180 dias de acesso</small></span>
               <b>R$ 99,90</b>
             </button>
           </div>
@@ -93,41 +108,32 @@
             <img src="../assets/images/modelo-piscina.png" alt="">
             <div>
               <strong>Yasmin Santos</strong>
-              <span>@yasminsantos • Agora</span>
+              <span>@yasminsantos • <span data-i18n="now">Agora</span></span>
             </div>
-            <button type="button" aria-label="Mais opções">•••</button>
+            <button type="button" aria-label="Mais opções" data-i18n-aria="moreOptions">•••</button>
           </header>
 
-          <div class="post-media">
-            <img src="../assets/images/modelo-piscina.png" alt="Conteúdo exclusivo">
+          <div class="post-media post-media-screenshot">
+            <img src="../assets/images/privacy-final-print.png" alt="Prévia exclusiva" data-i18n-alt="exclusivePreview">
             <div class="locked">
               <span class="lock-icon">🔒</span>
-              <strong>Conteúdo exclusivo</strong>
+              <strong data-i18n="exclusiveContent">Conteúdo exclusivo</strong>
 
               <div class="locked-stats">
-                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2"/><circle cx="10" cy="9" r="1.5"/><path d="m7.5 17 3.5-4 2.5 2 3-3 1.5 2"/></svg></span><b>50</b><small>Fotos</small></div>
-                <div><span class="stat-icon"><svg class="flipped-video-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="13" height="14" rx="2"/><path d="m20 8-3 2.2v3.6l3 2.2V8Z"/><path d="m12.8 9.3-3.6 2.7 3.6 2.7V9.3Z"/></svg></span><b>89</b><small>Vídeos</small></div>
-                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.3a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.1-1.1a5.1 5.1 0 1 0-7.2 7.2L12 20l8.3-7.5a5.1 5.1 0 0 0 0-7.2Z"/></svg></span><b>15,2 mil</b><small>Curtidas</small></div>
+                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2"/><circle cx="10" cy="9" r="1.5"/><path d="m7.5 17 3.5-4 2.5 2 3-3 1.5 2"/></svg></span><b>50</b><small data-i18n="photos">Fotos</small></div>
+                <div><span class="stat-icon"><svg class="flipped-video-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="13" height="14" rx="2"/><path d="m20 8-3 2.2v3.6l3 2.2V8Z"/><path d="m12.8 9.3-3.6 2.7 3.6 2.7V9.3Z"/></svg></span><b>89</b><small data-i18n="videos">Vídeos</small></div>
+                <div><span class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 5.3a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.1-1.1a5.1 5.1 0 1 0-7.2 7.2L12 20l8.3-7.5a5.1 5.1 0 0 0 0-7.2Z"/></svg></span><b>15,2K</b><small data-i18n="likes">Curtidas</small></div>
               </div>
             </div>
           </div>
 
           <div class="post-actions">
-            <button class="privacy-action privacy-like" type="button" data-like aria-pressed="false" aria-label="Curtir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.6 5.6 0 0 0-7.9 0L12 5.7l-.9-.9a5.6 5.6 0 0 0-7.9 7.9l.9.9L12 21l7.9-7.4.9-.9a5.6 5.6 0 0 0 0-7.9Z"/></svg></button>
-            <button class="privacy-action" type="button" id="focusComment" aria-label="Comentar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.4a8.3 8.3 0 0 1-8.6 8.1 9.7 9.7 0 0 1-3.5-.7L4 20.3l1.5-4a7.8 7.8 0 0 1-1.8-4.9 8.3 8.3 0 0 1 8.6-8.1 8.3 8.3 0 0 1 8.7 8.1Z"/></svg></button>
-            <button class="privacy-action" type="button" data-share aria-label="Compartilhar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 11.5 16-7-5.2 15-3.2-5-7.6-3Zm7.6 3 3.2-3.2"/></svg></button>
-            <button class="privacy-action privacy-save" type="button" data-save aria-pressed="false" aria-label="Salvar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12v17l-6-3.9-6 3.9v-17Z"/></svg></button>
+            <button class="privacy-action privacy-like" type="button" data-like aria-pressed="false" aria-label="Curtir" data-i18n-aria="likeAction"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.6 5.6 0 0 0-7.9 0L12 5.7l-.9-.9a5.6 5.6 0 0 0-7.9 7.9l.9.9L12 21l7.9-7.4.9-.9a5.6 5.6 0 0 0 0-7.9Z"/></svg></button>
+            <button class="privacy-action" type="button" data-share aria-label="Compartilhar" data-i18n-aria="shareAction"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 11.5 16-7-5.2 15-3.2-5-7.6-3Zm7.6 3 3.2-3.2"/></svg></button>
+            <button class="privacy-action privacy-save" type="button" data-save aria-pressed="false" aria-label="Salvar" data-i18n-aria="saveAction"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12v17l-6-3.9-6 3.9v-17Z"/></svg></button>
           </div>
 
-          <strong class="likes"><span data-like-count>15200</span> curtidas</strong>
-
-          <div class="comments" id="comments"></div>
-
-          <form class="comment-form" id="commentForm">
-            <input id="commentHandle" type="text" placeholder="@seuarroba" maxlength="40" required>
-            <input id="commentText" type="text" placeholder="Adicione um comentário..." maxlength="280" required>
-            <button type="submit">Publicar</button>
-          </form>
+          <strong class="likes"><span data-like-count>15,2K</span> <span data-i18n="likesLower">curtidas</span></strong>
         </article>
       </section>
 </div>
@@ -147,7 +153,7 @@
     <div class="modal-overlay" data-close-payment></div>
 
     <section class="purchase-dialog" role="dialog" aria-modal="true" aria-label="Finalizar pagamento">
-      <button class="close-modal" type="button" data-close-payment aria-label="Fechar">×</button>
+      <button class="close-modal" type="button" data-close-payment aria-label="Fechar" data-i18n-aria="close">×</button>
 
       <img class="modal-avatar" src="../assets/images/modelo-piscina.png" alt="">
       <h2>Yasmin Santos</h2>
@@ -157,26 +163,26 @@
         <div class="selected-plan" data-selected-plan>Plano mensal — R$ 20,00</div>
 
         <form class="privacy-payment-form" data-payment-form>
-          <label>Nome completo<input name="nome" type="text" minlength="3" maxlength="120" autocomplete="name" required></label>
-          <label>E-mail<input name="email" type="email" maxlength="160" autocomplete="email" required></label>
-          <label>CPF<input name="cpf" type="text" inputmode="numeric" maxlength="14" autocomplete="off" required></label>
-          <label>Celular com DDD<input name="telefone" type="tel" inputmode="tel" maxlength="16" autocomplete="tel" required></label>
+          <label><span data-i18n="fullName">Nome completo</span><input name="nome" type="text" minlength="3" maxlength="120" autocomplete="name" required></label>
+          <label><span data-i18n="email">E-mail</span><input name="email" type="email" maxlength="160" autocomplete="email" required></label>
+          <label><span>CPF</span><input name="cpf" type="text" inputmode="numeric" maxlength="14" autocomplete="off" required></label>
+          <label><span data-i18n="phone">Celular com DDD</span><input name="telefone" type="tel" inputmode="tel" maxlength="16" autocomplete="tel" required></label>
           <p class="payment-error" data-payment-error hidden></p>
-          <button class="privacy-payment-submit" type="submit" data-payment-submit>Gerar Pix</button>
+          <button class="privacy-payment-submit" type="submit" data-payment-submit data-i18n="generatePix">Gerar Pix</button>
         </form>
       </div>
 
       <div class="privacy-payment-result" data-payment-result-step hidden>
-        <div class="selected-plan" data-selected-plan>Pagamento via Pix</div>
-        <p class="payment-status" data-payment-status>Aguardando a confirmação do Pix...</p>
+        <div class="selected-plan" data-selected-plan data-i18n="pixPayment">Pagamento via Pix</div>
+        <p class="payment-status" data-payment-status data-i18n="waitingPix">Aguardando a confirmação do Pix...</p>
         <code class="pix-code" data-pix-code></code>
         <small class="payment-reference" data-payment-reference></small>
         <div class="payment-result-actions">
-          <button type="button" data-copy-pix>Copiar código Pix</button>
-          <button type="button" data-check-payment>Verificar pagamento</button>
-          <a data-delivery-button hidden>Acesse aqui</a>
+          <button type="button" data-copy-pix data-i18n="copyPix">Copiar código Pix</button>
+          <button type="button" data-check-payment data-i18n="checkPayment">Verificar pagamento</button>
+          <a data-delivery-button hidden data-i18n="accessHere">Acesse aqui</a>
         </div>
-        <button class="payment-secondary" type="button" data-new-payment>Gerar outro Pix</button>
+        <button class="payment-secondary" type="button" data-new-payment data-i18n="newPix">Gerar outro Pix</button>
       </div>
 
       <div data-payment-plan-step hidden></div>

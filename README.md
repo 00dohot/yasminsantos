@@ -1,4 +1,4 @@
-# Yasmin Santos — V2 Beta (visual preservado)
+# Yasmin Santos — V2.1 Beta (visual preservado)
 
 Esta versão foi montada sobre a **V12 corrigida**. O visual e as interações existentes foram mantidos; as alterações estão restritas aos pontos combinados.
 
@@ -9,7 +9,7 @@ Esta versão foi montada sobre a **V12 corrigida**. O visual e as interações e
 - Página Privacy com perfil, postagem, curtidas, comentários e visualização das imagens.
 - Página de prévias, página do Telegram, imagens e identidade visual da V12.
 
-## Alterações desta V2 Beta
+## Alterações desta V2.1 Beta
 
 ### 1. Limite no final das páginas
 
@@ -116,3 +116,13 @@ GET  /api/acesso/telegram
 A página `conteudo/` só revela a interface após validar o pagamento. Contudo, um repositório público do GitHub não é adequado para armazenar mídia paga real. Quando as fotos e os vídeos definitivos forem adicionados, coloque-os em armazenamento privado, como Cloudflare R2, e faça o Worker entregá-los somente após validar o token.
 
 Nesta Beta, a página exclusiva usa apenas os mesmos arquivos visuais públicos já presentes no projeto.
+
+
+## Ajustes V2.1 Beta
+
+- Botão Suporte removido apenas da página Privacy.
+- Seletor de idioma na página Privacy: português, inglês e espanhol.
+- Comentários removidos da página Privacy.
+- Curtidas exibidas como 15,2K.
+- Contadores adicionados ao card de perfil da página Privacy.
+- Imagem do último card substituída pelo print de referência enviado.

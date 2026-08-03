@@ -1,0 +1,9 @@
+V2.1 BETA — ALTERAÇÕES SOLICITADAS NA PÁGINA PRIVACY
+
+- Removido o botão Suporte.
+- Adicionado seletor de idioma: Português, English e Español.
+- Removida a área de comentários e o botão de comentar.
+- Curtidas alteradas para 15,2K.
+- Adicionados contadores no card inicial do perfil.
+- Imagem do último card substituída pelo print de referência enviado.
+- Todo o restante do site foi preservado.
