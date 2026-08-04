@@ -18,7 +18,9 @@ window.SITE_CONFIG = {
   },
 
   payment: {
-    createEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/criar-pagamento",
+    createEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/criar-pagamento?v=13.4.3",
+    workerStatusEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/status?v=13.4.3",
+    contractVersion: "13.4.3",
     statusEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/status-pagamento",
     verifyEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/verificar-acesso",
     pollIntervalMs: 5000,

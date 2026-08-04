@@ -1939,3 +1939,40 @@ body.privacy-v13-3 .privacy-page-end{
   body.privacy-v13-3 .featured-offer b,
   body.privacy-v13-3 .plans button b{font-size:.99rem!important}
 }
+
+/* Checkout V13.4.3: QR Code acima do código Pix e texto reduzido. */
+.privacy-payment-result .pix-qr[hidden]{display:none!important}
+.privacy-payment-result .pix-qr{
+  width:max-content;
+  max-width:100%;
+  margin:16px auto 10px;
+  padding:10px;
+  border:1px solid rgba(65,48,71,.10);
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 14px 32px rgba(53,42,58,.13);
+}
+.privacy-payment-result .pix-qr [data-pix-qr-canvas],
+.privacy-payment-result .pix-qr img,
+.privacy-payment-result .pix-qr canvas{
+  display:block!important;
+  width:190px!important;
+  height:190px!important;
+  max-width:58vw;
+  max-height:58vw;
+  image-rendering:pixelated;
+}
+.privacy-payment-result .payment-status-clean{
+  margin:7px 0 11px;
+  text-align:center;
+  font-size:.82rem;
+}
+.privacy-payment-result .payment-reference[hidden]{display:none!important}
+@media(max-width:520px){
+  .privacy-payment-result .pix-qr [data-pix-qr-canvas],
+  .privacy-payment-result .pix-qr img,
+  .privacy-payment-result .pix-qr canvas{
+    width:168px!important;
+    height:168px!important;
+  }
+}

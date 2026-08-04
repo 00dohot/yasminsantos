@@ -200,12 +200,11 @@
 
       <div class="privacy-payment-result" data-payment-result-step hidden>
         <div class="selected-plan" data-selected-plan data-i18n="pixPayment">Pagamento via Pix</div>
-        <p class="payment-status" data-payment-status data-i18n="waitingPix">Aguardando a confirmação do Pix...</p>
+        <div class="pix-qr" data-pix-qr hidden><div data-pix-qr-canvas></div></div>
+        <p class="payment-status payment-status-clean" data-payment-status data-pending-text="Escaneie o QR Code ou copie o código Pix." data-i18n="waitingPix">Escaneie o QR Code ou copie o código Pix.</p>
         <code class="pix-code" data-pix-code></code>
-        <small class="payment-reference" data-payment-reference></small>
         <div class="payment-result-actions">
           <button type="button" data-copy-pix data-i18n="copyPix">Copiar código Pix</button>
-          <button type="button" data-check-payment data-i18n="checkPayment">Verificar pagamento</button>
           <a data-delivery-button hidden data-i18n="accessHere">Acesse aqui</a>
         </div>
         <button class="payment-secondary" type="button" data-new-payment data-i18n="newPix">Gerar outro Pix</button>
@@ -215,8 +214,9 @@
     </section>
   </div>
 
-  <script src="../config.js"></script>
-  <script src="../privacy.js"></script>
-  <script src="../payment.js"></script>
+  <script src="../config.js?v=13.4.3"></script>
+  <script src="../privacy.js?v=13.4.3"></script>
+  <script src="../assets/vendor/qrcode-local.js?v=13.4.3"></script>
+  <script src="../payment.js?v=13.4.3"></script>
 </body>
 </html>

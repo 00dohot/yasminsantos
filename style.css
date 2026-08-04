@@ -1665,3 +1665,39 @@ body.instagram-page.instagram-reference{
   background:rgba(255,255,255,.035)!important;
   text-align:center;
 }
+
+/* Checkout V13.4.3: QR Code e resultado simplificado sem alterar o tema. */
+.pix-qr[hidden]{display:none!important}
+.pix-qr{
+  width:max-content;
+  max-width:100%;
+  margin:17px auto 11px;
+  padding:11px;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 15px 38px rgba(0,0,0,.24);
+}
+.pix-qr [data-pix-qr-canvas],
+.pix-qr img,
+.pix-qr canvas{
+  display:block!important;
+  width:190px!important;
+  height:190px!important;
+  max-width:58vw;
+  max-height:58vw;
+  image-rendering:pixelated;
+}
+.payment-status-clean{
+  margin:8px 0 12px;
+  text-align:center;
+  font-size:.9rem;
+}
+.payment-reference[hidden]{display:none!important}
+@media(max-width:520px){
+  .pix-qr [data-pix-qr-canvas],
+  .pix-qr img,
+  .pix-qr canvas{
+    width:172px!important;
+    height:172px!important;
+  }
+}

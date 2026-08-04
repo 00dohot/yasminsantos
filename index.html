@@ -143,14 +143,12 @@
       </div>
 
       <div data-payment-result-step hidden>
-        <span class="section-kicker">PIX GERADO</span>
-        <h2>Finalize o pagamento</h2>
-        <p class="payment-status" data-payment-status>Aguardando a confirmação do Pix...</p>
+        <h2>Pagamento via Pix</h2>
+        <div class="pix-qr" data-pix-qr hidden><div data-pix-qr-canvas></div></div>
+        <p class="payment-status payment-status-clean" data-payment-status data-pending-text="Escaneie o QR Code ou copie o código Pix.">Escaneie o QR Code ou copie o código Pix.</p>
         <code class="pix-code" data-pix-code></code>
-        <small class="payment-reference" data-payment-reference></small>
         <div class="payment-result-actions">
           <button type="button" data-copy-pix>Copiar código Pix</button>
-          <button type="button" data-check-payment>Verificar pagamento</button>
           <a data-delivery-button hidden>Acessar conteúdo</a>
         </div>
         <button class="payment-secondary" type="button" data-new-payment>Gerar outro Pix</button>
@@ -158,8 +156,9 @@
     </section>
   </div>
 
-  <script src="config.js"></script>
-  <script src="script.js"></script>
-  <script src="payment.js"></script>
+  <script src="config.js?v=13.4.3"></script>
+  <script src="script.js?v=13.4.3"></script>
+  <script src="assets/vendor/qrcode-local.js?v=13.4.3"></script>
+  <script src="payment.js?v=13.4.3"></script>
 </body>
 </html>
