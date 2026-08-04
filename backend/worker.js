@@ -4,19 +4,19 @@ const DEFAULT_SITE_URL = "https://yasminsantospriv.github.io/site";
 
 const CATALOG = Object.freeze({
   site: Object.freeze({
-    mensal: {
-      titulo: "Conteúdos do site — plano mensal",
-      valorCentavos: 2000,
-      dias: 30
+    diario: {
+      titulo: "Conteúdos do site — acesso diário",
+      valorCentavos: 990,
+      dias: 1
     },
-    trimestral: {
-      titulo: "Conteúdos do site — plano trimestral",
-      valorCentavos: 4990,
-      dias: 90
+    mensal: {
+      titulo: "Conteúdos do site — acesso mensal",
+      valorCentavos: 3490,
+      dias: 30
     },
     vitalicio: {
       titulo: "Conteúdos do site — acesso vitalício",
-      valorCentavos: 9990,
+      valorCentavos: 19900,
       dias: null
     }
   }),
@@ -677,7 +677,7 @@ export default {
     if (url.pathname === "/api/status" && request.method === "GET") {
       return json(request, env, {
         ok: true,
-        servico: "yasmin-backend-v2-beta",
+        servico: "yasmin-backend-v13.4-beta",
         syncPayConfigurada: Boolean(env.SYNCPAY_CLIENT_ID && env.SYNCPAY_CLIENT_SECRET),
         webhookConfigurado: Boolean(env.WEBHOOK_SECRET),
         bancoConfigurado: databaseConfigured(env),

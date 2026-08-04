@@ -1,13 +1,13 @@
-# Yasmin Site — V13.3 Beta
+# Yasmin Site — V13.4 Beta
 
 Esta versão foi construída diretamente sobre a **V12 corrigida**. O visual, os cards, menus e demais funções da V12 foram preservados; somente as correções solicitadas foram aplicadas.
 
 ## Planos separados
 
 ### Conteúdos do site
-- Mensal: R$ 20,00 — 30 dias
-- Trimestral: R$ 49,90 — 90 dias
-- Vitalício: R$ 99,90 — sem expiração
+- Acesso diário: R$ 9,90 — 24 horas
+- Acesso mensal: R$ 34,90 — 30 dias
+- Acesso vitalício: R$ 199,00 — sem expiração
 
 Depois da confirmação do pagamento, o Worker libera o botão **Acessar conteúdo**. A pasta `conteudo/` contém apenas a estrutura da futura página protegida.
 
@@ -68,3 +68,10 @@ A página Privacy recebeu somente um ajuste fino responsivo no primeiro card par
 
 ## V13.3 Beta
 Layout da Privacy refinado conforme a referência e Telegram da página inicial reduzido ao Bot de acesso.
+
+
+## V13.4 Beta
+- somente os planos da área exclusiva da página inicial foram alterados;
+- o Privacy continua com R$ 20,00, R$ 49,90 e R$ 99,90;
+- o botão “Bot de acesso” aponta para `https://paylume.fans/l/yasmimsantoss`;
+- nenhuma foto ou alteração visual adicional foi aplicada nesta etapa.

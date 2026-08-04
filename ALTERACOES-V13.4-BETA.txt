@@ -1,0 +1,19 @@
+YASMIN SITE — V13.4 BETA
+
+Base: V13.3 Beta.
+
+ALTERAÇÕES DESTA VERSÃO
+- Página inicial / área exclusiva:
+  • Acesso diário — R$ 9,90 — 24 horas.
+  • Acesso mensal — R$ 34,90 — 30 dias.
+  • Acesso vitalício — R$ 199,00 — sem expiração.
+- Bot de acesso vinculado a: https://paylume.fans/l/yasmimsantoss
+- Catálogo do Worker atualizado para os mesmos planos e valores.
+
+PRESERVADO SEM ALTERAÇÃO
+- Página Privacy:
+  • 1 mês — R$ 20,00.
+  • 3 meses — R$ 49,90.
+  • 6 meses — R$ 99,90.
+- Layout e demais páginas da V13.3 Beta.
+- Fotos e vídeos atuais.

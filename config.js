@@ -11,7 +11,7 @@ window.SITE_CONFIG = {
   links: {
     instagramReal: "https://instagram.com/SEU_USUARIO",
     telegramReal: "https://t.me/SEU_USUARIO",
-    telegramBot: "https://t.me/SEU_BOT",
+    telegramBot: "https://paylume.fans/l/yasmimsantoss",
     previewsReal: "https://t.me/SEU_GRUPO_DE_PREVIAS",
     support: "https://wa.me/55SEUNUMERO",
     rouletteExternal: "https://sharkbot.com.br/r/yasminsantos"
@@ -31,23 +31,23 @@ window.SITE_CONFIG = {
   */
   siteAccess: {
     plans: {
+      daily: {
+        code: "diario",
+        name: "Acesso diário",
+        period: "24 horas",
+        price: "R$ 9,90"
+      },
       monthly: {
         code: "mensal",
-        name: "Plano mensal",
+        name: "Acesso mensal",
         period: "30 dias",
-        price: "R$ 20,00"
-      },
-      quarterly: {
-        code: "trimestral",
-        name: "Plano trimestral",
-        period: "90 dias",
-        price: "R$ 49,90"
+        price: "R$ 34,90"
       },
       lifetime: {
         code: "vitalicio",
         name: "Acesso vitalício",
         period: "Sem expiração",
-        price: "R$ 99,90"
+        price: "R$ 199,00"
       }
     }
   },
