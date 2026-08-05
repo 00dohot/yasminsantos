@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel administrativo</title>
+  <link rel="stylesheet" href="../assets/css/portal-v13.6.css">
+</head>
+<body>
+  <main class="portal-shell">
+    <header class="portal-topbar">
+      <div>
+        <h1 class="portal-title">Painel administrativo</h1>
+        <p class="portal-note">Publique fotos e vídeos sem alterar o código.</p>
+      </div>
+      <button id="admin-logout" class="portal-button secondary">Sair</button>
+    </header>
+
+    <div id="admin-message" class="portal-message"></div>
+
+    <section id="admin-login-card" class="portal-card portal-stack">
+      <h2>Entrar como administrador</h2>
+      <form id="admin-login-form" class="portal-stack">
+        <label class="portal-label">E-mail administrativo
+          <input id="admin-email" class="portal-input" type="email" autocomplete="username" required>
+        </label>
+        <label class="portal-label">Senha
+          <input id="admin-password" class="portal-input" type="password" autocomplete="current-password" required>
+        </label>
+        <button class="portal-button" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <div id="admin-dashboard" class="portal-hidden">
+      <section class="portal-card">
+        <h2>Nova publicação</h2>
+        <form id="content-form" class="portal-grid">
+          <label class="portal-label">Foto ou vídeo
+            <input id="content-file" class="portal-input" type="file" accept="image/*,video/*" required>
+          </label>
+          <label class="portal-label">Onde aparece
+            <select id="content-section" class="portal-select">
+              <option value="feed">Feed</option>
+              <option value="profile_avatar">Foto de perfil</option>
+              <option value="profile_cover">Capa</option>
+              <option value="highlights">Destaques</option>
+            </select>
+          </label>
+          <label class="portal-label">Quem pode ver
+            <select id="content-visibility" class="portal-select">
+              <option value="public">Página pública</option>
+              <option value="subscriber">Somente assinantes</option>
+            </select>
+          </label>
+          <label class="portal-label">Ordem
+            <input id="content-order" class="portal-input" type="number" value="0">
+          </label>
+          <label class="portal-label">Título
+            <input id="content-title" class="portal-input" maxlength="160">
+          </label>
+          <label class="portal-label">Legenda
+            <textarea id="content-caption" class="portal-textarea" maxlength="2000"></textarea>
+          </label>
+          <div class="portal-actions"><button id="publish-button" class="portal-button" type="submit">Publicar</button></div>
+        </form>
+      </section>
+
+      <section class="portal-card">
+        <h2>Conteúdos publicados</h2>
+        <div class="portal-table-wrap">
+          <table class="portal-table">
+            <thead><tr><th>Título</th><th>Seção</th><th>Visibilidade</th><th>Publicado</th><th>Ação</th></tr></thead>
+            <tbody id="content-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="portal-card">
+        <h2>Assinantes e suporte</h2>
+        <p class="portal-note">Você verá os dados informados na compra. A senha antiga nunca aparece; o suporte pode definir uma senha temporária.</p>
+        <div class="portal-table-wrap">
+          <table class="portal-table">
+            <thead><tr><th>Assinante</th><th>CPF e celular</th><th>Plano</th><th>Validade</th><th>Suporte</th></tr></thead>
+            <tbody id="users-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="../assets/js/app-config-v13.6.js"></script>
+  <script src="../assets/js/admin-panel-v13.6.js"></script>
+</body>
+</html>

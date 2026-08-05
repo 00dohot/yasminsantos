@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recuperar acesso</title>
+  <link rel="stylesheet" href="../assets/css/portal-v13.6.css">
+</head>
+<body>
+  <main class="portal-login">
+    <section class="portal-card portal-stack">
+      <h1 class="portal-title">Recuperar acesso</h1>
+      <p class="portal-note">A recuperação automática por e-mail ainda não está configurada.</p>
+      <p class="portal-note">O administrador consegue localizar sua compra por e-mail, CPF ou celular e definir uma senha temporária.</p>
+      <a id="support-link" class="portal-button" href="#">Entrar em contato com o suporte</a>
+      <a class="portal-button secondary" href="../login/">Voltar ao login</a>
+    </section>
+  </main>
+  <script src="../assets/js/app-config-v13.6.js"></script>
+  <script>
+    const link = document.getElementById("support-link");
+    const support = window.YASMIN_APP_CONFIG.supportUrl;
+    if (support) link.href = support;
+    else link.addEventListener("click", event => {
+      event.preventDefault();
+      alert("O WhatsApp ou e-mail do suporte ainda será configurado.");
+    });
+  </script>
+</body>
+</html>

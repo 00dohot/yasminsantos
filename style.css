@@ -1666,38 +1666,52 @@ body.instagram-page.instagram-reference{
   text-align:center;
 }
 
-/* Checkout V13.4.3: QR Code e resultado simplificado sem alterar o tema. */
-.pix-qr[hidden]{display:none!important}
-.pix-qr{
-  width:max-content;
-  max-width:100%;
-  margin:17px auto 11px;
-  padding:11px;
-  border-radius:15px;
-  background:#fff;
-  box-shadow:0 15px 38px rgba(0,0,0,.24);
+
+/* V13.6.1 — login, compra pendente e mídia administrável. */
+.member-login-link{
+  position:fixed;
+  right:16px;
+  top:16px;
+  z-index:105;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  color:#fff;
+  background:rgba(10,8,10,.52);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  font-size:.78rem;
+  font-weight:800;
+  box-shadow:0 12px 34px rgba(0,0,0,.24);
 }
-.pix-qr [data-pix-qr-canvas],
-.pix-qr img,
-.pix-qr canvas{
-  display:block!important;
-  width:190px!important;
-  height:190px!important;
-  max-width:58vw;
-  max-height:58vw;
-  image-rendering:pixelated;
+.member-login-link:hover{background:rgba(255,255,255,.14)}
+.pending-payment-resume{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  z-index:290;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  max-width:min(310px,calc(100vw - 32px));
+  padding:0 18px;
+  border:1px solid rgba(228,184,95,.44);
+  border-radius:999px;
+  color:#1b0c04;
+  background:linear-gradient(#ffe49b,#cf9e3e);
+  box-shadow:0 18px 50px rgba(0,0,0,.34);
+  font-size:.78rem;
+  font-weight:900;
 }
-.payment-status-clean{
-  margin:8px 0 12px;
-  text-align:center;
-  font-size:.9rem;
+body.home-page::before{
+  background-image:var(--cms-cover-image,url("assets/images/modelo-piscina.png")) !important;
 }
-.payment-reference[hidden]{display:none!important}
-@media(max-width:520px){
-  .pix-qr [data-pix-qr-canvas],
-  .pix-qr img,
-  .pix-qr canvas{
-    width:172px!important;
-    height:172px!important;
-  }
+@media(max-width:720px){
+  .member-login-link{top:12px;right:12px;min-height:36px;padding:0 13px}
+  .pending-payment-resume{right:12px;bottom:70px}
 }

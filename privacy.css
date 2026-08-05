@@ -1940,39 +1940,43 @@ body.privacy-v13-3 .privacy-page-end{
   body.privacy-v13-3 .plans button b{font-size:.99rem!important}
 }
 
-/* Checkout V13.4.3: QR Code acima do código Pix e texto reduzido. */
-.privacy-payment-result .pix-qr[hidden]{display:none!important}
-.privacy-payment-result .pix-qr{
-  width:max-content;
-  max-width:100%;
-  margin:16px auto 10px;
-  padding:10px;
-  border:1px solid rgba(65,48,71,.10);
-  border-radius:14px;
-  background:#fff;
-  box-shadow:0 14px 32px rgba(53,42,58,.13);
+
+/* V13.6.1 — entrada do assinante e retomada da compra. */
+.privacy-top-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.privacy-member-login{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 13px;
+  border:1px solid rgba(255,135,52,.28);
+  border-radius:999px;
+  color:#fff;
+  background:linear-gradient(180deg,#ff9a5a,#e46218);
+  font-size:.72rem;
+  font-weight:800;
 }
-.privacy-payment-result .pix-qr [data-pix-qr-canvas],
-.privacy-payment-result .pix-qr img,
-.privacy-payment-result .pix-qr canvas{
-  display:block!important;
-  width:190px!important;
-  height:190px!important;
-  max-width:58vw;
-  max-height:58vw;
-  image-rendering:pixelated;
+.pending-payment-resume{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  z-index:290;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  max-width:min(310px,calc(100vw - 32px));
+  padding:0 18px;
+  border:1px solid rgba(205,76,8,.35);
+  border-radius:999px;
+  color:#fff;
+  background:linear-gradient(180deg,#ff9a5a,#d95710);
+  box-shadow:0 18px 50px rgba(41,25,53,.20);
+  font-size:.78rem;
+  font-weight:900;
 }
-.privacy-payment-result .payment-status-clean{
-  margin:7px 0 11px;
-  text-align:center;
-  font-size:.82rem;
-}
-.privacy-payment-result .payment-reference[hidden]{display:none!important}
-@media(max-width:520px){
-  .privacy-payment-result .pix-qr [data-pix-qr-canvas],
-  .privacy-payment-result .pix-qr img,
-  .privacy-payment-result .pix-qr canvas{
-    width:168px!important;
-    height:168px!important;
-  }
+@media(max-width:620px){
+  .privacy-top-actions{gap:5px}
+  .privacy-member-login{min-height:34px;padding:0 10px;font-size:.66rem}
+  .pending-payment-resume{right:12px;bottom:12px}
 }

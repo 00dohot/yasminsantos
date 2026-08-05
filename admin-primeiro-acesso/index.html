@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar primeiro administrador</title>
+  <link rel="stylesheet" href="../assets/css/portal-v13.6.css">
+</head>
+<body>
+  <main class="portal-login">
+    <section class="portal-card portal-stack">
+      <h1 class="portal-title">Primeiro administrador</h1>
+      <p class="portal-note">Use esta página uma única vez. Depois, remova a variável ADMIN_BOOTSTRAP_SECRET do Worker e apague esta pasta do GitHub.</p>
+      <div id="bootstrap-message" class="portal-message"></div>
+      <form id="bootstrap-form" class="portal-stack">
+        <label class="portal-label">Segredo temporário do Cloudflare
+          <input id="bootstrap-secret" class="portal-input" type="password" required>
+        </label>
+        <label class="portal-label">Seu e-mail administrativo
+          <input id="bootstrap-email" class="portal-input" type="email" required>
+        </label>
+        <label class="portal-label">Sua senha administrativa
+          <input id="bootstrap-password" class="portal-input" type="password" minlength="8" required>
+        </label>
+        <button class="portal-button" type="submit">Criar administrador</button>
+      </form>
+    </section>
+  </main>
+  <script src="../assets/js/app-config-v13.6.js"></script>
+  <script>
+    const form = document.getElementById('bootstrap-form');
+    const box = document.getElementById('bootstrap-message');
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const response = await fetch(`${YASMIN_APP_CONFIG.apiBase}/api/admin/bootstrap`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Admin-Bootstrap': document.getElementById('bootstrap-secret').value
+        },
+        body: JSON.stringify({
+          email: document.getElementById('bootstrap-email').value,
+          senha: document.getElementById('bootstrap-password').value
+        })
+      });
+      const data = await response.json().catch(() => ({}));
+      box.textContent = data.mensagem || data.erro || 'Operação concluída.';
+      box.style.borderColor = response.ok ? '#22c55e' : '#ef4444';
+      box.classList.add('show');
+    });
+  </script>
+</body>
+</html>

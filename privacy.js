@@ -85,7 +85,7 @@
       moreOptions: "Mais opções", exclusivePreview: "Prévia exclusiva", exclusiveContent: "Conteúdo exclusivo",
       likeAction: "Curtir", shareAction: "Compartilhar", saveAction: "Salvar", close: "Fechar",
       fullName: "Nome completo", email: "E-mail", phone: "Celular com DDD", generatePix: "Gerar Pix",
-      pixPayment: "Pagamento via Pix", waitingPix: "Escaneie o QR Code ou copie o código Pix.",
+      pixPayment: "Pagamento via Pix", waitingPix: "Aguardando a confirmação do Pix...",
       copyPix: "Copiar código Pix", checkPayment: "Verificar pagamento", accessHere: "Acesse aqui",
       newPix: "Gerar outro Pix", linkCopied: "Link copiado."
     },
@@ -99,7 +99,7 @@
       moreOptions: "More options", exclusivePreview: "Exclusive preview", exclusiveContent: "Exclusive content",
       likeAction: "Like", shareAction: "Share", saveAction: "Save", close: "Close",
       fullName: "Full name", email: "Email", phone: "Phone with area code", generatePix: "Generate Pix",
-      pixPayment: "Pix payment", waitingPix: "Scan the QR Code or copy the Pix code.",
+      pixPayment: "Pix payment", waitingPix: "Waiting for Pix confirmation...",
       copyPix: "Copy Pix code", checkPayment: "Check payment", accessHere: "Access here",
       newPix: "Generate another Pix", linkCopied: "Link copied."
     },
@@ -113,7 +113,7 @@
       moreOptions: "Más opciones", exclusivePreview: "Vista previa exclusiva", exclusiveContent: "Contenido exclusivo",
       likeAction: "Me gusta", shareAction: "Compartir", saveAction: "Guardar", close: "Cerrar",
       fullName: "Nombre completo", email: "Correo electrónico", phone: "Teléfono con código de área", generatePix: "Generar Pix",
-      pixPayment: "Pago por Pix", waitingPix: "Escanea el código QR o copia el código Pix.",
+      pixPayment: "Pago por Pix", waitingPix: "Esperando la confirmación del Pix...",
       copyPix: "Copiar código Pix", checkPayment: "Verificar pago", accessHere: "Acceder aquí",
       newPix: "Generar otro Pix", linkCopied: "Enlace copiado."
     }

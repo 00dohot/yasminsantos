@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ativar acesso</title>
+  <link rel="stylesheet" href="../assets/css/portal-v13.6.css">
+</head>
+<body>
+  <main class="portal-login">
+    <section class="portal-card portal-stack">
+      <h1 class="portal-title">Seu acesso</h1>
+      <p id="activation-status" class="portal-note">Consultando o pagamento…</p>
+      <div id="portal-message" class="portal-message"></div>
+      <div id="activation-actions" class="portal-stack portal-hidden">
+        <button id="activation-telegram" class="portal-button">Entrar no Telegram VIP</button>
+        <div class="portal-divider"></div>
+        <h2>Criar conta de assinante</h2>
+        <p class="portal-note">A conta só pode ser criada depois da confirmação do pagamento.</p>
+        <form id="activation-account-form" class="portal-stack">
+          <label class="portal-label">Crie sua senha
+            <input id="activation-password" class="portal-input" type="password" minlength="8" autocomplete="new-password" required>
+          </label>
+          <button class="portal-button" type="submit">Criar conta e acessar conteúdos</button>
+        </form>
+        <p class="portal-note">Use maiúscula, minúscula, número e caractere especial.</p>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/app-config-v13.6.js"></script>
+  <script src="../assets/js/payment-recovery-v13.6.js"></script>
+  <script>
+    const statusText = document.getElementById('activation-status');
+    const actions = document.getElementById('activation-actions');
+    const message = document.getElementById('portal-message');
+    function showMessage(text, error = false) {
+      message.textContent = text;
+      message.style.borderColor = error ? '#ef4444' : '#22c55e';
+      message.classList.add('show');
+    }
+    async function check() {
+      const saved = YasminPaymentRecovery.loadPayment();
+      if (!saved) {
+        statusText.textContent = 'Não encontramos um pagamento salvo neste navegador.';
+        showMessage('Volte ao checkout ou entre em contato com o suporte.', true);
+        return;
+      }
+      try {
+        const data = await YasminPaymentRecovery.status();
+        if (data.pagamentoConfirmado && data.autorizado) {
+          statusText.textContent = 'Pagamento confirmado. Seu acesso está disponível.';
+          actions.classList.remove('portal-hidden');
+          return;
+        }
+        statusText.textContent = 'Aguardando confirmação do pagamento…';
+        setTimeout(check, 5000);
+      } catch (error) {
+        showMessage(error.message || 'Falha ao consultar o pagamento.', true);
+      }
+    }
+    document.getElementById('activation-telegram').addEventListener('click', async () => {
+      try { await YasminPaymentRecovery.telegram(); } catch (error) { showMessage(error.message, true); }
+    });
+    document.getElementById('activation-account-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      try { await YasminPaymentRecovery.createAccount(document.getElementById('activation-password').value); }
+      catch (error) { showMessage(error.message, true); }
+    });
+    check();
+  </script>
+</body>
+</html>
