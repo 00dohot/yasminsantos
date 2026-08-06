@@ -27,8 +27,6 @@
     button.disabled=true;
     button.textContent="Criando…";
     try{
-      const controller=new AbortController();
-      const timeout=setTimeout(()=>controller.abort(),20000);
       const response=await fetch(`${apiBase}/api/admin/bootstrap`,{
         method:"POST",
         headers:{"Content-Type":"text/plain;charset=UTF-8"},
@@ -36,20 +34,35 @@
           segredo:String(form.elements.segredo.value||""),
           email:String(form.elements.email.value||""),
           senha:String(form.elements.senha.value||"")
-        }),
-        signal:controller.signal
+        })
       });
-      clearTimeout(timeout);
       const data=await response.json().catch(()=>({}));
       if(!response.ok) throw new Error(data.erro||`Falha HTTP ${response.status}.`);
-      show("#admin-message","Administrador criado. Entre no painel e apague somente o ADMIN_BOOTSTRAP_SECRET do Cloudflare.");
+
+      show("#admin-message","Administrador criado. Entrando no painel…");
+
+      const loginResponse=await fetch(`${apiBase}/api/admin/login`,{
+        method:"POST",
+        headers:{"Content-Type":"text/plain;charset=UTF-8"},
+        body:JSON.stringify({
+          email:String(form.elements.email.value||""),
+          senha:String(form.elements.senha.value||"")
+        })
+      });
+      const loginData=await loginResponse.json().catch(()=>({}));
+      if(!loginResponse.ok || !loginData?.sessao){
+        show("#admin-message","Administrador criado. Abra o painel e entre com o mesmo e-mail e senha.");
+        setTimeout(()=>{ window.location.href="../admin/"; },1200);
+        return;
+      }
+
+      saveSession(loginData.sessao);
       form.reset();
+      window.location.href="../admin/";
     }catch(error){
-      const message=error?.name==="AbortError"
-        ?"O Worker demorou para responder. Tente novamente."
-        :(error?.message==="Failed to fetch"
-          ?"Não foi possível alcançar o Worker. Confirme o deploy do Worker corrigido e recarregue esta página com Ctrl+F5."
-          :(error?.message||"Não foi possível criar o administrador."));
+      const message=error?.message==="Failed to fetch"
+        ?"Não foi possível alcançar o Worker. Confirme o deploy e recarregue com Ctrl+F5."
+        :(error?.message||"Não foi possível criar o administrador.");
       show("#admin-message",message,true);
     }finally{
       button.disabled=false;
