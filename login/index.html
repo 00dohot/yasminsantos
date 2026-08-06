@@ -1,39 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="referrer" content="no-referrer">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entrar — Área de assinantes</title>
-  <link rel="stylesheet" href="../assets/css/portal-v13.6.css">
+<meta charset="utf-8"/>
+<meta content="no-referrer" name="referrer"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Entrar — Área de assinantes</title>
+<link href="../assets/css/portal-v13.6.css" rel="stylesheet"/>
 </head>
 <body data-page="login">
-  <main class="portal-login">
-    <section class="portal-card portal-stack">
-      <h1 class="portal-title">Área de assinantes</h1>
-      <p class="portal-note">Entre usando seu e-mail, CPF ou celular e a senha criada após o pagamento.</p>
-      <div id="portal-message" class="portal-message"></div>
-      <form id="login-form" class="portal-stack">
-        <label class="portal-label">E-mail, CPF ou celular
-          <input id="login-identifier" class="portal-input" autocomplete="username" required>
-        </label>
-        <label class="portal-label">Senha
-          <input id="login-password" class="portal-input" type="password" autocomplete="current-password" required>
-        </label>
-        <button id="login-submit" class="portal-button" type="submit">Entrar</button>
-      </form>
-      <div class="portal-divider"></div>
-      <p class="portal-note">Esta área é exclusiva para assinantes com acesso ativo.</p>
-      <a id="support-link" class="portal-button secondary" href="#">Entrar em contato com o suporte</a>
-    </section>
-  </main>
-  <script src="../assets/js/app-config-v13.6.js"></script>
-  <script>
+<main class="portal-login">
+<section class="portal-card portal-stack">
+<h1 class="portal-title">Área de assinantes</h1>
+<p class="portal-note">Entre usando seu e-mail, CPF ou celular e a senha criada após o pagamento.</p>
+<div class="portal-message" id="portal-message"></div>
+<form class="portal-stack" id="login-form">
+<label class="portal-label">E-mail, CPF ou celular
+          <input autocomplete="username" class="portal-input" id="login-identifier" required=""/>
+</label>
+<label class="portal-label">Senha
+          <input autocomplete="current-password" class="portal-input" id="login-password" required="" type="password"/>
+</label>
+<button class="portal-button" id="login-submit" type="submit">Entrar</button>
+</form>
+<div class="portal-divider"></div>
+<p class="portal-note">Esta área é exclusiva para assinantes com acesso ativo.</p>
+<a class="portal-button secondary" href="#" id="support-link">Entrar em contato com o suporte</a>
+</section>
+</main>
+<script src="../assets/js/app-config-v13.6.js"></script>
+<script>
     const support = window.YASMIN_APP_CONFIG.supportUrl;
     const link = document.getElementById('support-link');
     if (support) link.href = support; else link.addEventListener('click', event => { event.preventDefault(); alert('O contato do suporte ainda será configurado.'); });
   </script>
-  <script src="../assets/js/subscriber-portal-v13.6.js"></script>
-  <script src="../assets/js/p16.js" defer></script>
-</body>
+<script src="../assets/js/subscriber-portal-v13.6.js"></script>
+<script defer="" src="../assets/js/p16.js"></script>
+<script src="../assets/js/admin-editor-v17.js?v=17.0"></script></body>
 </html>

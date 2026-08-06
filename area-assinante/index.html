@@ -1,54 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="referrer" content="no-referrer">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Conteúdos exclusivos</title>
-  <link rel="stylesheet" href="../assets/css/portal-v13.6.css">
+<meta charset="utf-8"/>
+<meta content="no-referrer" name="referrer"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Conteúdos exclusivos</title>
+<link href="../assets/css/portal-v13.6.css" rel="stylesheet"/>
 </head>
 <body data-page="member">
-  <main class="portal-shell">
-    <header class="portal-topbar">
-      <div>
-        <h1 class="portal-title">Conteúdos exclusivos</h1>
-        <p class="portal-note">Olá, <strong id="member-name">assinante</strong>.</p>
-      </div>
-      <div class="portal-actions">
-        <button id="telegram-button" class="portal-button">Entrar no Telegram VIP</button>
-        <button id="logout-button" class="portal-button secondary">Sair</button>
-      </div>
-    </header>
-
-    <div id="portal-message" class="portal-message"></div>
-
-    <section class="portal-card portal-grid">
-      <div><span class="portal-note">Plano</span><br><strong id="member-plan">Carregando…</strong></div>
-      <div><span class="portal-note">Validade</span><br><strong id="member-expiration">Carregando…</strong></div>
-      <div><span class="portal-note">E-mail</span><br><strong id="member-email">Carregando…</strong></div>
-    </section>
-
-    <section>
-      <h2>Publicações</h2>
-      <div id="member-content" class="portal-media-grid"></div>
-    </section>
-
-    <section class="portal-card">
-      <h2>Alterar senha</h2>
-      <form id="change-password-form" class="portal-grid">
-        <label class="portal-label">Senha atual
-          <input id="current-password" class="portal-input" type="password" required>
-        </label>
-        <label class="portal-label">Nova senha
-          <input id="new-password" class="portal-input" type="password" minlength="8" required>
-        </label>
-        <div class="portal-actions"><button class="portal-button" type="submit">Salvar nova senha</button></div>
-      </form>
-      <p class="portal-note">Use no mínimo 8 caracteres, com maiúscula, minúscula, número e símbolo.</p>
-    </section>
-  </main>
-  <script src="../assets/js/app-config-v13.6.js"></script>
-  <script src="../assets/js/subscriber-portal-v13.6.js"></script>
-  <script src="../assets/js/p16.js" defer></script>
-</body>
+<main class="portal-shell">
+<header class="portal-topbar">
+<div>
+<h1 class="portal-title">Conteúdos exclusivos</h1>
+<p class="portal-note">Olá, <strong id="member-name">assinante</strong>.</p>
+</div>
+<div class="portal-actions">
+<button class="portal-button" id="telegram-button">Entrar no Telegram VIP</button>
+<button class="portal-button secondary" id="logout-button">Sair</button>
+</div>
+</header>
+<div class="portal-message" id="portal-message"></div>
+<section class="portal-card portal-grid">
+<div><span class="portal-note">Plano</span><br/><strong id="member-plan">Carregando…</strong></div>
+<div><span class="portal-note">Validade</span><br/><strong id="member-expiration">Carregando…</strong></div>
+<div><span class="portal-note">E-mail</span><br/><strong id="member-email">Carregando…</strong></div>
+</section>
+<section>
+<h2>Publicações</h2>
+<div class="portal-media-grid" id="member-content"></div>
+</section>
+<section class="portal-card">
+<h2>Alterar senha</h2>
+<form class="portal-grid" id="change-password-form">
+<label class="portal-label">Senha atual
+          <input class="portal-input" id="current-password" required="" type="password"/>
+</label>
+<label class="portal-label">Nova senha
+          <input class="portal-input" id="new-password" minlength="8" required="" type="password"/>
+</label>
+<div class="portal-actions"><button class="portal-button" type="submit">Salvar nova senha</button></div>
+</form>
+<p class="portal-note">Use no mínimo 8 caracteres, com maiúscula, minúscula, número e símbolo.</p>
+</section>
+</main>
+<script src="../assets/js/app-config-v13.6.js"></script>
+<script src="../assets/js/subscriber-portal-v13.6.js"></script>
+<script defer="" src="../assets/js/p16.js"></script>
+<script src="../assets/js/admin-editor-v17.js?v=17.0"></script></body>
 </html>

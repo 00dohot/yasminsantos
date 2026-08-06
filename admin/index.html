@@ -1,3 +1,45 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="referrer" content="no-referrer">
-  <meta name="viewport" content="width=device-width,initial-scale=1"><title>Painel administrativo</title><link rel="stylesheet" href="../assets/css/admin-v16.css"></head><body data-admin-page="dashboard"><main class="admin-shell"><section id="admin-login-panel" class="admin-card admin-stack"><div><h1>Painel administrativo</h1><p class="admin-muted">Entre com o administrador criado no primeiro acesso.</p></div><div id="admin-message" class="admin-message"></div><form id="admin-login-form" class="admin-grid"><label class="admin-label">E-mail<input class="admin-input" name="email" type="email" required></label><label class="admin-label">Senha<input class="admin-input" name="senha" type="password" required></label><button class="admin-button" type="submit">Entrar</button><a class="admin-button secondary" href="../admin-primeiro-acesso/">Criar primeiro administrador</a></form></section><section id="admin-dashboard" hidden><header class="admin-top"><div><h1>Painel administrativo</h1><p class="admin-muted">Envie e organize as fotos sem editar código.</p></div><button id="admin-logout" class="admin-button secondary">Sair</button></header><div id="admin-dashboard-message" class="admin-message"></div><div class="admin-columns"><div class="admin-stack"><section class="admin-card admin-stack"><h2>Nova publicação</h2><form id="admin-content-form" class="admin-stack"><label class="admin-label">Arquivo<input class="admin-input" name="arquivo" type="file" accept="image/*,video/*" required></label><div class="admin-grid"><label class="admin-label">Onde vai aparecer<select class="admin-select" name="secao"><option value="profile_avatar">Foto de perfil</option><option value="profile_cover">Capa principal</option><option value="preview_carousel">Carrossel de prévias</option><option value="feed">Feed público</option><option value="subscriber">Conteúdo exclusivo</option></select></label><label class="admin-label">Visibilidade<select class="admin-select" name="visibilidade"><option value="public">Público</option><option value="subscriber">Somente assinantes</option></select></label></div><label class="admin-label">Título<input class="admin-input" name="titulo" maxlength="160"></label><label class="admin-label">Legenda<textarea class="admin-textarea" name="legenda" maxlength="2000"></textarea></label><label class="admin-label">Ordem<input class="admin-input" name="ordem" type="number" value="0"></label><button class="admin-button" type="submit">Fazer upload e publicar</button></form></section><section class="admin-card admin-stack"><h2>Conteúdos publicados</h2><div id="admin-content-list" class="admin-list"><p class="admin-muted">Carregando…</p></div></section></div><aside class="admin-card admin-stack"><h2>Assinantes</h2><div id="admin-user-list" class="admin-list"><p class="admin-muted">Carregando…</p></div></aside></div></section></main><script src="../assets/js/app-config-v13.6.js"></script><script src="../assets/js/admin-v16.js"></script>  <script src="../assets/js/p16.js" defer></script>
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Painel administrativo</title><link rel="stylesheet" href="../assets/css/admin-v17.css?v=17.0"></head>
+<body data-admin-page="dashboard">
+<main class="admin-app">
+  <section id="admin-login-panel" class="login-shell">
+    <form id="admin-login-form" class="login-card">
+      <span class="eyebrow">ADMINISTRAÇÃO</span><h1>Painel Yasmin</h1><p>Entre com o e-mail administrativo e a senha criada no primeiro acesso.</p>
+      <div id="admin-message" class="notice" hidden></div>
+      <label>E-mail<input name="email" type="email" autocomplete="username" required></label>
+      <label>Senha<input name="senha" type="password" autocomplete="current-password" required></label>
+      <button type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <section id="admin-dashboard" hidden>
+    <header class="topbar"><div><span class="eyebrow">PAINEL ADMINISTRATIVO</span><h1>Visão geral do negócio</h1></div><div class="top-actions"><a class="button secondary" href="../" target="_blank">Abrir site e editar</a><button id="admin-refresh" class="button secondary" type="button">Atualizar</button><button id="admin-logout" class="button danger" type="button">Sair</button></div></header>
+    <div id="admin-dashboard-message" class="notice" hidden></div>
+    <nav class="tabs" aria-label="Seções do painel"><button class="active" data-tab="overview">Visão geral</button><button data-tab="leads">Leads e pagamentos</button><button data-tab="subscriptions">Assinaturas</button><button data-tab="content">Conteúdo</button></nav>
+
+    <section class="tab-panel active" data-panel="overview">
+      <div id="summary-cards" class="metric-grid"></div>
+      <div class="dashboard-grid"><article class="panel"><header><div><h2>Pagamentos recentes</h2><p>Últimos leads que geraram Pix.</p></div><button class="link-button" data-open-tab="leads">Ver todos</button></header><div id="recent-leads" class="compact-list"></div></article><article class="panel"><header><div><h2>Assinaturas</h2><p>Contas e acessos mais recentes.</p></div><button class="link-button" data-open-tab="subscriptions">Ver todas</button></header><div id="recent-subscriptions" class="compact-list"></div></article></div>
+    </section>
+
+    <section class="tab-panel" data-panel="leads">
+      <article class="panel"><header class="panel-toolbar"><div><h2>Leads e pagamentos</h2><p>Quem preencheu o formulário e gerou uma cobrança Pix.</p></div><button id="export-leads" class="button secondary" type="button">Exportar CSV</button></header>
+        <div class="filters"><input id="lead-search" type="search" placeholder="Buscar nome, e-mail, telefone ou transação"><select id="lead-status"><option value="">Todos os status</option><option value="completed">Pagos</option><option value="pending">Pendentes</option><option value="failed">Falhos ou cancelados</option></select><select id="lead-product"><option value="">Todos os produtos</option><option value="site">Site</option><option value="privacy">Privacy</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Lead</th><th>Contato</th><th>Oferta</th><th>Valor</th><th>Status</th><th>Data</th><th>Conta</th></tr></thead><tbody id="lead-table-body"></tbody></table></div><p id="lead-empty" class="empty" hidden>Nenhum lead encontrado.</p>
+      </article>
+    </section>
+
+    <section class="tab-panel" data-panel="subscriptions">
+      <article class="panel"><header class="panel-toolbar"><div><h2>Assinaturas</h2><p>Contas criadas, validade e situação do acesso.</p></div></header>
+        <div class="filters"><input id="subscription-search" type="search" placeholder="Buscar assinante"><select id="subscription-status"><option value="">Todas</option><option value="active">Ativas</option><option value="expired">Expiradas</option><option value="suspended">Suspensas</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Assinante</th><th>Plano</th><th>Valor</th><th>Validade</th><th>Status</th><th>Ações</th></tr></thead><tbody id="subscription-table-body"></tbody></table></div><p id="subscription-empty" class="empty" hidden>Nenhuma assinatura encontrada.</p>
+      </article>
+    </section>
+
+    <section class="tab-panel" data-panel="content">
+      <div class="content-grid"><article class="panel"><header><div><h2>Nova publicação</h2><p>Para feed, carrossel ou conteúdo exclusivo.</p></div></header><form id="admin-content-form" class="form-grid"><label>Arquivo<input name="arquivo" type="file" accept="image/*,video/*" required></label><label>Local<select name="secao"><option value="profile_avatar">Foto de perfil</option><option value="profile_cover">Capa principal</option><option value="preview_carousel">Carrossel de prévias</option><option value="feed">Feed público</option><option value="subscriber">Conteúdo exclusivo</option></select></label><label>Visibilidade<select name="visibilidade"><option value="public">Público</option><option value="subscriber">Somente assinantes</option></select></label><label>Título<input name="titulo" maxlength="160"></label><label class="wide">Legenda<textarea name="legenda" maxlength="2000"></textarea></label><label>Ordem<input name="ordem" type="number" value="0"></label><button class="button primary wide" type="submit">Enviar e publicar</button></form></article><article class="panel"><header><div><h2>Conteúdos publicados</h2><p>Arquivos armazenados no R2.</p></div></header><div id="admin-content-list" class="content-list"></div></article></div>
+    </section>
+  </section>
+</main>
+<script src="../assets/js/app-config-v13.6.js?v=17.0"></script><script src="../assets/js/admin-v17.js?v=17.0"></script>
 </body></html>
