@@ -1,9 +1,8 @@
 
 (() => {
   "use strict";
-  const cfg = window.YASMIN_APP_CONFIG;
-  if (!cfg?.apiBase) return;
-  const apiBase = cfg.apiBase.replace(/\/$/, "");
+  const cfg = window.YASMIN_APP_CONFIG || {};
+  const apiBase = String(cfg.apiBase || "https://yasmin-backend.novinhadize9.workers.dev").replace(/\/$/, "");
   const sessionKey = cfg.storageKeys?.adminSession || "yasmin_admin_session_v136";
   const $ = selector => document.querySelector(selector);
   const readSession = () => { try { const s=JSON.parse(localStorage.getItem(sessionKey)||"null"); return s?.token && Date.parse(s.expiresAt)>Date.now()?s:null; } catch { return null; } };
@@ -22,12 +21,40 @@
   };
 
   async function bootstrap(event){
-    event.preventDefault(); const form=event.currentTarget;
+    event.preventDefault();
+    const form=event.currentTarget;
+    const button=form.querySelector('button[type="submit"]');
+    button.disabled=true;
+    button.textContent="Criando…";
     try{
-      const response=await fetch(`${apiBase}/api/admin/bootstrap`,{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Bootstrap":form.elements.segredo.value},body:JSON.stringify({email:form.elements.email.value,senha:form.elements.senha.value})});
-      const data=await response.json().catch(()=>({})); if(!response.ok) throw new Error(data.erro||"Não foi possível criar.");
-      show("#admin-message","Administrador criado. Agora entre no painel e remova o ADMIN_BOOTSTRAP_SECRET do Cloudflare."); form.reset();
-    }catch(error){show("#admin-message",error.message,true)}
+      const controller=new AbortController();
+      const timeout=setTimeout(()=>controller.abort(),20000);
+      const response=await fetch(`${apiBase}/api/admin/bootstrap`,{
+        method:"POST",
+        headers:{"Content-Type":"text/plain;charset=UTF-8"},
+        body:JSON.stringify({
+          segredo:String(form.elements.segredo.value||""),
+          email:String(form.elements.email.value||""),
+          senha:String(form.elements.senha.value||"")
+        }),
+        signal:controller.signal
+      });
+      clearTimeout(timeout);
+      const data=await response.json().catch(()=>({}));
+      if(!response.ok) throw new Error(data.erro||`Falha HTTP ${response.status}.`);
+      show("#admin-message","Administrador criado. Entre no painel e apague somente o ADMIN_BOOTSTRAP_SECRET do Cloudflare.");
+      form.reset();
+    }catch(error){
+      const message=error?.name==="AbortError"
+        ?"O Worker demorou para responder. Tente novamente."
+        :(error?.message==="Failed to fetch"
+          ?"Não foi possível alcançar o Worker. Confirme o deploy do Worker corrigido e recarregue esta página com Ctrl+F5."
+          :(error?.message||"Não foi possível criar o administrador."));
+      show("#admin-message",message,true);
+    }finally{
+      button.disabled=false;
+      button.textContent="Criar administrador";
+    }
   }
   async function login(event){event.preventDefault(); const f=event.currentTarget; try{const d=await api("/api/admin/login",{method:"POST",body:JSON.stringify({email:f.elements.email.value,senha:f.elements.senha.value})});saveSession(d.sessao);render();}catch(e){show("#admin-message",e.message,true)}}
   async function loadContent(){const box=$("#admin-content-list"); try{const d=await api("/api/admin/conteudos"); box.innerHTML=""; for(const item of d.conteudos){const row=document.createElement("article");row.className="admin-item"; const media=item.mime_type?.startsWith("video/")?"<div></div>":"<div></div>"; row.innerHTML=`${media}<div><h3>${item.title||item.section}</h3><p>${item.section} • ${item.visibility} • ordem ${item.sort_order}</p></div><button class="admin-button danger" data-delete="${item.content_id}">Excluir</button>`; box.append(row);} if(!box.children.length)box.innerHTML='<p class="admin-muted">Nenhum conteúdo publicado.</p>'; box.querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(!confirm("Excluir esta publicação?"))return;await api(`/api/admin/conteudos/${encodeURIComponent(b.dataset.delete)}`,{method:"DELETE"});loadContent();});}catch(e){box.innerHTML=`<p class="admin-muted">${e.message}</p>`}}
