@@ -2,6 +2,8 @@ window.YASMIN_APP_CONFIG = Object.freeze({
   apiBase: "https://yasmin-backend.novinhadize9.workers.dev",
   siteBase: "https://yasminsantospriv.github.io/site",
   supportUrl: "",
+  // Cole aqui apenas a SITE KEY pública do Turnstile quando decidir ativá-lo.
+  turnstileSiteKey: "",
   storageKeys: {
     subscriberSession: "yasmin_subscriber_session_v136",
     adminSession: "yasmin_admin_session_v136",

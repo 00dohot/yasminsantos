@@ -64,22 +64,27 @@
     submit.disabled = true;
     submit.textContent = "Entrando…";
     try {
+      const turnstileToken = await window.YasminTurnstile?.token(form, "subscriber_login") || "";
       const data = await api("/api/auth/login", {
         method: "POST",
         body: JSON.stringify({
           identificador: form.elements.identificador.value,
-          senha: form.elements.senha.value
+          senha: form.elements.senha.value,
+          turnstileToken
         })
       });
       saveSession(data.sessao);
       await deliverAfterLogin();
     } catch (error) {
+      window.YasminTurnstile?.reset(form);
       showMessage(error.message || "Não foi possível entrar.");
     } finally {
       submit.disabled = false;
       submit.textContent = "Entrar";
     }
   });
+
+  window.YasminTurnstile?.mount(form, "subscriber_login");
 
   document.querySelectorAll("[data-open-login-modal]").forEach(button => {
     button.addEventListener("click", async () => {

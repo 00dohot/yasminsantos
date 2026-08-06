@@ -222,7 +222,8 @@
     toolbar.innerHTML = `<span class="yasmin-admin-toolbar-status">Administrador: ${escapeHtml(admin?.email || "sessão ativa")}</span><button class="primary" type="button" data-editor-toggle></button><a href="${escapeHtml(siteBase)}/admin/">Painel</a><button class="danger" type="button" data-editor-logout>Sair</button>`;
     document.body.append(toolbar);
     toolbar.querySelector("[data-editor-toggle]").addEventListener("click", () => setEditMode(!editMode));
-    toolbar.querySelector("[data-editor-logout]").addEventListener("click", () => {
+    toolbar.querySelector("[data-editor-logout]").addEventListener("click", async () => {
+      try { await api("/api/admin/logout", { method: "POST" }); } catch {}
       localStorage.removeItem(sessionKey);
       location.reload();
     });

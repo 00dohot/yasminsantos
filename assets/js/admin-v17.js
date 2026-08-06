@@ -48,9 +48,20 @@
     const button = form.querySelector("button[type=submit]");
     button.disabled = true; button.textContent = "Entrando…";
     try {
-      const data = await api("/api/admin/login", { method: "POST", body: JSON.stringify({ email: form.elements.email.value, senha: form.elements.senha.value }) });
+      const turnstileToken = await window.YasminTurnstile?.token(form, "admin_login") || "";
+      const data = await api("/api/admin/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: form.elements.email.value,
+          senha: form.elements.senha.value,
+          turnstileToken
+        })
+      });
       session = data.sessao; saveSession(session); renderAuth(); await loadAll();
-    } catch (error) { notice(error.message, true, "#admin-message"); }
+    } catch (error) {
+      window.YasminTurnstile?.reset(form);
+      notice(error.message, true, "#admin-message");
+    }
     finally { button.disabled = false; button.textContent = "Entrar"; }
   }
 
@@ -189,17 +200,32 @@
     finally { button.disabled = false; button.textContent = "Enviar e publicar"; }
   }
 
+  function safeCsvCell(value) {
+    let text = String(value ?? "").replace(/\r?\n/g, " ");
+    if (/^[\s]*[=+\-@]/.test(text) || /^[\t\r]/.test(text)) text = `'${text}`;
+    return `"${text.replace(/"/g, '""')}"`;
+  }
+
   function exportCsv() {
     const rows = [["Nome","E-mail","Telefone","CPF","Produto","Plano","Valor","Status","Transação","Criado em","Pago em","Conta criada"]];
     filteredLeads().forEach(item => rows.push([item.nome,item.email,item.telefone,item.cpf,item.produto,item.plano,(item.valorCentavos/100).toFixed(2),item.statusPagamento,item.transacao,item.pagamentoCriadoEm,item.pagoEm||"",item.contaCriada?"Sim":"Não"]));
-    const csv = "\ufeff" + rows.map(row => row.map(value => `"${String(value ?? "").replace(/"/g,'""')}"`).join(";")).join("\n");
-    const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" })); link.download = `leads-${new Date().toISOString().slice(0,10)}.csv`; link.click(); URL.revokeObjectURL(link.href);
+    const csv = "\ufeff" + rows.map(row => row.map(safeCsvCell).join(";")).join("\r\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `leads-${new Date().toISOString().slice(0,10)}.csv`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
     session = readSession(); renderAuth();
     $("#admin-login-form").addEventListener("submit", login);
-    $("#admin-logout").addEventListener("click", () => { clearSession(); session = null; renderAuth(); });
+    window.YasminTurnstile?.mount("#admin-login-form", "admin_login");
+    $("#admin-logout").addEventListener("click", async () => {
+      try { await api("/api/admin/logout", { method: "POST" }); } catch {}
+      clearSession(); session = null; renderAuth();
+    });
     $("#admin-refresh").addEventListener("click", loadAll);
     $("#admin-content-form").addEventListener("submit", publish);
     $("#export-leads").addEventListener("click", exportCsv);

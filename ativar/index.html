@@ -30,7 +30,8 @@
 </section>
 </main>
 <script src="../assets/js/app-config-v13.6.js"></script>
-<script src="../assets/js/payment-recovery-v13.6.js"></script>
+<script src="../assets/js/turnstile-v17.6.js?v=17.6"></script>
+<script src="../assets/js/payment-recovery-v13.6.js?v=17.6"></script>
 <script>
     const statusText = document.getElementById('activation-status');
     const actions = document.getElementById('activation-actions');
@@ -67,11 +68,12 @@
     });
     document.getElementById('activation-account-form').addEventListener('submit', async event => {
       event.preventDefault();
-      try { await YasminPaymentRecovery.createAccount(document.getElementById('activation-password').value); }
+      try { await YasminPaymentRecovery.createAccount(document.getElementById('activation-password').value, event.currentTarget); }
       catch (error) { showMessage(error.message, true); }
     });
+    window.YasminTurnstile?.mount("#activation-account-form", "account_create");
     check();
   </script>
 <script defer="" src="../assets/js/p16.js"></script>
-<script src="../assets/js/admin-editor-v17.js?v=17.5"></script></body>
+<script src="../assets/js/admin-editor-v17.js?v=17.6"></script></body>
 </html>

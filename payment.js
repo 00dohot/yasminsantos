@@ -640,7 +640,18 @@
     submitButton.disabled = true;
     submitButton.textContent = "Gerando Pix...";
 
+    let turnstileToken = "";
+    try {
+      turnstileToken = await window.YasminTurnstile?.token(form, "payment_create") || "";
+    } catch (error) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Gerar Pix";
+      setError(error.message);
+      return;
+    }
+
     const payload = {
+      turnstileToken,
       produto: selection.product,
       plano: selection.plan,
       product: selection.product,
@@ -670,6 +681,7 @@
 
       showPaymentResult(data.pagamento);
     } catch (error) {
+      window.YasminTurnstile?.reset(form);
       setError(error?.message || "Não foi possível gerar o Pix.");
     } finally {
       submitButton.disabled = false;
@@ -706,6 +718,7 @@
     }
   });
 
+  window.YasminTurnstile?.mount(form, "payment_create");
   restoreLead();
   readPixCache();
 })();

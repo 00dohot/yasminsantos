@@ -36,16 +36,20 @@
     const button = $("#login-submit");
     button.disabled = true;
     try {
+      const form = event.currentTarget;
+      const turnstileToken = await window.YasminTurnstile?.token(form, "subscriber_login") || "";
       const data = await api("/api/auth/login", {
         method: "POST",
         body: JSON.stringify({
           identificador: $("#login-identifier").value,
-          senha: $("#login-password").value
+          senha: $("#login-password").value,
+          turnstileToken
         })
       });
       saveSession(data.sessao);
       location.href = `${config.siteBase.replace(/\/$/, "")}/area-assinante/`;
     } catch (error) {
+      window.YasminTurnstile?.reset(event.currentTarget);
       message(error.message, true);
     } finally { button.disabled = false; }
   }
@@ -141,6 +145,7 @@
   window.YasminSubscriber = { session, saveSession, clearSession, api };
   document.addEventListener("DOMContentLoaded", () => {
     $("#login-form")?.addEventListener("submit", login);
+    window.YasminTurnstile?.mount("#login-form", "subscriber_login");
     $("#logout-button")?.addEventListener("click", logout);
     $("#telegram-button")?.addEventListener("click", openTelegram);
     $("#change-password-form")?.addEventListener("submit", changePassword);
