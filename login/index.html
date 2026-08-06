@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Entrar — Área de assinantes</title>
   <link rel="stylesheet" href="../assets/css/portal-v13.6.css">
@@ -20,7 +21,6 @@
           <input id="login-password" class="portal-input" type="password" autocomplete="current-password" required>
         </label>
         <button id="login-submit" class="portal-button" type="submit">Entrar</button>
-        <a class="portal-button secondary" href="../recuperar/">Esqueci minha senha</a>
       </form>
       <div class="portal-divider"></div>
       <p class="portal-note">Esta área é exclusiva para assinantes com acesso ativo.</p>
@@ -34,5 +34,6 @@
     if (support) link.href = support; else link.addEventListener('click', event => { event.preventDefault(); alert('O contato do suporte ainda será configurado.'); });
   </script>
   <script src="../assets/js/subscriber-portal-v13.6.js"></script>
+  <script src="../assets/js/p16.js" defer></script>
 </body>
 </html>
