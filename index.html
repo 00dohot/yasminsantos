@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="home-page">
-  <a class="member-login-link" href="login/">Entrar</a>
   <button class="menu-tab" id="menuTab" type="button" aria-label="Abrir menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -28,7 +27,6 @@
       <a href="previas/">◉ <span>Prévias</span></a>
       <a href="privacy/">♢ <span>Privacy</span></a>
       <a href="roleta/">◌ <span>Roleta</span></a>
-      <a href="login/">♙ <span>Entrar</span></a>
     </nav>
     <button class="drawer-pin" id="drawerPin" type="button" aria-pressed="false" title="Manter menu expandido">
       <span class="pin-dot"></span>
@@ -70,11 +68,11 @@
 
       <article class="glass-card instagram-card">
         <header class="ig-card-header">
-          <img data-cms-avatar src="assets/images/modelo-piscina.png" alt="">
+          <img src="assets/images/modelo-piscina.png" alt="">
           <div><strong>@yasminsantos</strong><span>12 publicações • 12,8 mil seguidores</span></div>
           <b>•••</b>
         </header>
-        <div class="ig-grid-six" data-cms-public-feed>
+        <div class="ig-grid-six">
           <a href="instagram/"><img src="assets/images/modelo-piscina.png" alt=""></a>
           <a href="instagram/"><img src="assets/images/modelo-piscina.png" alt=""></a>
           <a href="instagram/"><img src="assets/images/modelo-piscina.png" alt=""></a>
@@ -145,14 +143,12 @@
       </div>
 
       <div data-payment-result-step hidden>
-        <span class="section-kicker">PIX GERADO</span>
-        <h2>Finalize o pagamento</h2>
-        <p class="payment-status" data-payment-status>Aguardando a confirmação do Pix...</p>
+        <h2>Pagamento via Pix</h2>
+        <div class="pix-qr" data-pix-qr hidden><div data-pix-qr-canvas></div></div>
+        <p class="payment-status payment-status-clean" data-payment-status data-pending-text="Escaneie o QR Code ou copie o código Pix.">Escaneie o QR Code ou copie o código Pix.</p>
         <code class="pix-code" data-pix-code></code>
-        <small class="payment-reference" data-payment-reference></small>
         <div class="payment-result-actions">
           <button type="button" data-copy-pix>Copiar código Pix</button>
-          <button type="button" data-check-payment>Verificar pagamento</button>
           <a data-delivery-button hidden>Acessar conteúdo</a>
         </div>
         <button class="payment-secondary" type="button" data-new-payment>Gerar outro Pix</button>
@@ -160,11 +156,9 @@
     </section>
   </div>
 
-  <script src="config.js?v=13.6.1"></script>
-  <script src="assets/js/app-config-v13.6.js?v=13.6.1"></script>
-  <script src="assets/js/payment-recovery-v13.6.js?v=13.6.1"></script>
-  <script src="assets/js/cms-public-loader-v13.6.1.js?v=13.6.1"></script>
-  <script src="script.js?v=13.6.1"></script>
-  <script src="payment.js?v=13.6.1"></script>
+  <script src="config.js?v=13.6.4"></script>
+  <script src="script.js?v=13.6.4"></script>
+  <script src="assets/vendor/qrcode-local.js?v=13.6.4"></script>
+  <script src="payment.js?v=13.6.4"></script>
 </body>
 </html>

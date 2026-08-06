@@ -19,9 +19,7 @@
 
       <strong class="privacy-logo" aria-label="privacy">privacy<span>.</span></strong>
 
-      <div class="privacy-top-actions">
-        <a class="privacy-member-login" href="../login/">Entrar</a>
-        <label class="language-picker" for="languageSelect">
+      <label class="language-picker" for="languageSelect">
         <svg class="language-picker-icon" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="9"></circle>
           <path d="M3 12h18M12 3c2.7 2.4 4.1 5.4 4.1 9S14.7 18.6 12 21M12 3C9.3 5.4 7.9 8.4 7.9 12s1.4 6.6 4.1 9"></path>
@@ -32,21 +30,20 @@
           <option value="en">English</option>
           <option value="es">Español</option>
         </select>
-        </label>
-      </div>
+      </label>
     </div>
   </header>
 
   <main class="page-shell">
     <section class="profile-card privacy-profile-complete">
       <button class="cover image-open-button" type="button" data-open-profile-image="../assets/images/modelo-piscina.png" aria-label="Abrir foto de capa">
-        <img data-cms-cover src="../assets/images/modelo-piscina.png" alt="Capa de Yasmin Santos">
+        <img src="../assets/images/modelo-piscina.png" alt="Capa de Yasmin Santos">
       </button>
 
       <div class="privacy-profile-body">
         <div class="profile-summary-row">
           <button class="avatar-button image-open-button" type="button" data-open-profile-image="../assets/images/modelo-piscina.png" aria-label="Abrir foto de perfil">
-            <img class="avatar" data-cms-avatar src="../assets/images/modelo-piscina.png" alt="Yasmin Santos">
+            <img class="avatar" src="../assets/images/modelo-piscina.png" alt="Yasmin Santos">
           </button>
 
           <div class="profile-stats profile-stats-inline" aria-label="Contadores do perfil">
@@ -203,12 +200,11 @@
 
       <div class="privacy-payment-result" data-payment-result-step hidden>
         <div class="selected-plan" data-selected-plan data-i18n="pixPayment">Pagamento via Pix</div>
-        <p class="payment-status" data-payment-status data-i18n="waitingPix">Aguardando a confirmação do Pix...</p>
+        <div class="pix-qr" data-pix-qr hidden><div data-pix-qr-canvas></div></div>
+        <p class="payment-status payment-status-clean" data-payment-status data-pending-text="Escaneie o QR Code ou copie o código Pix." data-i18n="waitingPix">Escaneie o QR Code ou copie o código Pix.</p>
         <code class="pix-code" data-pix-code></code>
-        <small class="payment-reference" data-payment-reference></small>
         <div class="payment-result-actions">
           <button type="button" data-copy-pix data-i18n="copyPix">Copiar código Pix</button>
-          <button type="button" data-check-payment data-i18n="checkPayment">Verificar pagamento</button>
           <a data-delivery-button hidden data-i18n="accessHere">Acesse aqui</a>
         </div>
         <button class="payment-secondary" type="button" data-new-payment data-i18n="newPix">Gerar outro Pix</button>
@@ -218,11 +214,9 @@
     </section>
   </div>
 
-  <script src="../config.js?v=13.6.1"></script>
-  <script src="../assets/js/app-config-v13.6.js?v=13.6.1"></script>
-  <script src="../assets/js/payment-recovery-v13.6.js?v=13.6.1"></script>
-  <script src="../assets/js/cms-public-loader-v13.6.1.js?v=13.6.1"></script>
-  <script src="../privacy.js?v=13.6.1"></script>
-  <script src="../payment.js?v=13.6.1"></script>
+  <script src="../config.js?v=13.6.4"></script>
+  <script src="../privacy.js?v=13.6.4"></script>
+  <script src="../assets/vendor/qrcode-local.js?v=13.6.4"></script>
+  <script src="../payment.js?v=13.6.4"></script>
 </body>
 </html>

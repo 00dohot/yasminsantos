@@ -18,14 +18,14 @@ window.SITE_CONFIG = {
   },
 
   payment: {
-    createEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/criar-pagamento?v=13.6.1",
-    workerStatusEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/health?v=13.6.1",
-    contractVersion: "13.6.1",
+    createEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/criar-pagamento?v=13.6.4",
+    workerStatusEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/status?v=13.6.4",
+    contractVersion: "13.6.4",
     statusEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/status-pagamento",
     verifyEndpoint: "https://yasmin-backend.novinhadize9.workers.dev/api/verificar-acesso",
-    pollIntervalMs: 5000,
-    maxPollAttempts: 120,
-    activationUrl: "https://yasminsantospriv.github.io/site/ativar/"
+    activationUrl: "https://yasminsantospriv.github.io/site/ativar/",
+    pollIntervalMs: 10000,
+    maxPollAttempts: 60
   },
 
   /*
