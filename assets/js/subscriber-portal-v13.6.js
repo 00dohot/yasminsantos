@@ -59,12 +59,22 @@
     try {
       const data = await api("/api/conta/me");
       $("#member-name").textContent = data.usuario.nome;
-      $("#member-plan").textContent = `${data.assinatura.produto} — ${data.assinatura.plano}`;
-      $("#member-expiration").textContent = data.assinatura.vitalicio
+      const subscriptions = Array.isArray(data.assinaturas) && data.assinaturas.length
+        ? data.assinaturas
+        : [data.assinatura];
+      const siteAccess = subscriptions.find(item => item.produto === "site");
+      const privacyAccess = subscriptions.find(item => item.produto === "privacy");
+      const main = siteAccess || privacyAccess || data.assinatura;
+      $("#member-plan").textContent = subscriptions.map(item => `${item.produto} — ${item.plano}`).join(" + ");
+      $("#member-expiration").textContent = main.vitalicio
         ? "Sem expiração"
-        : new Date(data.assinatura.expiraEm).toLocaleString("pt-BR");
+        : new Date(main.expiraEm).toLocaleString("pt-BR");
       $("#member-email").textContent = data.usuario.email;
-      await loadContent();
+      const telegramButton = $("#telegram-button");
+      if (telegramButton) telegramButton.hidden = !privacyAccess;
+      const contentSection = $("#site-content-section");
+      if (contentSection) contentSection.hidden = !siteAccess;
+      if (siteAccess) await loadContent();
     } catch (error) {
       clearSession();
       message(error.message, true);

@@ -60,7 +60,7 @@
   const pubs = document.getElementById("igPublications");
   if (pubs) {
     const captions = ["Noite perfeita ✨","Bastidores","Só para quem sabe","Hoje","Nova prévia","Exclusivo","Fim de tarde","Meu olhar favorito","Obrigada pelo carinho","Mais uma","Segredo","Última do dia"];
-    pubs.innerHTML = captions.map((c,i)=>`<button data-post-index="${i}" data-caption="${c}"><img src="../assets/images/modelo-piscina.png" alt="Publicação ${i+1}"></button>`).join("");
+    pubs.innerHTML = captions.map((c,i)=>`<button data-post-index="${i}" data-caption="${c}"><img src="../assets/images/modelo-piscina.png" alt="Publicação ${i+1}" data-admin-kind="image" data-admin-slot="instagram_publicacao_${i+1}"></button>`).join("");
 
     const postModal = document.getElementById("postModal");
     const img = document.getElementById("postImage");
@@ -78,14 +78,24 @@
     const savePost = (i,d) => localStorage.setItem(postKey(i), JSON.stringify(d));
     const renderPost = () => {
       const d = readPost(current);
-      img.src = "../assets/images/modelo-piscina.png";
+      const publicationImage = pubs.querySelector(`[data-post-index="${current}"] img`);
+      img.src = publicationImage?.currentSrc || publicationImage?.src || "../assets/images/modelo-piscina.png";
       likeBtn.classList.toggle("active", d.liked);
       likeBtn.textContent = d.liked ? "♥" : "♡";
       saveBtn.classList.toggle("active", d.saved);
       saveBtn.textContent = d.saved ? "◆" : "◇";
       likeCount.textContent = 184 + current * 13 + d.likes;
-      comments.innerHTML = `<div class="comment-row"><strong>@yasminsantos</strong> ${captions[current]}</div>` +
-        d.comments.map(c=>`<div class="comment-row"><strong>${c.handle}</strong> ${c.text}</div>`).join("");
+      comments.replaceChildren();
+      const appendComment = (handle, text) => {
+        const row = document.createElement("div");
+        row.className = "comment-row";
+        const author = document.createElement("strong");
+        author.textContent = handle;
+        row.append(author, document.createTextNode(` ${String(text || "")}`));
+        comments.append(row);
+      };
+      appendComment("@yasminsantos", captions[current]);
+      d.comments.forEach(comment => appendComment(comment.handle, comment.text));
     };
     const openPost = i => {
       current=i; renderPost(); postModal.classList.add("open"); postModal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";

@@ -1941,42 +1941,94 @@ body.privacy-v13-3 .privacy-page-end{
 }
 
 
-/* V13.6.1 — entrada do assinante e retomada da compra. */
-.privacy-top-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px}
-.privacy-member-login{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:38px;
-  padding:0 13px;
-  border:1px solid rgba(255,135,52,.28);
-  border-radius:999px;
-  color:#fff;
-  background:linear-gradient(180deg,#ff9a5a,#e46218);
-  font-size:.72rem;
-  font-weight:800;
+/* =====================================================
+   V17.5 — AÇÕES COMPACTAS NO CABEÇALHO DO PRIVACY
+   ===================================================== */
+body.privacy-v13-3 .topbar-inner{
+  grid-template-columns:minmax(48px,1fr) auto minmax(122px,1fr)!important;
+  column-gap:12px!important;
 }
-.pending-payment-resume{
-  position:fixed;
-  right:16px;
-  bottom:18px;
-  z-index:290;
-  display:inline-flex;
+body.privacy-v13-3 .privacy-top-actions{
+  justify-self:end;
+  display:flex;
   align-items:center;
-  justify-content:center;
-  min-height:46px;
-  max-width:min(310px,calc(100vw - 32px));
-  padding:0 18px;
-  border:1px solid rgba(205,76,8,.35);
-  border-radius:999px;
-  color:#fff;
-  background:linear-gradient(180deg,#ff9a5a,#d95710);
-  box-shadow:0 18px 50px rgba(41,25,53,.20);
-  font-size:.78rem;
-  font-weight:900;
+  justify-content:flex-end;
+  gap:8px;
+}
+body.privacy-v13-3 .v16-login-launch-privacy,
+body.privacy-v13-3 .language-picker{
+  position:relative!important;
+  width:auto!important;
+  height:40px!important;
+  min-height:40px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  padding:0 13px!important;
+  border:1px solid rgba(255,128,58,.22)!important;
+  border-radius:13px!important;
+  color:#ff783b!important;
+  background:rgba(255,255,255,.96)!important;
+  box-shadow:0 7px 22px rgba(88,54,38,.08)!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+  white-space:nowrap;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+body.privacy-v13-3 .v16-login-launch-privacy:hover,
+body.privacy-v13-3 .language-picker:hover{
+  transform:translateY(-1px);
+  border-color:rgba(255,112,43,.45)!important;
+  box-shadow:0 10px 26px rgba(88,54,38,.12)!important;
+}
+body.privacy-v13-3 .v16-login-launch-privacy span,
+body.privacy-v13-3 .privacy-language-text{
+  color:transparent!important;
+  background:linear-gradient(180deg,#ffb36f 0%,#ff8248 48%,#ec5d2e 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  font-size:.76rem;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.01em;
+}
+body.privacy-v13-3 .language-picker-icon{
+  width:18px!important;
+  height:18px!important;
+  flex:0 0 18px;
+  stroke:#ff7b40!important;
+  stroke-width:1.8!important;
+}
+body.privacy-v13-3 .language-picker select{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  opacity:0!important;
+  cursor:pointer!important;
 }
 @media(max-width:620px){
-  .privacy-top-actions{gap:5px}
-  .privacy-member-login{min-height:34px;padding:0 10px;font-size:.66rem}
-  .pending-payment-resume{right:12px;bottom:12px}
+  body.privacy-v13-3 .topbar-inner{
+    width:calc(100% - 20px)!important;
+    grid-template-columns:auto minmax(70px,1fr) auto!important;
+    column-gap:7px!important;
+  }
+  body.privacy-v13-3 .privacy-logo{font-size:1.8rem!important}
+  body.privacy-v13-3 .privacy-top-actions{gap:6px}
+  body.privacy-v13-3 .v16-login-launch-privacy,
+  body.privacy-v13-3 .language-picker{
+    height:36px!important;
+    min-height:36px!important;
+    padding:0 10px!important;
+    border-radius:11px!important;
+  }
+  body.privacy-v13-3 .v16-login-launch-privacy span,
+  body.privacy-v13-3 .privacy-language-text{font-size:.68rem}
+  body.privacy-v13-3 .language-picker-icon{width:16px!important;height:16px!important;flex-basis:16px}
+}
+@media(max-width:430px){
+  body.privacy-v13-3 .privacy-language-text{display:none}
+  body.privacy-v13-3 .language-picker{width:36px!important;padding:0!important}
+  body.privacy-v13-3 .v16-login-launch-privacy{padding:0 9px!important}
 }

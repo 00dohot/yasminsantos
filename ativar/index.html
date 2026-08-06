@@ -52,6 +52,7 @@
         const data = await YasminPaymentRecovery.status();
         if (data.pagamentoConfirmado && data.autorizado) {
           statusText.textContent = 'Pagamento confirmado. Seu acesso está disponível.';
+          document.getElementById('activation-telegram').hidden = data.produto !== 'privacy';
           actions.classList.remove('portal-hidden');
           return;
         }
@@ -72,5 +73,5 @@
     check();
   </script>
 <script defer="" src="../assets/js/p16.js"></script>
-<script src="../assets/js/admin-editor-v17.js?v=17.0"></script></body>
+<script src="../assets/js/admin-editor-v17.js?v=17.5"></script></body>
 </html>
