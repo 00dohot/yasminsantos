@@ -1,51 +1,59 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="no-referrer" name="referrer"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Conteúdos exclusivos</title>
-<link href="../assets/css/portal-v13.6.css" rel="stylesheet"/>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Área de assinantes | Yasmin Santos</title>
+  <link rel="stylesheet" href="../style.css?v=17.7">
+  <link rel="stylesheet" href="../assets/css/portal-v13.6.css?v=17.7">
 </head>
-<body data-page="member">
-<main class="portal-shell">
-<header class="portal-topbar">
-<div>
-<h1 class="portal-title">Conteúdos exclusivos</h1>
-<p class="portal-note">Olá, <strong id="member-name">assinante</strong>.</p>
-</div>
-<div class="portal-actions">
-<button class="portal-button" id="telegram-button">Entrar no Telegram VIP</button>
-<button class="portal-button secondary" id="logout-button">Sair</button>
-</div>
-</header>
-<div class="portal-message" id="portal-message"></div>
-<section class="portal-card portal-grid">
-<div><span class="portal-note">Plano</span><br/><strong id="member-plan">Carregando…</strong></div>
-<div><span class="portal-note">Validade</span><br/><strong id="member-expiration">Carregando…</strong></div>
-<div><span class="portal-note">E-mail</span><br/><strong id="member-email">Carregando…</strong></div>
-</section>
-<section id="site-content-section">
-<h2>Publicações</h2>
-<div class="portal-media-grid" id="member-content"></div>
-</section>
-<section class="portal-card">
-<h2>Alterar senha</h2>
-<form class="portal-grid" id="change-password-form">
-<label class="portal-label">Senha atual
-          <input class="portal-input" id="current-password" required="" type="password"/>
-</label>
-<label class="portal-label">Nova senha
-          <input class="portal-input" id="new-password" minlength="8" required="" type="password"/>
-</label>
-<div class="portal-actions"><button class="portal-button" type="submit">Salvar nova senha</button></div>
-</form>
-<p class="portal-note">Use no mínimo 8 caracteres, com maiúscula, minúscula, número e símbolo.</p>
-</section>
-</main>
-<script src="../assets/js/app-config-v13.6.js"></script>
-<script src="../assets/js/subscriber-portal-v13.6.js?v=17.6"></script>
-<script defer="" src="../assets/js/p16.js"></script>
-<script src="../assets/js/admin-editor-v17.js?v=17.6"></script></body>
+<body class="home-page member-home-page" data-page="member">
+  <main>
+    <section class="hero-fixed member-hero" data-admin-kind="background" data-admin-slot="home_cover">
+      <div class="hero-shade"></div>
+      <div class="hero-content member-hero-content">
+        <span class="hero-eyebrow">ÁREA DE ASSINANTES</span>
+        <h1>Seu conteúdo exclusivo</h1>
+        <p>Olá, <strong id="member-name">assinante</strong>. Tudo que for publicado aqui vem diretamente do Cloudflare R2.</p>
+        <div class="member-account-line">
+          <span>Plano: <strong id="member-plan">Carregando…</strong></span>
+          <span>Validade: <strong id="member-expiration">Carregando…</strong></span>
+          <span class="member-email-line">E-mail: <strong id="member-email">Carregando…</strong></span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn ghost-btn" id="telegram-button" type="button">Telegram VIP</button>
+          <button class="btn ghost-btn" id="logout-button" type="button">Sair</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-stack member-stack">
+      <article class="glass-card member-feed-card" id="site-content-section">
+        <header class="member-feed-header">
+          <div><span class="section-kicker">CONTEÚDO LIBERADO</span><h2>Publicações</h2><p>Fotos e vídeos adicionados pelo painel aparecem aqui automaticamente.</p></div>
+        </header>
+        <div class="portal-message" id="portal-message"></div>
+        <div class="member-media-feed" id="member-content"></div>
+
+        <details class="member-settings">
+          <summary>Configurações da conta</summary>
+          <form class="member-password-form" id="change-password-form">
+            <label>Senha atual<input id="current-password" required type="password"></label>
+            <label>Nova senha<input id="new-password" minlength="8" required type="password"></label>
+            <button class="btn gold-btn" type="submit">Salvar nova senha</button>
+          </form>
+        </details>
+      </article>
+    </section>
+    <footer class="site-footer">Área exclusiva para assinantes com acesso ativo.</footer>
+  </main>
+  <script src="../assets/js/app-config-v13.6.js?v=17.7"></script>
+  <script src="../assets/js/turnstile-v17.6.js?v=17.6"></script>
+  <script src="../assets/js/subscriber-portal-v13.6.js?v=17.7"></script>
+  <script src="../assets/js/r2-media-v17.7.js?v=17.7"></script>
+  <script defer src="../assets/js/p16.js"></script>
+  <script src="../assets/js/admin-editor-v17.js?v=17.7"></script>
+</body>
 </html>

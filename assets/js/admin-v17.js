@@ -228,6 +228,10 @@
     });
     $("#admin-refresh").addEventListener("click", loadAll);
     $("#admin-content-form").addEventListener("submit", publish);
+    $("#admin-content-form").elements.secao.addEventListener("change", event => {
+      const visibility = $("#admin-content-form").elements.visibilidade;
+      visibility.value = event.target.value === "subscriber_feed" ? "subscriber" : "public";
+    });
     $("#export-leads").addEventListener("click", exportCsv);
     $$("[data-tab]").forEach(btn => btn.addEventListener("click", () => openTab(btn.dataset.tab)));
     $$("[data-open-tab]").forEach(btn => btn.addEventListener("click", () => openTab(btn.dataset.openTab)));

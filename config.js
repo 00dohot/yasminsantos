@@ -106,14 +106,14 @@ window.SITE_CONFIG = {
   },
 
   instagramSuggestions: [
-    {name:"Luna Martins",handle:"@lunamartins",image:"../assets/images/modelo-piscina.png",url:"https://SEU-SITE-LUNA.com"},
-    {name:"Maya Costa",handle:"@mayacosta",image:"../assets/images/modelo-piscina.png",url:"https://SEU-SITE-MAYA.com"},
-    {name:"Clara Alves",handle:"@claraalves",image:"../assets/images/modelo-piscina.png",url:"https://SEU-SITE-CLARA.com"}
+    {name:"Luna Martins",handle:"@lunamartins",image:"",url:"https://SEU-SITE-LUNA.com"},
+    {name:"Maya Costa",handle:"@mayacosta",image:"",url:"https://SEU-SITE-MAYA.com"},
+    {name:"Clara Alves",handle:"@claraalves",image:"",url:"https://SEU-SITE-CLARA.com"}
   ],
 
   instagramReels: [
-    {title:"Reel 1",thumbnail:"../assets/images/modelo-piscina.png",videoUrl:""},
-    {title:"Reel 2",thumbnail:"../assets/images/modelo-piscina.png",videoUrl:""},
-    {title:"Reel 3",thumbnail:"../assets/images/modelo-piscina.png",videoUrl:""}
+    {title:"Reel 1",thumbnail:"",videoUrl:""},
+    {title:"Reel 2",thumbnail:"",videoUrl:""},
+    {title:"Reel 3",thumbnail:"",videoUrl:""}
   ]
 };

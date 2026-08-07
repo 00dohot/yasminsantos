@@ -55,8 +55,24 @@
     return item?.mediaUrl || `${apiBase}/api/media/public/${encodeURIComponent(contentId)}`;
   }
 
+  function clearSlotTarget(target) {
+    if (!target) return;
+    target.classList.add("yasmin-r2-empty");
+    target.dataset.adminCurrentUrl = "";
+    if (target.tagName === "IMG") {
+      target.removeAttribute("src");
+      const opener = target.closest("[data-open-instagram-image],[data-open-profile-image]");
+      if (opener?.hasAttribute("data-open-instagram-image")) opener.dataset.openInstagramImage = "";
+      if (opener?.hasAttribute("data-open-profile-image")) opener.dataset.openProfileImage = "";
+    } else {
+      target.style.backgroundImage = "none";
+    }
+    if (target.dataset.adminSlot === "home_cover") document.body.style.setProperty("--yasmin-home-cover", "none");
+  }
+
   function applySlotToTarget(target, url) {
-    if (!target || !url) return;
+    if (!target || !url) return clearSlotTarget(target);
+    target.classList.remove("yasmin-r2-empty");
     const kind = target.dataset.adminKind || (target.tagName === "IMG" ? "image" : "background");
     if (kind === "background") {
       target.style.backgroundImage = `url("${url.replace(/"/g, "%22")}")`;
@@ -64,8 +80,12 @@
     } else if (target.tagName === "IMG") {
       target.src = url;
       target.dataset.adminCurrentUrl = url;
-      const opener = target.closest("[data-open-instagram-image]");
-      if (opener) opener.dataset.openInstagramImage = url;
+      const opener = target.closest("[data-open-instagram-image],[data-open-profile-image]");
+      if (opener?.hasAttribute("data-open-instagram-image")) opener.dataset.openInstagramImage = url;
+      if (opener?.hasAttribute("data-open-profile-image")) opener.dataset.openProfileImage = url;
+    }
+    if (target.dataset.adminSlot === "home_cover") {
+      document.body.style.setProperty("--yasmin-home-cover", `url("${url.replace(/"/g, "%22")}")`);
     }
   }
 
@@ -75,6 +95,7 @@
       const slot = normalizeSlot(target.dataset.adminSlot);
       const setting = publicData.configuracoes?.[`${slotPrefix}${slot}`];
       if (setting?.contentId) applySlotToTarget(target, contentUrl(setting.contentId));
+      else clearSlotTarget(target);
     });
   }
 
@@ -105,7 +126,7 @@
     modal.id = "yasmin-admin-editor-modal";
     modal.className = "yasmin-admin-modal";
     modal.hidden = true;
-    modal.innerHTML = `<div class="yasmin-admin-modal-bg" data-editor-close></div><section class="yasmin-admin-modal-card" role="dialog" aria-modal="true" aria-labelledby="yasmin-editor-title"><h2 id="yasmin-editor-title">Alterar imagem</h2><p data-editor-slot-label></p><div class="yasmin-admin-preview"><img data-editor-preview alt="Prévia"></div><input class="yasmin-admin-file" data-editor-file type="file" accept="image/*"><div class="yasmin-admin-editor-message" data-editor-message></div><div class="yasmin-admin-modal-actions"><button type="button" data-editor-close>Cancelar</button><button class="restore" type="button" data-editor-restore>Usar imagem original</button><button class="save" type="button" data-editor-save>Enviar e aplicar</button></div></section>`;
+    modal.innerHTML = `<div class="yasmin-admin-modal-bg" data-editor-close></div><section class="yasmin-admin-modal-card" role="dialog" aria-modal="true" aria-labelledby="yasmin-editor-title"><h2 id="yasmin-editor-title">Alterar imagem</h2><p data-editor-slot-label></p><div class="yasmin-admin-preview"><img data-editor-preview alt="Prévia"></div><input class="yasmin-admin-file" data-editor-file type="file" accept=".jpg,.jpeg,.png,.webp,.gif"><input class="yasmin-admin-file" data-editor-caption maxlength="2000" placeholder="Legenda para o Instagram (opcional)"><div class="yasmin-admin-editor-message" data-editor-message></div><div class="yasmin-admin-modal-actions"><button type="button" data-editor-close>Cancelar</button><button class="restore" type="button" data-editor-restore>Remover imagem</button><button class="instagram" type="button" data-editor-instagram>Publicar no Instagram</button><button class="save" type="button" data-editor-save>Enviar e aplicar</button></div></section>`;
     document.body.append(modal);
     modal.querySelectorAll("[data-editor-close]").forEach(el => el.addEventListener("click", closeModal));
     modal.querySelector("[data-editor-file]").addEventListener("change", event => {
@@ -113,6 +134,7 @@
       if (file) modal.querySelector("[data-editor-preview]").src = URL.createObjectURL(file);
     });
     modal.querySelector("[data-editor-save]").addEventListener("click", saveImage);
+    modal.querySelector("[data-editor-instagram]").addEventListener("click", publishToInstagram);
     modal.querySelector("[data-editor-restore]").addEventListener("click", restoreImage);
   }
 
@@ -169,10 +191,44 @@
     }
   }
 
+  async function publishToInstagram() {
+    const modal = document.getElementById("yasmin-admin-editor-modal");
+    const file = modal?.querySelector("[data-editor-file]")?.files?.[0];
+    const caption = String(modal?.querySelector("[data-editor-caption]")?.value || "").trim();
+    if (!file) return editorMessage("Selecione uma imagem primeiro.", true);
+    const button = modal.querySelector("[data-editor-instagram]");
+    button.disabled = true;
+    button.textContent = "Publicando…";
+    try {
+      const payload = new FormData();
+      payload.append("arquivo", file);
+      const upload = await api("/api/admin/upload", { method: "POST", body: payload });
+      await api("/api/admin/conteudos", {
+        method: "POST",
+        body: JSON.stringify({
+          secao: "instagram_posts",
+          visibilidade: "public",
+          titulo: "Publicação Instagram",
+          legenda: caption,
+          ordem: 0,
+          mediaKey: upload.mediaKey,
+          publicado: true
+        })
+      });
+      editorMessage("Publicado no Instagram e salvo no R2.");
+      await window.YasminR2Media?.reload?.();
+    } catch (error) {
+      editorMessage(error.message, true);
+    } finally {
+      button.disabled = false;
+      button.textContent = "Publicar no Instagram";
+    }
+  }
+
   async function restoreImage() {
     if (!activeTarget) return;
     const slot = normalizeSlot(activeTarget.dataset.adminSlot);
-    if (!confirm("Voltar para a imagem original deste espaço?")) return;
+    if (!confirm("Remover a imagem deste espaço? Ele ficará vazio até você enviar outra.")) return;
     try {
       await api(`/api/admin/editor/imagem?chave=${encodeURIComponent(slot)}`, { method: "DELETE" });
       delete publicData.configuracoes[`${slotPrefix}${slot}`];

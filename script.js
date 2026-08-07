@@ -57,60 +57,7 @@
     window.addEventListener("scroll", close, {passive:true});
   }
 
-  const pubs = document.getElementById("igPublications");
-  if (pubs) {
-    const captions = ["Noite perfeita ✨","Bastidores","Só para quem sabe","Hoje","Nova prévia","Exclusivo","Fim de tarde","Meu olhar favorito","Obrigada pelo carinho","Mais uma","Segredo","Última do dia"];
-    pubs.innerHTML = captions.map((c,i)=>`<button data-post-index="${i}" data-caption="${c}"><img src="../assets/images/modelo-piscina.png" alt="Publicação ${i+1}" data-admin-kind="image" data-admin-slot="instagram_publicacao_${i+1}"></button>`).join("");
-
-    const postModal = document.getElementById("postModal");
-    const img = document.getElementById("postImage");
-    const comments = document.getElementById("postComments");
-    const likeBtn = document.getElementById("likePost");
-    const saveBtn = document.getElementById("savePost");
-    const likeCount = document.getElementById("likeCount");
-    let current = 0;
-
-    const postKey = i => `yasmin-post-${i}`;
-    const readPost = i => {
-      try { return JSON.parse(localStorage.getItem(postKey(i)) || '{"liked":false,"saved":false,"likes":0,"comments":[]}'); }
-      catch { return {liked:false,saved:false,likes:0,comments:[]}; }
-    };
-    const savePost = (i,d) => localStorage.setItem(postKey(i), JSON.stringify(d));
-    const renderPost = () => {
-      const d = readPost(current);
-      const publicationImage = pubs.querySelector(`[data-post-index="${current}"] img`);
-      img.src = publicationImage?.currentSrc || publicationImage?.src || "../assets/images/modelo-piscina.png";
-      likeBtn.classList.toggle("active", d.liked);
-      likeBtn.textContent = d.liked ? "♥" : "♡";
-      saveBtn.classList.toggle("active", d.saved);
-      saveBtn.textContent = d.saved ? "◆" : "◇";
-      likeCount.textContent = 184 + current * 13 + d.likes;
-      comments.replaceChildren();
-      const appendComment = (handle, text) => {
-        const row = document.createElement("div");
-        row.className = "comment-row";
-        const author = document.createElement("strong");
-        author.textContent = handle;
-        row.append(author, document.createTextNode(` ${String(text || "")}`));
-        comments.append(row);
-      };
-      appendComment("@yasminsantos", captions[current]);
-      d.comments.forEach(comment => appendComment(comment.handle, comment.text));
-    };
-    const openPost = i => {
-      current=i; renderPost(); postModal.classList.add("open"); postModal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
-    };
-    const closePost = () => { postModal.classList.remove("open"); postModal.setAttribute("aria-hidden","true"); document.body.style.overflow=""; };
-    pubs.querySelectorAll("[data-post-index]").forEach(b=>b.addEventListener("click",()=>openPost(Number(b.dataset.postIndex))));
-    document.querySelectorAll("[data-close-post]").forEach(x=>x.addEventListener("click",closePost));
-    document.getElementById("postPrev").addEventListener("click",()=>{current=(current+11)%12;renderPost()});
-    document.getElementById("postNext").addEventListener("click",()=>{current=(current+1)%12;renderPost()});
-    likeBtn.addEventListener("click",()=>{const d=readPost(current);d.liked=!d.liked;d.likes+=d.liked?1:-1;savePost(current,d);renderPost()});
-    saveBtn.addEventListener("click",()=>{const d=readPost(current);d.saved=!d.saved;savePost(current,d);renderPost()});
-    document.getElementById("focusComment").addEventListener("click",()=>document.getElementById("commentHandle").focus());
-    document.getElementById("sharePost").addEventListener("click",async()=>{try{if(navigator.share)await navigator.share({title:document.title,url:location.href});else{await navigator.clipboard.writeText(location.href);alert("Link copiado.")}}catch{}});
-    document.getElementById("postCommentForm").addEventListener("submit",e=>{e.preventDefault();let h=document.getElementById("commentHandle").value.trim();const t=document.getElementById("commentText").value.trim();if(!h.startsWith("@"))h="@"+h;const d=readPost(current);d.comments.push({handle:h,text:t});savePost(current,d);e.target.reset();renderPost()});
-  }
+  // V17.7: publicações do Instagram vêm exclusivamente do R2/D1.
 
   const storyModal = document.getElementById("storyModal");
   if (storyModal) {
@@ -346,7 +293,7 @@
   function renderReels() {
     reelsGrid.innerHTML = reels.map((item, index) => `
       <button class="ig-reel-card" type="button" data-reel-index="${index}">
-        <img src="${item.thumbnail}" alt="${item.title}">
+        ${item.thumbnail ? `<img src="${item.thumbnail}" alt="${item.title}">` : `<span class="ig-empty-thumbnail" aria-hidden="true"></span>`}
         <span>${item.title}</span>
       </button>
     `).join("");

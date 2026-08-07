@@ -90,7 +90,8 @@
     const data = await api("/api/assinante/conteudos");
     const grid = $("#member-content");
     grid.innerHTML = "";
-    for (const item of data.conteudos) {
+    const memberItems = (data.conteudos || []).filter(item => item.section === "subscriber_feed");
+    for (const item of memberItems) {
       const card = document.createElement("article");
       card.className = "portal-post";
       const mediaResponse = await fetch(item.mediaUrl, {
@@ -99,7 +100,7 @@
       if (!mediaResponse.ok) continue;
       const blobUrl = URL.createObjectURL(await mediaResponse.blob());
       const media = item.mime_type.startsWith("video/")
-        ? Object.assign(document.createElement("video"), { src: blobUrl, controls: true, playsInline: true })
+        ? Object.assign(document.createElement("video"), { src: blobUrl, controls: true, playsInline: true, preload: "metadata" })
         : Object.assign(document.createElement("img"), { src: blobUrl, alt: item.title || "Conteúdo exclusivo", loading: "lazy" });
       const body = document.createElement("div");
       body.className = "portal-post-body";
@@ -108,10 +109,12 @@
       const caption = document.createElement("p");
       caption.textContent = item.caption || "";
       body.append(title, caption);
+      media.classList.add("member-feed-media");
+      card.classList.add("member-feed-post");
       card.append(media, body);
       grid.append(card);
     }
-    if (!grid.children.length) grid.innerHTML = '<div class="portal-card portal-note">Ainda não há conteúdos publicados.</div>';
+    if (!grid.children.length) grid.innerHTML = '<div class="member-feed-empty">Nenhuma foto ou vídeo foi publicado ainda.</div>';
   }
 
   async function openTelegram() {

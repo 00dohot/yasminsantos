@@ -4,7 +4,7 @@
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:0 21px;border-radius:12px;font-weight:800;border:1px solid transparent}.telegram-btn{background:var(--blue);color:white;box-shadow:0 12px 30px rgba(34,158,217,.25)}.ghost-btn{border-color:rgba(255,255,255,.25);background:rgba(0,0,0,.26)}.gold-btn{background:linear-gradient(#ffe49b,#cf9e3e);color:#1b0c04}
 .menu-tab{position:fixed;left:12px;bottom:18px;z-index:100;width:40px;height:40px;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(16,9,9,.82);backdrop-filter:blur(12px);display:grid;place-content:center;gap:4px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:.2s}.menu-tab:hover{transform:scale(1.05)}.menu-tab span{width:16px;height:2px;background:white;border-radius:3px}
 .drawer{position:fixed;inset:0 auto 0 0;z-index:120;width:230px;padding:18px 14px;background:rgba(5,4,4,.96);border-right:1px solid rgba(255,255,255,.1);transform:translateX(-102%);transition:transform .28s ease;display:flex;flex-direction:column;box-shadow:18px 0 55px rgba(0,0,0,.35)}.drawer.open{transform:translateX(0)}.drawer-brand{position:relative;text-align:center;padding:9px 0 24px;color:#ffe6aa}.drawer-brand strong{display:block;font-family:Georgia,serif;letter-spacing:.18em}.drawer-brand small{letter-spacing:.28em}.drawer-close{position:absolute;right:0;top:0;border:0;background:transparent;color:white;font-size:1.5rem}.drawer-nav{display:grid;gap:5px}.drawer-nav a{padding:13px 12px;border-radius:10px;color:#d8cbc1}.drawer-nav a:hover{background:rgba(255,255,255,.07)}.drawer-pin{margin-top:auto;width:38px;height:38px;align-self:center;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:transparent;color:white;position:relative;overflow:visible}.pin-label{position:absolute;left:46px;top:50%;transform:translateY(-50%);white-space:nowrap;padding:7px 9px;border-radius:8px;background:#211616;color:#ddd;font-size:.68rem;opacity:0;pointer-events:none;transition:.2s}.drawer-pin:hover .pin-label{opacity:1}.pin-dot{display:block;width:10px;height:10px;margin:auto;border-radius:50%;border:2px solid #ddd}.drawer-pin[aria-pressed="true"] .pin-dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px var(--gold)}.drawer-overlay{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.48);opacity:0;visibility:hidden;transition:.2s}.drawer-overlay.show{opacity:1;visibility:visible}
-.hero-fixed{position:relative;min-height:650px;background:url("assets/images/modelo-piscina.png") center right/cover no-repeat fixed}.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.58) 48%,rgba(0,0,0,.12))}.hero-content{position:relative;z-index:1;max-width:720px;padding:105px 7vw 70px}.hero-eyebrow{display:inline-block;padding:8px 12px;border:1px solid rgba(228,184,95,.3);border-radius:999px;color:#ead7a8;font-size:.72rem;letter-spacing:.1em}.hero-content h1{font-family:Playfair Display,Georgia,serif;font-size:clamp(2.7rem,5vw,4.5rem);line-height:1.02;margin:26px 0 15px}.hero-content p{color:#d0c3ba;line-height:1.7;font-size:1.03rem;max-width:510px}.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:27px}.hero-links{display:flex;gap:20px;flex-wrap:wrap;margin-top:25px;color:#d9cbc1;font-size:.86rem}
+.hero-fixed{position:relative;min-height:650px;background-color:#100908;background-image:none;background-position:center right;background-size:cover;background-repeat:no-repeat}.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.58) 48%,rgba(0,0,0,.12))}.hero-content{position:relative;z-index:1;max-width:720px;padding:105px 7vw 70px}.hero-eyebrow{display:inline-block;padding:8px 12px;border:1px solid rgba(228,184,95,.3);border-radius:999px;color:#ead7a8;font-size:.72rem;letter-spacing:.1em}.hero-content h1{font-family:Playfair Display,Georgia,serif;font-size:clamp(2.7rem,5vw,4.5rem);line-height:1.02;margin:26px 0 15px}.hero-content p{color:#d0c3ba;line-height:1.7;font-size:1.03rem;max-width:510px}.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:27px}.hero-links{display:flex;gap:20px;flex-wrap:wrap;margin-top:25px;color:#d9cbc1;font-size:.86rem}
 .home-stack{width:min(1080px,calc(100% - 28px));margin:26px auto 55px;display:grid;gap:20px}.glass-card{background:linear-gradient(145deg,rgba(28,17,14,.97),rgba(9,6,6,.97));border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.38)}.exclusive-card{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}.section-kicker{color:#e7c779;font-size:.7rem;font-weight:800;letter-spacing:.1em}.exclusive-copy h2,.roulette-cta h2{font-family:Playfair Display,Georgia,serif;font-size:2rem;margin:8px 0}.exclusive-copy p{color:var(--muted)}.locked-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.locked-thumbs figure{margin:0;aspect-ratio:3/4;overflow:hidden;border-radius:12px}.locked-thumbs img{width:100%;height:100%;object-fit:cover;filter:blur(6px) brightness(.55);transform:scale(1.08)}.instagram-card{padding:18px}.ig-card-header{display:flex;align-items:center;gap:11px;margin-bottom:13px}.ig-card-header img{width:44px;height:44px;border-radius:50%;object-fit:cover}.ig-card-header div{display:flex;flex-direction:column}.ig-card-header span{color:var(--muted);font-size:.72rem}.ig-card-header b{margin-left:auto}.ig-grid-six{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.ig-grid-six a{aspect-ratio:1;overflow:hidden;border-radius:8px}.ig-grid-six img{width:100%;height:100%;object-fit:cover}.roulette-cta{padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px}.site-footer{text-align:center;padding:30px;color:#7f736b;font-size:.74rem}
 .subpage-shell{width:min(980px,calc(100% - 26px));margin:0 auto;padding:28px 0 60px}.subpage-top,.ig-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin-bottom:24px}.subpage-top a,.ig-top a{font-weight:700}.ig-top strong{justify-self:center}
 .instagram-page{background:#fafafa;color:#111}.ig-shell{width:min(920px,100%);margin:auto;padding:22px 18px 60px}.ig-profile{display:grid;grid-template-columns:150px 1fr;gap:35px;align-items:center;padding:20px 5px}.ig-avatar{width:145px;height:145px;border-radius:50%;object-fit:cover}.ig-name-row{display:flex;align-items:center;gap:8px}.ig-name-row h1{font-size:1.3rem}.ig-verified{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#3797f0;color:white}.ig-stats{display:flex;gap:32px;margin:15px 0}.ig-stats div{display:flex;gap:5px}.ig-profile p{line-height:1.5}.ig-highlights{display:flex;gap:24px;padding:18px 5px 24px}.ig-highlights button{border:0;background:transparent;display:grid;justify-items:center;gap:6px}.ig-highlights span{width:72px;height:72px;padding:3px;border-radius:50%;background:linear-gradient(135deg,#ffb200,#e1306c,#833ab4)}.ig-highlights img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:3px solid white}.ig-tabs{border-top:1px solid #ddd;display:flex;justify-content:center;gap:32px;padding:15px;color:#777;font-size:.75rem}.ig-publications{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.ig-publications button{border:0;padding:0;aspect-ratio:1;overflow:hidden}.ig-publications img{width:100%;height:100%;object-fit:cover}
@@ -258,7 +258,7 @@ body.home-page::before{
   position:fixed;
   inset:0;
   z-index:-3;
-  background-image:url("assets/images/modelo-piscina.png");
+  background-image:var(--yasmin-home-cover, none);
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
@@ -1667,51 +1667,170 @@ body.instagram-page.instagram-reference{
 }
 
 
-/* V13.6.1 — login, compra pendente e mídia administrável. */
-.member-login-link{
-  position:fixed;
-  right:16px;
-  top:16px;
-  z-index:105;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:40px;
-  padding:0 16px;
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:999px;
-  color:#fff;
-  background:rgba(10,8,10,.52);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  font-size:.78rem;
-  font-weight:800;
-  box-shadow:0 12px 34px rgba(0,0,0,.24);
+/* ============================================================
+   V17.7 — MÍDIA PERSISTENTE NO CLOUDFLARE R2
+   ============================================================ */
+img[data-admin-slot]:not([src]),
+img.yasmin-r2-empty{
+  visibility:hidden !important;
 }
-.member-login-link:hover{background:rgba(255,255,255,.14)}
-.pending-payment-resume{
-  position:fixed;
-  right:16px;
-  bottom:18px;
-  z-index:290;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:46px;
-  max-width:min(310px,calc(100vw - 32px));
-  padding:0 18px;
-  border:1px solid rgba(228,184,95,.44);
-  border-radius:999px;
-  color:#1b0c04;
-  background:linear-gradient(#ffe49b,#cf9e3e);
-  box-shadow:0 18px 50px rgba(0,0,0,.34);
-  font-size:.78rem;
-  font-weight:900;
+[data-admin-slot].yasmin-r2-empty{
+  background-image:none !important;
+}
+[data-admin-slot]:has(> img.yasmin-r2-empty),
+[data-admin-slot]:has(img.yasmin-r2-empty),
+.locked-thumbs figure:has(img:not([src])),
+.v16-preview-slide:has(img:not([src])),
+.ig-card-header:has(img:not([src])) > img,
+.ig-large-avatar-ring:has(img:not([src])),
+.ig-mobile-avatar-ring:has(img:not([src])),
+.ig-highlight-row span:has(img:not([src])){
+  background:rgba(255,255,255,.055);
 }
 body.home-page::before{
-  background-image:var(--cms-cover-image,url("assets/images/modelo-piscina.png")) !important;
+  background-image:var(--yasmin-home-cover, none) !important;
+  background-color:#100908;
 }
+.hero-fixed{
+  background-image:none;
+}
+.hero-fixed[style*="background-image"]{
+  background-color:#100908;
+}
+
+/* Prévia: uma mídia por tela, até cinco, com 2ª e 4ª borradas. */
+.v16-preview-carousel{
+  display:grid !important;
+  grid-auto-flow:column;
+  grid-auto-columns:100%;
+  gap:0 !important;
+  overflow-x:auto !important;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+.v16-preview-carousel::-webkit-scrollbar{display:none}
+.v16-preview-slide{
+  width:100%;
+  min-height:clamp(280px,52vw,620px);
+  margin:0;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border-radius:16px;
+  scroll-snap-align:center;
+  background:rgba(255,255,255,.045);
+  cursor:pointer;
+}
+.v16-preview-slide img{
+  width:100%;
+  height:100%;
+  min-height:inherit;
+  object-fit:cover;
+}
+.v16-preview-slide:nth-child(2) img,
+.v16-preview-slide:nth-child(4) img{
+  filter:blur(8px) brightness(.68);
+  transform:scale(1.04);
+}
+.v16-preview-slide:focus-visible{
+  outline:2px solid rgba(255,197,139,.85);
+  outline-offset:3px;
+}
+
+/* Instagram dinâmico vindo do R2. */
+.ig-grid-six .ig-empty-post{
+  aspect-ratio:1;
+  display:block;
+  border-radius:8px;
+  background:rgba(255,255,255,.045);
+}
+.ig-admin-add-inline{
+  width:100%;
+  margin-top:12px;
+  min-height:38px;
+  border:1px dashed rgba(255,255,255,.32);
+  border-radius:12px;
+  color:#fff4e9;
+  background:rgba(255,255,255,.06);
+  font-weight:800;
+}
+.ig-admin-profile-add{
+  width:min(420px,calc(100% - 32px));
+  margin:12px auto;
+  display:block;
+}
+.ig-empty-profile{
+  grid-column:1/-1;
+  min-height:260px;
+  display:grid;
+  place-items:center;
+  color:#8e8e8e;
+  background:#070707;
+}
+.ig-empty-thumbnail,.ig-empty-avatar{
+  display:block;
+  background:#171717;
+}
+.ig-empty-thumbnail{width:100%;aspect-ratio:9/16}
+.ig-empty-avatar{width:44px;height:44px;border-radius:50%}
+
+/* Modal simples para postagem administrativa. */
+.ig-admin-publish-modal{
+  position:fixed;inset:0;z-index:2147483600;display:grid;place-items:center;padding:18px;
+}
+.ig-admin-publish-modal[hidden]{display:none!important}
+.ig-admin-publish-bg{position:absolute;inset:0;background:rgba(0,0,0,.76);backdrop-filter:blur(10px)}
+.ig-admin-publish-card{
+  position:relative;z-index:1;width:min(470px,96vw);padding:24px;border:1px solid rgba(255,255,255,.18);
+  border-radius:22px;color:#fff;background:#15171d;box-shadow:0 30px 90px rgba(0,0,0,.55)
+}
+.ig-admin-publish-card h2{margin:0 0 6px}
+.ig-admin-publish-card p{color:#aeb5c2}
+.ig-admin-publish-card input,.ig-admin-publish-card textarea{
+  width:100%;margin-top:12px;padding:12px;border:1px solid #3b414e;border-radius:12px;color:#fff;background:#0f1116
+}
+.ig-admin-publish-card textarea{min-height:100px;resize:vertical}
+.ig-admin-publish-message{min-height:22px;margin-top:10px;color:#a6e9b7}
+.ig-admin-publish-actions{display:flex;gap:10px;margin-top:10px}
+.ig-admin-publish-actions button{flex:1;min-height:42px;border:0;border-radius:11px;color:#fff;background:#2a2f39;font-weight:800}
+.ig-admin-publish-actions .primary{background:linear-gradient(135deg,#ff8a3d,#e85179)}
+
+/* Área do assinante com o mesmo DNA visual da home. */
+.member-home-page{min-height:100vh}
+.member-hero{min-height:520px}
+.member-hero-content{max-width:900px}
+.member-account-line{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;color:#d9cbc1;font-size:.83rem}
+.member-account-line span{padding:8px 11px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(0,0,0,.18)}
+.member-feed-card{padding:22px}
+.member-feed-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
+.member-feed-header h2{font-family:Playfair Display,Georgia,serif;font-size:2rem;margin:7px 0}
+.member-feed-header p{margin:0;color:var(--muted)}
+.member-media-feed{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));
+  gap:14px;
+}
+.member-feed-post{
+  overflow:hidden;border:1px solid rgba(255,255,255,.10);border-radius:16px;
+  background:rgba(0,0,0,.22);
+}
+.member-feed-media{
+  width:100%;aspect-ratio:4/5;object-fit:cover;background:#090909;
+}
+video.member-feed-media{object-fit:contain}
+.member-feed-post .portal-post-body{padding:13px}
+.member-feed-post .portal-post-body h3{margin:0 0 5px}
+.member-feed-post .portal-post-body p{margin:0;color:var(--muted);white-space:pre-wrap}
+.member-feed-empty{
+  grid-column:1/-1;min-height:280px;display:grid;place-items:center;text-align:center;
+  border:1px dashed rgba(255,255,255,.15);border-radius:16px;color:#8f827b;background:rgba(255,255,255,.025)
+}
+.member-settings{margin-top:20px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.member-settings summary{cursor:pointer;font-weight:800}
+.member-password-form{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end;margin-top:15px}
+.member-password-form label{display:grid;gap:6px;color:var(--muted);font-size:.8rem}
+.member-password-form input{min-height:44px;padding:0 12px;border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;background:rgba(0,0,0,.22)}
 @media(max-width:720px){
-  .member-login-link{top:12px;right:12px;min-height:36px;padding:0 13px}
-  .pending-payment-resume{right:12px;bottom:70px}
+  .member-password-form{grid-template-columns:1fr}
+  .member-hero{min-height:600px}
 }
