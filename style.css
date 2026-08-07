@@ -1834,3 +1834,150 @@ video.member-feed-media{object-fit:contain}
   .member-password-form{grid-template-columns:1fr}
   .member-hero{min-height:600px}
 }
+
+
+/* ============================================================
+   V17.7.2 — CORREÇÕES VISUAIS, ROLETA INLINE E FIM DE PÁGINA
+   ============================================================ */
+
+/* Nunca permita que CSS do botão administrativo vença o atributo hidden. */
+[data-instagram-admin-add][hidden]{
+  display:none !important;
+}
+
+/* O "+" de publicação só aparece depois que /api/admin/me valida a sessão. */
+.ig-profile-actions:has(.ig-admin-profile-add:not([hidden])){
+  grid-template-columns:1fr 1fr 42px 42px;
+}
+.ig-admin-profile-add{
+  width:42px !important;
+  min-width:42px;
+  min-height:36px !important;
+  margin:0 !important;
+  padding:0 !important;
+  display:grid;
+  place-items:center;
+  border:0 !important;
+  border-radius:8px !important;
+  background:#252a30 !important;
+  color:#fff !important;
+  font-size:1.65rem !important;
+  font-weight:300 !important;
+  line-height:1 !important;
+}
+.ig-admin-profile-add:hover{
+  background:#30363d !important;
+}
+.ig-admin-profile-add > span[aria-hidden="true"]{
+  transform:translateY(-1px);
+}
+
+/* Ação "Seguindo" sem seta e com espaçamento normal. */
+.ig-profile-actions > button:first-child{
+  letter-spacing:0;
+  word-spacing:0;
+}
+
+/* Roleta jogável dentro do card da página inicial. */
+.home-roulette-card{
+  display:block !important;
+  padding:18px !important;
+}
+.home-roulette-heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:15px;
+}
+.home-roulette-heading h2{
+  margin:7px 0 5px;
+}
+.home-roulette-heading p{
+  margin:0;
+  color:var(--muted);
+  font-size:.84rem;
+}
+.home-roulette-frame{
+  position:relative;
+  width:100%;
+  height:clamp(430px,64vw,690px);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:17px;
+  background:#080404;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+.home-roulette-frame iframe{
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
+  background:#080404;
+}
+.home-roulette-actions{
+  display:flex;
+  justify-content:flex-end;
+  padding-top:13px;
+}
+.home-roulette-actions .btn{
+  min-height:42px;
+  font-size:.78rem;
+}
+
+/* Fecha a rolagem no final real da página e evita o "vazio infinito". */
+html{
+  min-height:100%;
+  background:#080404;
+  overscroll-behavior-y:none;
+}
+body{
+  min-height:100dvh;
+  overscroll-behavior-y:none;
+}
+body:not(.roulette-fullscreen-page){
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.site-footer,
+.page-end-boundary,
+.subpage-end-boundary,
+.instagram-page-end{
+  flex-shrink:0;
+}
+.site-footer{
+  min-height:70px;
+  padding-bottom:calc(26px + env(safe-area-inset-bottom));
+}
+
+/* O fundo do Instagram continua escuro fora da área útil, evitando faixa branca infinita. */
+html:has(body.instagram-reference){
+  background:#0b0f14;
+}
+body.instagram-reference{
+  overscroll-behavior-y:none;
+}
+
+@media(max-width:720px){
+  .ig-profile-actions:has(.ig-admin-profile-add:not([hidden])){
+    grid-template-columns:1fr 1fr 38px 38px;
+  }
+  .ig-admin-profile-add{
+    width:38px !important;
+    min-width:38px;
+    min-height:33px !important;
+    font-size:1.45rem !important;
+  }
+  .home-roulette-card{
+    padding:14px !important;
+  }
+  .home-roulette-frame{
+    height:min(72vh,620px);
+    min-height:430px;
+  }
+  .home-roulette-actions{
+    justify-content:stretch;
+  }
+  .home-roulette-actions .btn{
+    width:100%;
+  }
+}

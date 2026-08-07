@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="../privacy.css" rel="stylesheet"/>
+<link href="../privacy.css?v=17.7.2" rel="stylesheet"/>
 <link href="../assets/css/v16-ui.css?v=16.0" rel="stylesheet"/></head>
 <body class="privacy-v13-3">
 <header class="topbar">
@@ -18,22 +18,29 @@
 <a class="privacy-back" data-i18n="back" href="../">Voltar</a>
 <strong aria-label="privacy" class="privacy-logo">privacy<span>.</span></strong>
 <div class="privacy-top-actions">
-<button class="v16-login-launch v16-login-launch-privacy" data-login-context="privacy" data-open-login-modal="" type="button"><span>Entrar</span></button>
-<label class="language-picker" for="languageSelect">
+<button aria-expanded="false" aria-haspopup="dialog" aria-label="Selecionar idioma" class="privacy-language-launch" id="privacyLanguageLaunch" type="button">
 <svg aria-hidden="true" class="language-picker-icon" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="9"></circle>
 <path d="M3.6 9h16.8M3.6 15h16.8M12 3c2.2 2.5 3.2 5.5 3.2 9s-1 6.5-3.2 9c-2.2-2.5-3.2-5.5-3.2-9S9.8 5.5 12 3Z"></path>
 </svg>
-<span class="privacy-language-text" data-i18n="languageLabel">Idioma</span>
-<select aria-label="Selecionar idioma" id="languageSelect">
-<option value="pt">Português</option>
-<option value="en">English</option>
-<option value="es">Español</option>
-</select>
-</label>
+</button>
 </div>
 </div>
 </header>
+<div aria-hidden="true" class="privacy-language-modal" id="privacyLanguageModal">
+<div class="privacy-language-overlay" data-close-language-modal=""></div>
+<section aria-label="Selecionar idioma" aria-modal="true" class="privacy-language-card" role="dialog">
+<div class="privacy-language-card-head">
+<strong data-i18n="languageLabel">Idioma</strong>
+<button aria-label="Fechar" data-close-language-modal="" type="button">×</button>
+</div>
+<div class="privacy-language-options">
+<button data-language-option="pt" type="button"><span>Português</span><small>PT</small></button>
+<button data-language-option="en" type="button"><span>English</span><small>EN</small></button>
+<button data-language-option="es" type="button"><span>Español</span><small>ES</small></button>
+</div>
+</section>
+</div>
 <main class="page-shell">
 <section class="profile-card privacy-profile-complete">
 <button aria-label="Abrir foto de capa" class="cover image-open-button" data-open-profile-image="" type="button">
@@ -62,7 +69,6 @@
 <div class="profile-copy">
 <div class="profile-name-row">
 <h1>Yasmin Santos</h1>
-<span class="verified">✓</span>
 </div>
 <p class="handle">@yasminsantos</p>
 <div aria-label="Redes sociais" class="privacy-socials">
@@ -119,7 +125,7 @@
 <header class="post-header">
 <img alt="" data-admin-kind="image" data-admin-slot="privacy_imagem_3" data-cms-avatar=""/>
 <div>
-<strong>Yasmin Santos <span aria-hidden="true" class="post-verified">✓</span></strong>
+<strong>Yasmin Santos</strong>
 <span>@yasminsantos</span>
 </div>
 <button aria-label="Mais opções" data-i18n-aria="moreOptions" type="button">⋮</button>
@@ -146,6 +152,17 @@
 <strong class="likes"><span data-like-count="">15,2K</span> <span data-i18n="likesLower">curtidas</span></strong>
 </article>
 </div>
+</section>
+<section class="privacy-bottom-login">
+<div class="privacy-bottom-login-copy">
+<span class="privacy-bottom-login-kicker" data-i18n="subscriberArea">Área de assinantes</span>
+<strong data-i18n="alreadySubscriber">Já é assinante?</strong>
+<p data-i18n="loginDescription">Entre com sua conta para acessar o conteúdo liberado.</p>
+</div>
+<button class="privacy-bottom-login-button" data-login-context="privacy" data-open-login-modal="" type="button">
+<span data-i18n="loginButton">Entrar</span>
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 12h13M14 7l5 5-5 5"></path></svg>
+</button>
 </section>
 <div aria-hidden="true" class="privacy-page-end"></div>
 </main>
@@ -216,7 +233,7 @@
 <script src="../config.js?v=13.6.4"></script>
 <script src="../assets/js/app-config-v13.6.js?v=17.7"></script>
 <script src="../assets/js/turnstile-v17.6.js?v=17.6"></script>
-<script src="../privacy.js?v=13.6.4"></script>
+<script src="../privacy.js?v=17.7.1"></script>
 <script src="../assets/vendor/qrcode-local.js?v=13.6.4"></script>
 <script src="../payment.js?v=17.6"></script><script src="../assets/js/auth-modal-v16.js?v=16.0"></script> <script defer="" src="../assets/js/p16.js"></script>
 <script src="../assets/js/r2-media-v17.7.js?v=17.7"></script><script src="../assets/js/admin-editor-v17.js?v=17.7"></script></body>

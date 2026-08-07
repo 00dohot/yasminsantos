@@ -2032,3 +2032,274 @@ body.privacy-v13-3 .language-picker select{
   body.privacy-v13-3 .language-picker{width:36px!important;padding:0!important}
   body.privacy-v13-3 .v16-login-launch-privacy{padding:0 9px!important}
 }
+
+
+/* ============================================================
+   V17.7.1 — PRIVACY: IDIOMA CUSTOM + LOGIN NO FINAL
+   ============================================================ */
+
+/* Topo: volta ao botão pequeno cinza/preto. */
+body.privacy-v13-3 .privacy-top-actions{
+  justify-self:end!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:0!important;
+}
+body.privacy-v13-3 .privacy-language-launch{
+  width:42px!important;
+  height:42px!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:0!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:11px!important;
+  color:#c5c5c7!important;
+  background:linear-gradient(180deg,#2b2b2e,#1f1f21)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 7px 18px rgba(0,0,0,.12)!important;
+  transition:transform .16s ease,background .16s ease,border-color .16s ease!important;
+}
+body.privacy-v13-3 .privacy-language-launch:hover{
+  transform:translateY(-1px);
+  background:linear-gradient(180deg,#323235,#242426)!important;
+  border-color:rgba(255,255,255,.14)!important;
+}
+body.privacy-v13-3 .privacy-language-launch:active{transform:translateY(0) scale(.97)}
+body.privacy-v13-3 .privacy-language-launch .language-picker-icon{
+  width:22px!important;
+  height:22px!important;
+  display:block!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:1.55!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+
+/* Modal pequeno branco em vez do select nativo do navegador. */
+.privacy-language-modal{
+  position:fixed;
+  inset:0;
+  z-index:420;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .16s ease,visibility .16s ease;
+}
+.privacy-language-modal.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+.privacy-language-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(22,20,19,.13);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+}
+.privacy-language-card{
+  position:absolute;
+  top:82px;
+  right:max(12px,calc((100vw - 1120px)/2));
+  z-index:1;
+  width:min(226px,calc(100vw - 24px));
+  padding:12px;
+  border:1px solid rgba(41,31,25,.09);
+  border-radius:17px;
+  background:#fff;
+  box-shadow:0 22px 55px rgba(37,28,23,.18);
+  transform:translateY(-7px) scale(.98);
+  transform-origin:top right;
+  transition:transform .17s ease;
+}
+.privacy-language-modal.open .privacy-language-card{transform:translateY(0) scale(1)}
+.privacy-language-card-head{
+  min-height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 4px 7px 8px;
+}
+.privacy-language-card-head strong{
+  color:#74716f;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.privacy-language-card-head button{
+  width:30px;
+  height:30px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:0;
+  border-radius:9px;
+  color:#8b8784;
+  background:#f5f3f1;
+  font-size:1.12rem;
+  line-height:1;
+}
+.privacy-language-options{
+  display:grid;
+  gap:5px;
+}
+.privacy-language-options button{
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  border:1px solid transparent;
+  border-radius:12px;
+  background:#fff;
+  font:inherit;
+  font-weight:800;
+  cursor:pointer;
+  transition:background .15s ease,border-color .15s ease,transform .15s ease;
+}
+.privacy-language-options button span{
+  background:linear-gradient(180deg,#ff8b32 0%,#ffad6e 52%,#ef9f9c 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.privacy-language-options button small{
+  color:#b7b0ab;
+  font-size:.66rem;
+  font-weight:800;
+}
+.privacy-language-options button:hover{
+  background:#fff9f5;
+  border-color:#f6d7c2;
+  transform:translateX(1px);
+}
+.privacy-language-options button.active{
+  background:linear-gradient(90deg,#fff8f1,#fff);
+  border-color:#f4ceb2;
+}
+.privacy-language-options button.active small{color:#f39a5d}
+body.privacy-language-open{overflow:hidden}
+
+/* Login passa para baixo do último card. */
+body.privacy-v13-3 .privacy-bottom-login{
+  width:100%;
+  min-height:112px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin:22px 0 0;
+  padding:20px 22px 20px 26px;
+  border:1px solid var(--privacy-border,#ddd9d4);
+  border-radius:27px;
+  background:#fff;
+  box-shadow:0 14px 38px rgba(48,39,32,.055);
+}
+body.privacy-v13-3 .privacy-bottom-login-copy{
+  min-width:0;
+  display:grid;
+  gap:3px;
+}
+body.privacy-v13-3 .privacy-bottom-login-kicker{
+  color:#9c9895;
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+body.privacy-v13-3 .privacy-bottom-login-copy strong{
+  color:#242124;
+  font-size:1.1rem;
+}
+body.privacy-v13-3 .privacy-bottom-login-copy p{
+  margin:0;
+  color:#7a7776;
+  font-size:.82rem;
+  line-height:1.45;
+}
+body.privacy-v13-3 .privacy-bottom-login-button{
+  flex:0 0 auto;
+  min-width:148px;
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:0 21px;
+  border:0;
+  border-radius:999px;
+  color:#171313;
+  background:linear-gradient(100deg,#ff973f 0%,#ffc89f 48%,#f7a7a0 100%);
+  box-shadow:0 8px 20px rgba(232,137,75,.16);
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .16s ease,filter .16s ease;
+}
+body.privacy-v13-3 .privacy-bottom-login-button svg{
+  width:18px;
+  height:18px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+body.privacy-v13-3 .privacy-bottom-login-button:hover{
+  transform:translateY(-1px);
+  filter:saturate(1.05);
+}
+body.privacy-v13-3 .privacy-bottom-login-button:active{transform:scale(.98)}
+
+/* O antigo botão superior deixa de existir nesta versão. */
+body.privacy-v13-3 .v16-login-launch-privacy{display:none!important}
+
+@media(max-width:620px){
+  body.privacy-v13-3 .privacy-language-launch{
+    width:38px!important;
+    height:38px!important;
+    border-radius:10px!important;
+  }
+  body.privacy-v13-3 .privacy-language-launch .language-picker-icon{
+    width:20px!important;
+    height:20px!important;
+  }
+  .privacy-language-card{
+    top:72px;
+    right:10px;
+    width:min(218px,calc(100vw - 20px));
+  }
+  body.privacy-v13-3 .privacy-bottom-login{
+    min-height:0;
+    display:grid;
+    gap:15px;
+    padding:20px;
+    border-radius:24px;
+  }
+  body.privacy-v13-3 .privacy-bottom-login-button{
+    width:100%;
+    min-width:0;
+  }
+}
+
+
+/* V17.7.2 — selo removido e limite final da página Privacy. */
+.verified,
+.post-verified{
+  display:none !important;
+}
+html{
+  min-height:100%;
+  background:#f7f4ef;
+  overscroll-behavior-y:none;
+}
+body.privacy-v13-3{
+  min-height:100dvh;
+  overscroll-behavior-y:none;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.privacy-page-end{
+  min-height:calc(44px + env(safe-area-inset-bottom));
+}

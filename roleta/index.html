@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
@@ -7,72 +6,59 @@
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#080404" name="theme-color"/>
 <title>Roleta Hot VIP</title>
-<link href="../style.css" rel="stylesheet"/>
+<link href="../style.css?v=17.7.2" rel="stylesheet"/>
 </head>
 <body class="roulette-fullscreen-page">
-<iframe class="roulette-fullscreen-frame" src="https://sharkbot.com.br/r/yasminsantos" title="Roleta Hot VIP">
-</iframe>
+<iframe class="roulette-fullscreen-frame" referrerpolicy="no-referrer" src="https://sharkbot.com.br/r/yasminsantos" title="Roleta Hot VIP"></iframe>
 <div class="roulette-top-overlay">
 <a href="../">Voltar ao site</a>
-<div class="roulette-title-glass">
-<span>ROLETA</span>
-<strong>Roleta Hot VIP</strong>
-</div>
+<div class="roulette-title-glass"><span>ROLETA</span><strong>Roleta Hot VIP</strong></div>
 </div>
 <aside class="roulette-promo-window" id="roulettePromo">
 <div class="roulette-promo-handle" id="roulettePromoHandle">
-<span>Arraste</span>
-<button aria-label="Fechar" id="roulettePromoClose" type="button">×</button>
+<span>Arraste</span><button aria-label="Fechar" id="roulettePromoClose" type="button">×</button>
 </div>
 <strong>Tenha uma chance real comigo</strong>
 </aside>
-<a class="roulette-external-fallback" href="https://sharkbot.com.br/r/yasminsantos" rel="noopener" target="_blank">
-    Abrir diretamente
-  </a>
+<a class="roulette-external-fallback" href="https://sharkbot.com.br/r/yasminsantos" rel="noopener" target="_blank">Abrir diretamente</a>
 <script>
-  (() => {
-    const windowElement = document.getElementById("roulettePromo");
-    const handle = document.getElementById("roulettePromoHandle");
-    const closeButton = document.getElementById("roulettePromoClose");
-    if (!windowElement || !handle || !closeButton) return;
-
-    let dragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-
-    handle.addEventListener("pointerdown", (event) => {
-      if (event.target === closeButton) return;
-      dragging = true;
-      const rect = windowElement.getBoundingClientRect();
-      offsetX = event.clientX - rect.left;
-      offsetY = event.clientY - rect.top;
-      windowElement.style.left = rect.left + "px";
-      windowElement.style.top = rect.top + "px";
-      windowElement.style.right = "auto";
-      windowElement.style.transform = "none";
-      handle.setPointerCapture(event.pointerId);
-    });
-
-    handle.addEventListener("pointermove", (event) => {
-      if (!dragging) return;
-      const maxX = window.innerWidth - windowElement.offsetWidth - 8;
-      const maxY = window.innerHeight - windowElement.offsetHeight - 8;
-      windowElement.style.left = clamp(event.clientX - offsetX, 8, maxX) + "px";
-      windowElement.style.top = clamp(event.clientY - offsetY, 8, maxY) + "px";
-    });
-
-    const endDrag = (event) => {
-      dragging = false;
-      try { handle.releasePointerCapture(event.pointerId); } catch {}
-    };
-
-    handle.addEventListener("pointerup", endDrag);
-    handle.addEventListener("pointercancel", endDrag);
-    closeButton.addEventListener("click", () => windowElement.remove());
-  })();
-  </script>
-<script defer="" src="../assets/js/p16.js"></script>
-<script src="../assets/js/app-config-v13.6.js?v=17.0"></script><script src="../assets/js/admin-editor-v17.js?v=17.0"></script></body>
+(() => {
+  const windowElement = document.getElementById("roulettePromo");
+  const handle = document.getElementById("roulettePromoHandle");
+  const closeButton = document.getElementById("roulettePromoClose");
+  if (!windowElement || !handle || !closeButton) return;
+  let dragging = false, offsetX = 0, offsetY = 0;
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  handle.addEventListener("pointerdown", (event) => {
+    if (event.target === closeButton) return;
+    dragging = true;
+    const rect = windowElement.getBoundingClientRect();
+    offsetX = event.clientX - rect.left;
+    offsetY = event.clientY - rect.top;
+    windowElement.style.left = rect.left + "px";
+    windowElement.style.top = rect.top + "px";
+    windowElement.style.right = "auto";
+    windowElement.style.transform = "none";
+    handle.setPointerCapture(event.pointerId);
+  });
+  handle.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    const maxX = window.innerWidth - windowElement.offsetWidth - 8;
+    const maxY = window.innerHeight - windowElement.offsetHeight - 8;
+    windowElement.style.left = clamp(event.clientX - offsetX, 8, maxX) + "px";
+    windowElement.style.top = clamp(event.clientY - offsetY, 8, maxY) + "px";
+  });
+  const endDrag = (event) => {
+    dragging = false;
+    try { handle.releasePointerCapture(event.pointerId); } catch {}
+  };
+  handle.addEventListener("pointerup", endDrag);
+  handle.addEventListener("pointercancel", endDrag);
+  closeButton.addEventListener("click", () => windowElement.remove());
+})();
+</script>
+<script defer src="../assets/js/p16.js"></script>
+<script src="../assets/js/app-config-v13.6.js?v=17.7"></script>
+<script src="../assets/js/admin-editor-v17.js?v=17.7"></script>
+</body>
 </html>
